@@ -4,7 +4,7 @@
 * Plugins
   * ABP
   * UBlock Origin
-    * Stuff
+    * Stackoverflow
   * Blocksite
     * News
     * Sports
