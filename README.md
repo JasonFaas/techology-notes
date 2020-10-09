@@ -11,6 +11,7 @@
     * Video
   * 1Password
   * Grammarly
+  * Console Recorder for AWS
 
 ## Set up for terminal:
 * iTerm
@@ -24,3 +25,4 @@
 * Sublime
 * Postico
 * 1Password
+* Micro Snitch
