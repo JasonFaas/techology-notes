@@ -34,22 +34,23 @@
 
 ## REST API Vocab:
 * Primary verbs
-  * GET
-  * POST
-  * PUT
-  * DELETE
+  * GET - Safe, Idempotent
+  * POST - Not-Safe, Not-Idempotent
+  * PUT - Not-Safe, Idempotent
+  * DELETE - Not-Safe, Idempotent
 * Secondary verbs
-  * HEAD
-  * CONNECT
-  * OPTIONS
-  * TRACE
-  * PATCH
+  * HEAD - Safe, Idempotent
+  * CONNECT - ?, ?
+  * OPTIONS - Safe, Idempotent
+  * TRACE - ?, ?
+  * PATCH - Not-Safe, Non-Idempotent
 * Common Response Codes - https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
   * 200 OK - Requested action has been completed with relevant information returned
   * 202 Accepted - Request has been received, though processing is still in progress
   * 301 Moved Permanently - All requests should be directed to new URL given in response
   * 400 Bad request - Unable to process request due to poor request by client (user).
   * 500 Internal Server Error - Unable to process request due to server-side error
+  * TODO: Fill in more of the relevant response codes
   
 
 ## Python Vocab:
@@ -65,3 +66,13 @@
 
 ## Advanced Security Terms:
 * Yubi Keys
+
+## Common UPD/TCP Ports
+* 22 SSH - TCP? - Secure login to remote system - describe more
+* 53 DNS - UDP - Set up DNS, Route53 - describe more
+* 67 DHCP - UDP
+* 111 RCP
+* 80 HTTP
+* 118 SQL
+* 443 HTTPS
+* 3478, 3479 Zoom Calls - UDP - Primary ports used for zoom video calls for video, audio, and screen share
