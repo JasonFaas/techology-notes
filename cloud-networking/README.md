@@ -159,6 +159,16 @@
 * 443 HTTPS
 * 3478, 3479 Zoom Calls - UDP - Primary ports used for zoom video calls for video, audio, and screen share
 * TODO: get info from email sent for discussion
+* TCP
+  * 22 - SSH - Secure login to remote system 
+  * 68 - DHCP Client - Port used for the Dynamic Host Configuration Protocol client side to receive info of new IP address for this new instance
+  * 443 - HTTPS - Port for secure HTTP traffic
+  * 6379 - Redis - Default Redis server port
+* UDP
+  * 53 - DNS - Traditional port used for receiving DNS info
+  * 67 - DHCP Server - Port used for the Dynamic Host Configuration Protocol server side to receive the request of setting up IP address on a new instance
+  * 161 - SNMP - Port used on server to collect and manage network information
+  * 3478 & 3479 - Zoom - Primary ports used for zoom video calls for video, audio, and screen share
 
 
 ## Data Exchange Protocols
