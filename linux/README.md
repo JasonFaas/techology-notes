@@ -31,3 +31,6 @@
   * r - read (4)
   * w - write (2)
   * x - execute (1)
+  
+## Commands
+* echo "$?"
