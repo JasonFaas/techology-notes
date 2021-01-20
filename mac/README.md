@@ -13,3 +13,7 @@
 * Postico
 * 1Password
 * Micro Snitch
+
+## PyCharm
+* Plugins
+  * HashiCorp Terraform / HCL language support
