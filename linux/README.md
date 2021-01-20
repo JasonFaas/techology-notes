@@ -34,3 +34,7 @@
   
 ## Commands
 * echo "$?"
+
+## SSH
+* ssh-add -l  # list ssh keys
+* ssh-add -k ~/.ssh/id_rsa  # add private key to ssh
