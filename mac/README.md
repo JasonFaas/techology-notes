@@ -17,3 +17,6 @@
 ## PyCharm
 * Plugins
   * HashiCorp Terraform / HCL language support
+
+## Install Ubuntu on Mac from Mac
+* https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview
