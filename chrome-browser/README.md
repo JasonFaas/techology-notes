@@ -10,3 +10,4 @@
   * 1Password
   * Grammarly
   * Console Recorder for AWS
+  * DuckDuckGo Privacy Essentials
