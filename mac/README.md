@@ -3,6 +3,7 @@
 ## Set up for terminal:
 * iTerm
   * https://medium.com/swlh/power-up-your-terminal-using-oh-my-zsh-iterm2-c5a03f73a9fb
+  * https://www.dev-diaries.com/blog/terminal-history-auto-suggestions-as-you-type/
 
 ## App Store:
 * Redhot Timer
