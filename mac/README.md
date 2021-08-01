@@ -9,7 +9,7 @@
 * Magnet
 
 ## Web Download
-* Sublime
+* Sublime -> export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
 * Postico
 * 1Password
 * Micro Snitch
