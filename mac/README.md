@@ -19,5 +19,11 @@
 * Plugins
   * HashiCorp Terraform / HCL language support
 
+## Terminal Config - TODO
+* TODO: Add to terminal config
+  * `pip install --upgrade pip`
+  * `brew update`
+  * `brew upgrade`
+
 ## Install Ubuntu on Mac from Mac
 * https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview

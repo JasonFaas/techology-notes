@@ -1,7 +1,13 @@
-# AWS Info
+# Terraform Command going through book
 
-## Full command list
-* https://docs.aws.amazon.com/cli/latest/reference/#available-services
+## Common commands - TODO: Explain what each are doing
+* `terraform --version`
+* `terraform init`
+* `terraform plan`
+* `terraform apply`
+* `terraform output`
+* `terraform destroy`
+* # TODO: what is auto approve line for `apply` and `destroy`?
 
 ## Set up
 * `pip install awscli`
