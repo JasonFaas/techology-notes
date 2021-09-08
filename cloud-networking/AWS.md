@@ -34,3 +34,7 @@
 * aws sqs receive-message --queue-url https://queue.amazonaws.com/546419318123/Test
 * aws help
 * aws autoscaling help 
+
+## Vocab
+* ALB vs ELB
+* 
