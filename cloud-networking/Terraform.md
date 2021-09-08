@@ -4,10 +4,12 @@
 * `terraform --version`
 * `terraform init`
 * `terraform plan`
+* `terraform graph`
 * `terraform apply`
+* `terraform apply --auto-approve`
+  * Auto approve apply
 * `terraform output`
 * `terraform destroy`
-* # TODO: what is auto approve line for `apply` and `destroy`?
 
 ## Set up
 * `pip install awscli`

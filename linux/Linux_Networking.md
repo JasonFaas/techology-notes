@@ -58,3 +58,6 @@
   * Intel specifc
     * vtune
     * mlc
+  * ip
+    * ip addr | grep 'global eth1'
+    * ip addr show

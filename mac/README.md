@@ -4,6 +4,8 @@
 * iTerm
   * https://medium.com/swlh/power-up-your-terminal-using-oh-my-zsh-iterm2-c5a03f73a9fb
   * https://www.dev-diaries.com/blog/terminal-history-auto-suggestions-as-you-type/
+  * https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+    * Add plugins=(zsh-autosuggestions) at plugins location of ~/.zshrc
 
 ## App Store:
 * Redhot Timer
