@@ -40,6 +40,19 @@
   * -i (what?)
 * whoami
 * id
+* find
+  * `find / -name vlc`
+  * `find / -iname '*jp*g'`
+* sed
+  * what is this?
+  * flag -e (what is this)
+  * example: `sed -e 's/^[ \t]*//'`
+* ps
+  * ps -ax
+  * ps -ef
+* aux
+* kill
+* ip route get 1.2.3.4 | awk '{print $7}'
 
 ## Viewing and Editing files
 * more
@@ -63,3 +76,7 @@
   * `rsync -r -v --rsh "ssh <user>@<ip> ssh" <second_ip>:/home/jfaas/<file_name> <path_or_file_name>`
 * scp - easy file transfer
   * `scp <username>@<ip>:<file_name> <path_or_file_name>`
+
+## Standard out and error
+* `<application and flags> > "std_out.txt">"ssh_err.txt`
+* `<application and flags> > "std_out_and_err.txt">&1` (this isn't exactly correct, but close)
