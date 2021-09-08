@@ -8,8 +8,22 @@
       * restart
       * start
       * stop
-  * `journalctl -u <application>.service`
-    * TODO: Fill in all the flags like '--no-pager'
+    * `systemctl list-units`
+    * `systemctl --all`
+    * `systmctl list-unit-files`
+    * so many more
+  * journalctl -u <application>.service
+    * flags
+      * `-u` service name
+      * `-n` (number of lines to print from the bottom)
+      * `--no-pager` (what is this?)
+      * `-o` (what is this?)
+        * have an example of "cat" afterwords
+      * -f (what is this?)
+    * questions:
+      * so many flags
+      * TODO: Fill in all the flags like '--no-pager'
+      * ? do i have to have ".service" as a suffix for -u flag?
   * sudo service uwsgi restart
     * TODO: how to list applications
 * Logs
@@ -25,3 +39,10 @@
     * journalctl -u ssh  # Show logs for ssh
     * journalctl -k  # Only show kernel messages
     * journalctl -o json-pretty
+  * logs are typically stored at "/var/log/"
+
+
+## Questions
+* What is difference between service and systectl e.g.:
+  * `$ sudo systemctl status application_name`
+  * `$ sudo service application_name status`

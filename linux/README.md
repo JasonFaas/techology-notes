@@ -34,7 +34,32 @@
   
 ## Commands
 * echo "$?"
+* grep
+  * `$ grep cake what.txt` same as `$ cat what.txt | grep cake`
+  * each (important) flag
+  * -i (what?)
+* whoami
+* id
+
+## Viewing and Editing files
+* more
+* less
+* vi
+* cat
 
 ## SSH
 * ssh-add -l  # list ssh keys
 * ssh-add -k ~/.ssh/id_rsa  # add private key to ssh
+* troubleshooting options if acting up
+  * delete `~/.ssh/config` and `~/.ssh/known_hosts`
+* relevant files at `/etc/ssh/ssh_config` and `/etc/ssh/sshd_config`
+* run command on another machine with "ssh ip 'command'"
+  * `ssh jfaas@127.0.0.1 ls`
+* TODO:
+  * File transfer with `rsync` and `scp`
+  * Examples of what to add to `~/.ssh/config`
+  * Jump host options
+* rsync - file transfer across jump host
+  * `rsync -r -v --rsh "ssh <user>@<ip> ssh" <second_ip>:/home/jfaas/<file_name> <path_or_file_name>`
+* scp - easy file transfer
+  * `scp <username>@<ip>:<file_name> <path_or_file_name>`
