@@ -76,6 +76,12 @@
   * `rsync -r -v --rsh "ssh <user>@<ip> ssh" <second_ip>:/home/jfaas/<file_name> <path_or_file_name>`
 * scp - easy file transfer
   * `scp <username>@<ip>:<file_name> <path_or_file_name>`
+* Jump host in `~/.ssh/config` examples
+  * ```
+    Host 10.0.0.*
+        ProxyJump <username>@<jump_host>
+        ProxyCommand  ssh jump -W %h:%p
+    ```
 
 ## Standard out and error
 * `<application and flags> > "std_out.txt">"ssh_err.txt`

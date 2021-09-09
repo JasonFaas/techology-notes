@@ -29,3 +29,7 @@
 
 ## Install Ubuntu on Mac from Mac
 * https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview
+
+## Homebrew info
+* `https://formulae.brew.sh/`
+  * example: `https://formulae.brew.sh/formula/awscli`
