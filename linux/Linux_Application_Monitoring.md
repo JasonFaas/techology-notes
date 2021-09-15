@@ -14,16 +14,28 @@
     * so many more
   * journalctl -u <application>.service
     * flags
-      * `-u` service name
-      * `-n` (number of lines to print from the bottom)
-      * `--no-pager` (what is this?)
-      * `-o` (what is this?)
-        * have an example of "cat" afterwords
-      * -f (what is this?)
-    * questions:
-      * so many flags
-      * TODO: Fill in all the flags like '--no-pager'
-      * ? do i have to have ".service" as a suffix for -u flag?
+      * `-u`/`--unit` service name
+      * `-f`/`--follow` show new entries instead of `tail`
+      * `-n` number of lines to print from the bottom
+      * `--no-pager` Sends output to terminal instead of `less` style
+      * `-o`/`--output` specify output formatting
+        * `cat` no metadata included in output
+        * `json`
+        * `verbose`
+        * `short` default output
+      * `-S`/`--since`
+        * `-2h` after 2 hours ago
+        * `today` everything today
+        * `yesterday` everything yesterday and today
+      * `-U`/`--until`
+        * `-2h` before 2 hours ago
+        * `today` everything before today
+        * `yesterday` everything before yesterday
+        * `tomorrow` everything before tomorrow
+      * `--flush` remove all current logs
+      * `--version`
+    * examples
+      * 
   * sudo service uwsgi restart
     * TODO: how to list applications
 * Logs

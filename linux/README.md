@@ -68,6 +68,7 @@
 * relevant files at `/etc/ssh/ssh_config` and `/etc/ssh/sshd_config`
 * run command on another machine with "ssh ip 'command'"
   * `ssh jfaas@127.0.0.1 ls`
+* `ssh -L <port_1>:localhost:<port_2> <username>:<ip>` allow `localhost:port_1` to point to `ip:port_2` as an internal connection
 * TODO:
   * File transfer with `rsync` and `scp`
   * Examples of what to add to `~/.ssh/config`
