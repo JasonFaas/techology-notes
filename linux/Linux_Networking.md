@@ -61,3 +61,6 @@
   * ip
     * ip addr | grep 'global eth1'
     * ip addr show
+* openssl
+  * check cert age
+    * `cat <cert> | openssl x509 -noout -enddate | sed -e 's/notAfter=//'`

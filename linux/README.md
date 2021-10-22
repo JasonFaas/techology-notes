@@ -86,4 +86,11 @@
 
 ## Standard out and error
 * `<application and flags> > "std_out.txt">"ssh_err.txt`
-* `<application and flags> > "std_out_and_err.txt">&1` (this isn't exactly correct, but close)
+* `<application and flags> >2&1 "std_out_and_err.txt"`
+
+## Environment Variables
+* list environment variables
+  * `printenv`
+  * `printenv <specific variable>`
+* set environment variable
+  * `NEW_VAR_NAME="Hello World";set | grep NEW_VAR_NAME;export NEW_VAR_NAME`

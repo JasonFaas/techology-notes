@@ -7,15 +7,19 @@
 * `pip install awscli`
 * Files in ~/.aws/
   * config
-    ``````
+    ```
     [default]
     region = us-west-1
     output = json
+    ```
+    * if multiple configs/credentials change with
+      * `export AWS_PROFILE=default`
   * credentials
-    ````
+    ```
     [default]
     aws_access_key_id = <info>
     aws_secret_access_key = <info>
+    ```
 * First test (nothing should be returned, and no error)
   * `aws s3 ls`
 

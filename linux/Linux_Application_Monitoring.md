@@ -9,6 +9,7 @@
       * start
       * stop
     * `systemctl list-units`
+    * `systemctl list-timers`
     * `systemctl --all`
     * `systmctl list-unit-files`
     * so many more
