@@ -93,4 +93,4 @@
   * `printenv`
   * `printenv <specific variable>`
 * set environment variable
-  * `NEW_VAR_NAME="Hello World";set | grep NEW_VAR_NAME;export NEW_VAR_NAME`
+  * `NEW_VAR_NAME="Hello World";set | grep NEW_VAR_NAME;export NEW_VAR_NAME="Hello World"`

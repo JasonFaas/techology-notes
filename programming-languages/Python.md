@@ -9,6 +9,7 @@
 * Generator
 * Lambda
 * Yield
+* Range - (beginning=0,end_exclusive,step=1)
 * @ symbol above method definition
 
 ## Python Build in Methods and variables
@@ -41,6 +42,19 @@
 ## Python Katas:
 * See all vocab
 * More examples
+
+## Data structures
+* simple
+  * dictionary: simple key-value structure
+  * list: mutable dynamic array
+  * tuple: immutable containers
+  * array.array: Basic Typed Arrays
+  * str: Immutable Arrays of Unicode Characters
+  * set: Your Go-To Set
+  * frozenset: Immutable Sets
+* advanced
+  * collections.OrderedDict: Dictionary that remembers the Insertion Order of Keys
+  * collections.defaultdict: Return Default Values for Missing Keys
 
 # import os
 * os.path.isfile(path)
