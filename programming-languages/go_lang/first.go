@@ -7,7 +7,12 @@ func main() {
     /* 
         This is a block comment 
     */
-    
-    fmt.Println("hello world")
+    var str1 = "String Variable"
+    fmt.Println(str1)
+    // fmt.Printf(str1)
+
+    for k, v := range str1 {
+        fmt.Printf("k：%d,v：%c == %d\n", k, v, v)
+    }
 }
 
