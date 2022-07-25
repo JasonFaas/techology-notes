@@ -72,5 +72,6 @@
 
 # pip
 * `pip freeze`
+* `pip install -r requirements.txt`
 * `pip install <library>` Libraries on PyPi
 * `pip install --upgrade pip` Upgrade pip

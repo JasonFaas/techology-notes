@@ -10,3 +10,14 @@
   * Auto approve apply
 * `terraform output`
 * `terraform destroy`
+* `terraform providers`
+
+## How to import yaml file
+```
+resource "resource_that_uses_file" “stuff” {
+  name = “name_of_stuff”
+
+  values = [
+    file("${path.module}/filename.yaml")
+  ]
+```
