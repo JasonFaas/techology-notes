@@ -5,6 +5,8 @@ echo "Welcome to iTerm2\n"
 date
 echo ""
 
+export PATH=$PATH:/Users/$(whoami)/.helper_scripts/
+
 echo "Echoing non-standard Environment Variables:"
 MY_ENV_VARS_STR=$(printenv)
 MY_ENV_VARS_LIST=($(echo $MY_ENV_VARS_STR | tr " " "\n"))
