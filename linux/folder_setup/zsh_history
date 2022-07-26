@@ -1,0 +1,24 @@
+: 533800800:0;python3 --version
+: 533800801:0;say "Good News, Everyone!"
+: 533800802:0;say "Failed again, try again soon."
+: 533800803:0;echo "$?"
+: 533800804:0;brew install stern
+: 533800805:0;brew install awscli
+: 533800806:0;brew install aws-iam-authenticator
+: 533800807:0;pip install --upgrade pip
+: 533800808:0;brew update
+: 533800809:0;brew upgrade package_name
+: 533800810:0;curl wttr.in/Santa+Clara
+: 533800811:0;curl wttr.in/Milton+KY
+: 533800812:0;curl wttr.in/Xian
+: 533800813:0;printenv
+: 533800814:0;printenv $PWD
+: 533800815:0;vagrant up
+: 533800816:0;vagrant ssh
+: 533800817:0;vagrant halt
+: 533800818:0;vagrant ssh -c "pwd"
+: 533800819:0;vagrant plugin install plugin_name
+: 533800820:0;vagrant global-status
+: 533800821:0;vagrant scp local_file_or_dir vm_id:path_on_vm
+: 533800822:0;aws ec2 stop-instances --instance-ids <instance_id>
+break_noise script_name
