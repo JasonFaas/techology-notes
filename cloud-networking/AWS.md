@@ -35,8 +35,8 @@
 ## AWS CLI Instance commands:
 * `aws ec2 describe-instances`
 * `aws ec2 start-instances --instance-ids i-1348636c`
-* `aws sns publish --topic-arn arn:aws:sns:us-east-1:546419318123:OperationsError --message "Script Failure"`
-* `aws sqs receive-message --queue-url https://queue.amazonaws.com/546419318123/Test`
+* `aws sns publish --topic-arn arn:aws:sns:us-east-1:<rest_of_arn> --message "Script Failure"`
+* `aws sqs receive-message --queue-url https://queue.amazonaws.com/<rest_of_url>`
 * `aws help`
 * `aws autoscaling help`
 * `aws ec2 describe-volumes --region us-west-2 --filters Name=attachment.instance-id,Values=<instance_id>`

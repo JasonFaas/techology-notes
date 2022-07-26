@@ -5,6 +5,13 @@ echo "Welcome to iTerm2\n"
 date
 echo ""
 
+# Alias
+alias tg=terragrunt
+alias tf=terraform
+alias kctl=kubectl
+alias kns=kubens
+alias kctx=kubectx
+
 export PATH=$PATH:/Users/$(whoami)/.helper_scripts/
 
 echo "Echoing non-standard Environment Variables:"
