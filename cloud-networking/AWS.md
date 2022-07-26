@@ -28,7 +28,7 @@
 * `aws s3 ls`
 * `aws s3 ls s3://bucket_name/folder_name/folder_name`
 * `aws s3 cp myfolder s3://mybucket/myfolder --recursive`
-* `aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp`  # local and bucket sync # TODO: Update this with from and to specified in comment
+* `aws s3 sync <source_myfolder> s3://<target_bucket>/<target_folder> --exclude *.tmp`  # local and bucket sync
 * `aws s3api list-objects-v2 --bucket "<bucket_name>" --query 'Contents[?LastModified > `YEAR-MONTH-DAY` && LastModified < `YEAR-MONTH-DAY`]' > ~/Desktop/out.txt` (one of those dates in inclusive, the other exclusive. believe a couple examples are "2020-05-13" and "2021-16-08:...somekind of date time")
 * More info: https://www.shellhacks.com/aws-cli-s3-ls-list-buckets-objects-contents/
 

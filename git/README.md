@@ -8,3 +8,6 @@
   * git commit -m "`commit message`"
   * git push
   * git push origin --delete `branch_name`
+
+## Other commands
+* `git reset --hard HEAD` - Clean up all code changes locally

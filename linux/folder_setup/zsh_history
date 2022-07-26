@@ -12,7 +12,7 @@
 : 533800811:0;curl wttr.in/Milton+KY
 : 533800812:0;curl wttr.in/Xian
 : 533800813:0;printenv
-: 533800814:0;printenv $PWD
+: 533800814:0;printenv PWD
 : 533800815:0;vagrant up
 : 533800816:0;vagrant ssh
 : 533800817:0;vagrant halt
@@ -22,3 +22,29 @@
 : 533800821:0;vagrant scp local_file_or_dir vm_id:path_on_vm
 : 533800822:0;aws ec2 stop-instances --instance-ids <instance_id>
 break_noise script_name
+git reset --hard HEAD
+aws s3 ls
+aws s3 ls s3://bucket-name/
+aws s3 ls s3://bucket-name/folder/
+date +"%s" # epoch time
+date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
+pip install awscli
+aws s3 ls --recursive s3://bucket_name
+aws s3 cp myfolder s3://mybucket/myfolder --recursive
+aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
+aws ec2 describe-instances
+aws ec2 start-instances --instance-ids <instance_ids>
+aws help
+aws ec2 help
+ssh -p <port> <user>@<ip_address>
+cat <cert> | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
+chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
+whoami
+which python3
+find ~/Code/techology-notes -iname '*md'
+find ~/Code/techology-notes/ -name README.md
+ps -ef
+ps -ax
+ssh-add -l
+ssh-add -k ~/.ssh/id_rsa
+ssh <user>@<ip> "echo 'command_string';pwd;ls"
