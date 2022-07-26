@@ -21,7 +21,7 @@
 * Plugins
   * HashiCorp Terraform / HCL language support
 
-## Terminal Config - TODO
+## Terminal Config
 * TODO: Add to terminal config
   * `pip install --upgrade pip`
   * `brew update`
