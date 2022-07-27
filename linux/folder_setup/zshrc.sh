@@ -5,7 +5,19 @@ echo "Welcome to iTerm2\n"
 date
 echo ""
 
+# Alias
+alias tg=terragrunt
+alias tf=terraform
+alias kctl=kubectl
+alias kns=kubens
+alias kctx=kubectx
+
 export PATH=$PATH:/Users/$(whoami)/.helper_scripts/
+export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
+export PATH=$PATH:/usr/local/bin
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
 echo "Echoing non-standard Environment Variables:"
 MY_ENV_VARS_STR=$(printenv)
