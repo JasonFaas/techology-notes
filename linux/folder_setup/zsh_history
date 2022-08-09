@@ -1,58 +1,73 @@
-: 533800800:0;aws ec2 describe-instances
-: 533800860:0;aws ec2 help
-: 533800920:0;aws ec2 start-instances --instance-ids <instance_ids>
-: 533800980:0;aws ec2 stop-instances --instance-ids <instance_id>
-: 533801040:0;aws help
-: 533801100:0;aws s3 cp myfolder s3://mybucket/myfolder --recursive
-: 533801160:0;aws s3 ls
-: 533801220:0;aws s3 ls --recursive s3://bucket_name
-: 533801280:0;aws s3 ls s3://bucket-name/
-: 533801340:0;aws s3 ls s3://bucket-name/folder/
-: 533801400:0;aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
-: 533801460:0;break_noise script_name
-: 533801520:0;brew install aws-iam-authenticator
-: 533801580:0;brew install awscli
-: 533801640:0;brew install stern
-: 533801700:0;brew update
-: 533801760:0;brew upgrade package_name
-: 533801820:0;cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
-: 533801880:0;chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
-: 533801940:0;curl wttr.in/Milton+KY
-: 533802000:0;curl wttr.in/Santa+Clara
-: 533802060:0;curl wttr.in/Xian
-: 533802120:0;date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
-: 533802180:0;date +"%s" # epoch time
-: 533802240:0;echo "$?"
-: 533802300:0;find ~/Code/techology-notes -iname '*md'
-: 533802360:0;find ~/Code/techology-notes/ -name README.md
-: 533802420:0;git reset --hard HEAD
-: 533802450:0;mkdir -p ~/level_1/level_2/
-: 533802480:0;pip freeze
-: 533802540:0;pip install --upgrade pip
-: 533802600:0;pip install --upgrade pip
-: 533802660:0;pip install -r requirements.txt
-: 533802720:0;pip install <library>
-: 533802780:0;pip install awscli
-: 533802840:0;printenv
-: 533802900:0;printenv PWD
-: 533802960:0;ps -ax
-: 533803020:0;ps -ef
-: 533803080:0;python3 --version
-: 533803140:0;python3 -m venv ~/.venv/py3venv1  # Create virtual environment
-: 533803200:0;say "Failed again, try again soon."
-: 533803260:0;say "Good News, Everyone!"
-: 533803320:0;source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
-: 533803380:0;ssh -i <private_key_file> <user>@<ec2-instance-id>
-: 533803440:0;ssh -p <port> <user>@<ip_address>
-: 533803500:0;ssh <user>@<ip> "echo 'command_string';pwd;ls"
-: 533803560:0;ssh-add -k ~/.ssh/id_rsa
-: 533803620:0;ssh-add -l
-: 533803680:0;vagrant global-status
-: 533803740:0;vagrant halt
-: 533803800:0;vagrant plugin install plugin_name
-: 533803860:0;vagrant scp local_file_or_dir vm_id:path_on_vm
-: 533803920:0;vagrant ssh
-: 533803980:0;vagrant ssh -c "pwd"
-: 533804040:0;vagrant up
-: 533804100:0;which python3
-: 533804160:0;whoami
+aws ec2 describe-instances
+aws ec2 help
+aws ec2 start-instances --instance-ids <instance_ids>
+aws ec2 stop-instances --instance-ids <instance_id>
+aws help
+aws s3 cp fromFile s3://toBucket/toFileName
+aws s3 cp s3://fromBucket/fromFolder/ toFolder/ --recursive
+aws s3 ls
+aws s3 ls --recursive s3://bucket_name
+aws s3 ls s3://bucket-name/
+aws s3 ls s3://bucket-name/folder/
+aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
+
+break_noise script_name
+brew install aws-iam-authenticator
+brew install awscli
+brew install stern
+brew update
+brew upgrade package_name
+
+cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
+cd ~/Code/
+chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
+curl wttr.in/Milton+KY
+curl wttr.in/Santa+Clara
+curl wttr.in/Xian
+
+date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
+date +"%s" # epoch time
+
+echo "$?"
+
+find ~/Code/techology-notes -iname '*md'
+find ~/Code/techology-notes/ -name README.md
+
+git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+git reset --hard HEAD
+
+mkdir -p ~/level_1/level_2/
+
+pip freeze
+pip install --upgrade pip
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install <library>
+pip install awscli
+printenv
+printenv PWD
+ps -ax
+ps -ef
+python3 --version
+python3 -m venv ~/.venv/py3venv1  # Create virtual environment
+
+say "Failed again, try again soon."
+say "Good News, Everyone!"
+set -e # next non-zero exit code will exit terminal
+source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
+ssh -i <private_key_file> <user>@<ec2-instance-id>
+ssh -p <port> <user>@<ip_address>
+ssh <user>@<ip> "echo 'command_string';pwd;ls"
+ssh-add -k ~/.ssh/id_rsa
+ssh-add -l
+
+vagrant global-status
+vagrant halt
+vagrant plugin install plugin_name
+vagrant scp local_file_or_dir vm_id:path_on_vm
+vagrant ssh
+vagrant ssh -c "pwd"
+vagrant up
+
+which python3
+whoami
