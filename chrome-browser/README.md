@@ -2,7 +2,7 @@
 * Plugins
   * ABP
   * UBlock Origin
-    * Stackoverflow
+    * Block Elements on YouTube, StackOverflow, etc
   * Blocksite
     * News
     * Sports
