@@ -1,8 +1,11 @@
-aws ec2 describe-instances
+aws ec2 describe-instances help
+aws ec2 describe-instances --filters Name=iam-instance-profile.arn,Values=<arn>
 aws ec2 help
 aws ec2 start-instances --instance-ids <instance_ids>
 aws ec2 stop-instances --instance-ids <instance_id>
-aws help
+
+aws help --no-cli-pager
+
 aws s3 cp fromFile s3://toBucket/toFileName
 aws s3 cp s3://fromBucket/fromFolder/ toFolder/ --recursive
 aws s3 ls
@@ -10,6 +13,9 @@ aws s3 ls --recursive s3://bucket_name
 aws s3 ls s3://bucket-name/
 aws s3 ls s3://bucket-name/folder/
 aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
+
+aws secretsmanager get-secret-value --secret-id <secret_name> --no-cli-pager
+aws secretsmanager list-secrets --filters Key=name,Values=<secret_name>
 
 break_noise script_name
 brew install aws-iam-authenticator
@@ -24,6 +30,7 @@ chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
 curl wttr.in/Milton+KY
 curl wttr.in/Santa+Clara
 curl wttr.in/Xian
+curl --socks5-hostname 127.0.0.1:<port_connected_on> <full_url_like_on_proxy_machine>
 
 date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
 date +"%s" # epoch time
@@ -55,11 +62,37 @@ say "Failed again, try again soon."
 say "Good News, Everyone!"
 set -e # next non-zero exit code will exit terminal
 source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
-ssh -i <private_key_file> <user>@<ec2-instance-id>
+ssh -i <private_key_file> <user>@<ec2-instance-id> # have to have ssm setup
+ssh -i <private_key_file> <user>@<ec2-instance-id> -D <random_port> # curl --socks5-hostname 127.0.0.1:<previous_port> <full_url_like_on_proxy_machine,including_port>
 ssh -p <port> <user>@<ip_address>
 ssh <user>@<ip> "echo 'command_string';pwd;ls"
 ssh-add -k ~/.ssh/id_rsa
 ssh-add -l
+
+terraform init
+terraform plan
+terraform plan --destroy
+terraform plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+terraform apply
+terraform destroy
+tf init
+tf plan
+tf plan --destroy
+tf plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+tf apply
+tf destroy
+terragrunt init
+terragrunt plan
+terragrunt plan --destroy
+terragrunt plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+terragrunt apply
+terragrunt destroy
+tg init
+tg plan
+tg plan --destroy
+tg plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+tg apply
+tg destroy
 
 vagrant global-status
 vagrant halt

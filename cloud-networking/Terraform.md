@@ -4,6 +4,7 @@
 * `terraform --version`
 * `terraform init`
 * `terraform plan`
+* `terraform plan --destroy`
 * `terraform graph`
 * `terraform apply`
 * `terraform apply --auto-approve`
