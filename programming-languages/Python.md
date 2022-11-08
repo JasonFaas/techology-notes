@@ -4,6 +4,9 @@
 * python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 * source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
 
+## Simple HTTP Server
+* `python3 -m http.server 27906`
+
 ## Python Vocab:
 * List Comprehension
 * Generator
