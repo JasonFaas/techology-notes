@@ -62,3 +62,15 @@
 * `kubectl delete clusterrole <cluster_role>` - delete a cluster role. May be needed if a namespace does not cleanup properly after delete.
 * `kubectl get clusterrolebinding -A`
 * `kubectl delete clusterrolebinding <crb>`
+
+## Hmm, how to delete everything after Kubernetes in poor state. Rough steps below
+* `kubectl get deployments -A`
+* `kubectl delete deployment <deployment> -n <ns>`
+* `kubectl delete roles --all`
+* `kubectl delete clusterrole --all`
+* `kubectl delete clusterrolebinding --all`
+* `kubectl delete ns --all --force=true`
+* `kubectl get svc`
+* `kubectl delete svc --all`
+* `kubectl delete nodes --all`
+* https://console.aws.amazon.com/eks/home#/clusters - Delete EKS, may have to click in and delete other resources, like nodegroups.

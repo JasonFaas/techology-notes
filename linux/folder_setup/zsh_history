@@ -6,6 +6,8 @@ aws ec2 stop-instances --instance-ids <instance_id>
 
 aws help --no-cli-pager
 
+aws lambda get-function --function-name <function_name>
+
 aws s3 cp fromFile s3://toBucket/toFileName
 aws s3 cp s3://fromBucket/fromFolder/ toFolder/ --recursive
 aws s3 ls
@@ -25,12 +27,18 @@ brew update
 brew upgrade package_name
 
 cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
+cat > ~/Desktop/tempfiles/temp.json <<EOF\
+{\
+  "hello": "world"\
+}\
+EOF
 cd ~/Code/
 chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
 curl wttr.in/Milton+KY
 curl wttr.in/Santa+Clara
 curl wttr.in/Xian
 curl --socks5-hostname 127.0.0.1:<port_connected_on> <full_url_like_on_proxy_machine>
+curl --netrc-file <netrc-cred-file> <URL>
 
 date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
 date +"%s" # epoch time
@@ -64,10 +72,12 @@ set -e # next non-zero exit code will exit terminal
 source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
 ssh -i <private_key_file> <user>@<ec2-instance-id> # have to have ssm setup
 ssh -i <private_key_file> <user>@<ec2-instance-id> -D <random_port> # curl --socks5-hostname 127.0.0.1:<previous_port> <full_url_like_on_proxy_machine,including_port>
+ssh <ip> "sudo -- sh -c 'date; whoami; pwd; cd ~; pwd'" # run ssh commands as `sudo`
 ssh -p <port> <user>@<ip_address>
 ssh <user>@<ip> "echo 'command_string';pwd;ls"
 ssh-add -k ~/.ssh/id_rsa
 ssh-add -l
+
 
 terraform init
 terraform plan
