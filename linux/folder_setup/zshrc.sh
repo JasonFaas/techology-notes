@@ -1,8 +1,99 @@
 echo "Welcome to iTerm2\n"
 
-# curl wttr.in/Santa+Clara
+export TextUpdate='\033'
+export DefaultFont='[0;'
+export ColorBlack='30m'
+export ColorDefault='0m'
 
-date
+# Reset
+#export Color_Off='\033[0m'       # Text Reset
+export Color_Off='$TextUpdate$DefaultFont$ColorDefault' # Text Reset
+
+# Regular Colors
+#export Black='$TextUpdate$DefaultFont$ColorBlack' # Black
+export Black='\033[0;30m'        # Black
+export Red='\033[0;31m'          # Red
+export Green='\033[0;32m'        # Green
+export Yellow='\033[0;33m'       # Yellow
+export Blue='\033[0;34m'         # Blue
+export Purple='\033[0;35m'       # Purple
+export Cyan='\033[0;36m'         # Cyan
+export White='\033[0;37m'        # White
+
+export Color_Off='\033[0m'       # Text Reset
+# Bold
+export BBlack='\033[1;30m'       # Black
+export BRed='\033[1;31m'         # Red
+export BGreen='\033[1;32m'       # Green
+export BYellow='\033[1;33m'      # Yellow
+export BBlue='\033[1;34m'        # Blue
+export BPurple='\033[1;35m'      # Purple
+export BCyan='\033[1;36m'        # Cyan
+export BWhite='\033[1;37m'       # White
+
+export Color_Off='\033[0m'       # Text Reset
+# Underline
+export UBlack='\033[4;30m'       # Black
+export URed='\033[4;31m'         # Red
+export UGreen='\033[4;32m'       # Green
+export UYellow='\033[4;33m'      # Yellow
+export UBlue='\033[4;34m'        # Blue
+export UPurple='\033[4;35m'      # Purple
+export UCyan='\033[4;36m'        # Cyan
+export UWhite='\033[4;37m'       # White
+
+export Color_Off='\033[0m'       # Text Reset
+# Background
+export On_Black='\033[40m'       # Black
+export On_Red='\033[41m'         # Red
+export On_Green='\033[42m'       # Green
+export On_Yellow='\033[43m'      # Yellow
+export On_Blue='\033[44m'        # Blue
+export On_Purple='\033[45m'      # Purple
+export On_Cyan='\033[46m'        # Cyan
+export On_White='\033[47m'       # White
+
+export Color_Off='\033[0m'       # Text Reset
+# High Intensity
+export IBlack='\033[0;90m'       # Black
+export IRed='\033[0;91m'         # Red
+export IGreen='\033[0;92m'       # Green
+export IYellow='\033[0;93m'      # Yellow
+export IBlue='\033[0;94m'        # Blue
+export IPurple='\033[0;95m'      # Purple
+export ICyan='\033[0;96m'        # Cyan
+export IWhite='\033[0;97m'       # White
+
+export Color_Off='\033[0m'       # Text Reset
+# Bold High Intensity
+export BIBlack='\033[1;90m'      # Black
+export BIRed='\033[1;91m'        # Red
+export BIGreen='\033[1;92m'      # Green
+export BIYellow='\033[1;93m'     # Yellow
+export BIBlue='\033[1;94m'       # Blue
+export BIPurple='\033[1;95m'     # Purple
+export BICyan='\033[1;96m'       # Cyan
+export BIWhite='\033[1;97m'      # White
+
+export Color_Off='\033[0m'       # Text Reset
+# High Intensity backgrounds
+export On_IBlack='\033[0;100m'   # Black
+export On_IRed='\033[0;101m'     # Red
+export On_IGreen='\033[0;102m'   # Green
+export On_IYellow='\033[0;103m'  # Yellow
+export On_IBlue='\033[0;104m'    # Blue
+export On_IPurple='\033[0;105m'  # Purple
+export On_ICyan='\033[0;106m'    # Cyan
+export On_IWhite='\033[0;107m'   # White
+
+export Color_Off='\033[0m'       # Text Reset
+
+
+echo "$(date) California"
+date -u
+echo "$(TZ=Europe/Amsterdam date) Amsterdam" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+echo "$(TZ=Asia/Kolkata date) India" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+echo "$(TZ=Asia/Shanghai date) China" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 echo ""
 
 # Alias
@@ -19,25 +110,3 @@ export PATH=$PATH:/usr/local/bin
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-function echo_unique_env_vars {
-  echo "Echoing non-standard Environment Variables:"
-  MY_ENV_VARS_STR=$(printenv)
-  MY_ENV_VARS_LIST=($(echo $MY_ENV_VARS_STR | tr " " "\n"))
-  STANDARD_ENV_VARS="TERM_SESSION_ID SSH_AUTH_SOCK LC_TERMINAL_VERSION COLORFGBG ITERM_PROFILE XPC_FLAGS LANG PWD SHELL __CFBundleIdentifier TERM_PROGRAM_VERSION TERM_PROGRAM PATH LC_TERMINAL COLORTERM COMMAND_MODE TERM HOME TMPDIR USER XPC_SERVICE_NAME LOGNAME __CF_USER_TEXT_ENCODING ITERM_SESSION_ID SHLVL OLDPWD ZSH GOPATH PAGER LESS LSCOLORS _"
-  for ENV_VAR in "${MY_ENV_VARS_LIST[@]}"
-  do
-      ENV_VAR_KEY_VAL=($(echo $ENV_VAR | tr "=" "\n"))
-  #     echo "${ENV_VAR_KEY_VAL[1]}"
-      if [[ "$ENV_VAR" != *"="* ]]; then # ENV_VAR Value with Space...TODO fix this hack with better "MY_ENV_VARS_LIST" split
-        continue
-      elif [[ $STANDARD_ENV_VARS =~ (^|[[:space:]])"${ENV_VAR_KEY_VAL[1]}"($|[[:space:]]) ]] ; then
-        continue
-      else
-          echo $ENV_VAR
-      fi
-  done
-
-  echo ""
-}
-
-echo_unique_env_vars
