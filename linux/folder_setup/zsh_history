@@ -42,6 +42,7 @@ curl --netrc-file <netrc-cred-file> <URL>
 
 date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
 date +"%s" # epoch time
+TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 echo "$?"
 
@@ -50,6 +51,25 @@ find ~/Code/techology-notes/ -name README.md
 
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 git reset --hard HEAD
+
+helm status master
+helm upgrade --help
+
+kctl describe pod <pod-name> --namespace <namespace>
+kctl edit deployment <pod-prefix> --namespace <namespace>
+kctl get all
+kctl get cm -n <namespace>
+kctl get cm <vuln-feed-config> -n argento-system -o yaml
+kctl get pods -A
+kctl get pods --namespace <namespace>
+kctl get nodes -A
+kctl logs -p <pod-name> --namespace <namespace>
+kctl logs -f <some_pod_from "kctl get all">
+
+kctx -c # only the current context
+kctx -c
+
+kns <namespace>
 
 mkdir -p ~/level_1/level_2/
 
@@ -85,24 +105,9 @@ terraform plan --destroy
 terraform plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
 terraform apply
 terraform destroy
-tf init
-tf plan
-tf plan --destroy
-tf plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
-tf apply
-tf destroy
-terragrunt init
-terragrunt plan
-terragrunt plan --destroy
-terragrunt plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
-terragrunt apply
-terragrunt destroy
-tg init
-tg plan
-tg plan --destroy
-tg plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
-tg apply
-tg destroy
+terraform import <hmm> <something>
+terraform state list # list all modules
+terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 
 vagrant global-status
 vagrant halt
