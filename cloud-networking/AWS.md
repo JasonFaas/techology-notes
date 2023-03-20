@@ -3,6 +3,10 @@
 ## Full command list
 * https://docs.aws.amazon.com/cli/latest/reference/#available-services
 
+## CLI Helper
+* Cloudtrail helper
+  * https://www.gorillastack.com/blog/real-time-events/cloudtrail-event-names/
+
 ## Set up
 * `pip install awscli`
 * Files in ~/.aws/
