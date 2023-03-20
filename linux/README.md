@@ -95,3 +95,6 @@
   * `printenv <specific variable>`
 * set environment variable
   * `NEW_VAR_NAME="Hello World";set | grep NEW_VAR_NAME;export NEW_VAR_NAME="Hello World"`
+
+## CURL
+* https://gist.github.com/subfuzion/08c5d85437d5d4f00e58

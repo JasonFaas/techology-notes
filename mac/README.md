@@ -6,6 +6,8 @@
   * https://www.dev-diaries.com/blog/terminal-history-auto-suggestions-as-you-type/
   * https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
     * Add plugins=(zsh-autosuggestions) at plugins location of ~/.zshrc
+  * https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x
+    * Jump Word AKA Option+Left/Right
 
 ## App Store:
 * Redhot Timer
