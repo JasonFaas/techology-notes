@@ -85,6 +85,8 @@ helm status master
 helm upgrade --help
 helm ls -a # current state of cluster
 
+kctl config view # view config file, will list all context options
+kctl config use-context <fill_in_from_kctx_options> # same as kctx <fill_in>
 kctl describe pod <pod-name> --namespace <namespace>
 kctl describe ns # list details for all namespaces
 kctl cluster-info
@@ -109,7 +111,7 @@ kctx -c # only the current context
 kctx <environment to switch to>
 kctx
 
-kubent
+kubent # list all k8s deprecations
 
 kns <namespace>
 
@@ -135,6 +137,12 @@ say "Good News, Everyone!"
 sed -i '' "s/~ resource/  resource/g" input.txt # Update file in place
 set -e # next non-zero exit code will exit terminal
 set +e # terminal will continue on non-zero exit code
+set -x # print all executed commands - helps with debugging
+set +x # do not print all executed commands - less code output when running shell scripts
+set -u # error message will display when using unconfigured variable
+set +u # do not display error message with unconfigured variable
+set -v # original command will be outputed before running
+set +v # do not re-state command just specified
 source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
 ssh -i <private_key_file> <user>@<ec2-instance-id> # have to have ssm setup
 ssh -i <private_key_file> <user>@<ec2-instance-id> -D <random_port> # curl --socks5-hostname 127.0.0.1:<previous_port> <full_url_like_on_proxy_machine,including_port>

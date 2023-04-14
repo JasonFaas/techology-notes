@@ -97,11 +97,28 @@ echo "$(TZ=Asia/Shanghai date) China" # https://en.wikipedia.org/wiki/List_of_tz
 echo ""
 
 # Alias
+## GIT
+function gitpushall {
+  git add .
+  git commit -m "$1"
+  git push
+}
+alias gitpull="git pull"
+alias gitpush="git push"
+alias gitaddall="git add ."
+alias gitstatus="git status"
+alias gitcommit="git commit -m "
+alias gitdiff="git diff"
+
+## terraform and k8s
 alias tg=terragrunt
 alias tf=terraform
 alias kctl=kubectl
 alias kns=kubens
 alias kctx=kubectx
+alias tgapply="terragrunt apply"
+alias tgplan="terragrunt plan"
+alias tginit="rm -rf .terraform/ && terragrunt init"
 
 export PATH=$PATH:/Users/$(whoami)/.helper_scripts/
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
@@ -109,4 +126,3 @@ export PATH=$PATH:/usr/local/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
