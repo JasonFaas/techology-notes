@@ -103,6 +103,10 @@ function gitpushall {
   git commit -m "$1"
   git push
 }
+function gitcheckpush {
+  git checkout -b "$1"
+  git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+}
 alias gitpull="git pull"
 alias gitpush="git push"
 alias gitaddall="git add ."

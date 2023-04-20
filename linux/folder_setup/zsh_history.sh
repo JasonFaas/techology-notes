@@ -1,3 +1,24 @@
+aws ec2 describe-instances help
+aws ec2 describe-instances --filters Name=iam-instance-profile.arn,Values=<arn>
+aws ec2 help
+aws ec2 start-instances --instance-ids <instance_ids>
+aws ec2 stop-instances --instance-ids <instance_id>
+
+aws help --no-cli-pager
+
+aws lambda get-function --function-name <function_name>
+
+aws s3 cp fromFile s3://toBucket/toFileName
+aws s3 cp s3://fromBucket/fromFolder/ toFolder/ --recursive
+aws s3 ls
+aws s3 ls --recursive s3://bucket_name
+aws s3 ls s3://bucket-name/
+aws s3 ls s3://bucket-name/folder/
+aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
+
+aws secretsmanager get-secret-value --secret-id <secret_name> --no-cli-pager
+aws secretsmanager list-secrets --filters Key=name,Values=<secret_name>
+
 aws cloudtrail # eventnames => https://www.gorillastack.com/blog/real-time-events/cloudtrail-event-names/
 
 aws ec2 describe-instances help
@@ -42,13 +63,32 @@ aws ec2 describe-volumes --query 'Volumes[*].Attachments'
 aws ec2 describe-volumes --query 'Volumes[*].Attachments[*].State'
 
 
-break_noise script_name
 brew install aws-iam-authenticator
 brew install awscli
-brew install stern
+brew install jq
+brew install kubernetes-cli
 brew install kubent
+brew install k9s
+brew install stern
 brew update
 brew upgrade package_name
+brew update
+brew upgrade package_name
+
+cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
+cat > ~/Desktop/tempfiles/temp.json <<EOF\
+{\
+  "hello": "world"\
+}\
+EOF
+cd ~/Code/
+chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
+curl wttr.in/Milton+KY
+curl wttr.in/Santa+Clara
+curl wttr.in/Xian
+curl --socks5-hostname 127.0.0.1:<port_connected_on> <full_url_like_on_proxy_machine>
+curl --netrc-file <netrc-cred-file> <URL>
+
 
 cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
 cat > ~/Desktop/tempfiles/temp.json <<EOF\
@@ -70,6 +110,10 @@ TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, different from pwd
 dirname -- ~/.aws/config # List folder path for a specific file
 
+date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
+date +"%s" # epoch time
+TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
 echo "$?"
 export EXPORT_COMMAND_EX=$(date)
 
@@ -80,12 +124,29 @@ find ~/Code/techology-notes/ -name README.md
 
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 git reset --hard HEAD
+find ~/Code/techology-notes -iname '*md'
+find ~/Code/techology-notes/ -name README.md
+
+git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+git reset --hard HEAD
+gitpushall "This will git add ., git commit with Comments, and git push"
+gitpush
+gitpull
+gitaddall
+gitstatus
+gitcommit
+gitdiff
+gitcheckpush
 
 helm status master
 helm upgrade --help
 helm ls -a # current state of cluster
 
+helm status master
+helm upgrade --help
+
 kctl config view # view config file, will list all context options
+kubectl config get-contexts
 kctl config use-context <fill_in_from_kctx_options> # same as kctx <fill_in>
 kctl describe pod <pod-name> --namespace <namespace>
 kctl describe ns # list details for all namespaces
@@ -111,14 +172,45 @@ kctx -c # only the current context
 kctx <environment to switch to>
 kctx
 
+kctl describe pod <pod-name> --namespace <namespace>
+kctl edit deployment <pod-prefix> --namespace <namespace>
+kctl get all
+kctl get cm -n <namespace>
+kctl get cm <vuln-feed-config> -n argento-system -o yaml
+kctl get pods -A
+kctl get pods --namespace <namespace>
+kctl get nodes -A
+kctl logs -p <pod-name> --namespace <namespace>
+kctl logs -f <some_pod_from "kctl get all">
+
+kctx -c # only the current context
+kctx -c
+
+kns <namespace>
+
+
+
 kubent # list all k8s deprecations
 
 kns <namespace>
 
 mkdir -p ~/level_1/level_2/
+mkdir -p ~/level_1/level_2/
 
 rm -rf .terraform;tg init && say "init complete";tg apply
 
+pip freeze
+pip install --upgrade pip
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install <library>
+pip install awscli
+printenv
+printenv PWD
+ps -ax
+ps -ef
+python3 --version
+python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 pip freeze
 pip install --upgrade pip
 pip install --upgrade pip
@@ -151,6 +243,18 @@ ssh -p <port> <user>@<ip_address>
 ssh <user>@<ip> "echo 'command_string';pwd;ls"
 ssh-add -k ~/.ssh/id_rsa
 ssh-add -l
+say "Failed again, try again soon."
+say "Good News, Everyone!"
+set -e # next non-zero exit code will exit terminal
+source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
+ssh -i <private_key_file> <user>@<ec2-instance-id> # have to have ssm setup
+ssh -i <private_key_file> <user>@<ec2-instance-id> -D <random_port> # curl --socks5-hostname 127.0.0.1:<previous_port> <full_url_like_on_proxy_machine,including_port>
+ssh <ip> "sudo -- sh -c 'date; whoami; pwd; cd ~; pwd'" # run ssh commands as `sudo`
+ssh -p <port> <user>@<ip_address>
+ssh <user>@<ip> "echo 'command_string';pwd;ls"
+ssh-add -k ~/.ssh/id_rsa
+ssh-add -l
+
 
 terraform init
 terraform plan
@@ -162,6 +266,17 @@ terraform import <hmm> <something>
 terraform state list # list all modules
 terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
+terraform init
+terraform plan
+terraform plan --destroy
+terraform plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+terraform apply
+terraform destroy
+terraform import <hmm> <something>
+terraform state list # list all modules
+terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
+
+
 
 vagrant global-status
 vagrant halt
@@ -170,6 +285,17 @@ vagrant scp local_file_or_dir vm_id:path_on_vm
 vagrant ssh
 vagrant ssh -c "pwd"
 vagrant up
+
+vagrant global-status
+vagrant halt
+vagrant plugin install plugin_name
+vagrant scp local_file_or_dir vm_id:path_on_vm
+vagrant ssh
+vagrant ssh -c "pwd"
+vagrant up
+
+which python3
+whoami
 
 which python3
 whoami
