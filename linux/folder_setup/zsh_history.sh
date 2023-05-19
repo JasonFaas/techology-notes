@@ -35,6 +35,9 @@ aws help --no-cli-pager
 aws iam attach-role-policy --role-name <role-name> --policy-arn arn:aws:iam::aws:policy/ElasticLoadBalancingReadOnly
 aws iam get-role --role-name <role-name>
 aws iam list-attached-role-policies --role-name <role-name>
+aws iam list-groups # list all the user groups in your I my account
+aws iam get-group # list the users in a specific user group
+aws iam list-groups-for-user # To list all the user groups that a user is in
 
 aws lambda get-function --function-name <function_name>
 
@@ -129,14 +132,14 @@ find ~/Code/techology-notes/ -name README.md
 
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 git reset --hard HEAD
-gitpushall "This will git add ., git commit with Comments, and git push"
+gitpushall "commit_message" # git add . && git commit -m commit_message && git push
 gitpush
 gitpull
 gitaddall
 gitstatus
 gitcommit
 gitdiff
-gitcheckpush
+gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
 
 helm status master
 helm upgrade --help
@@ -255,28 +258,29 @@ ssh <user>@<ip> "echo 'command_string';pwd;ls"
 ssh-add -k ~/.ssh/id_rsa
 ssh-add -l
 
-
 terraform init
 terraform plan
 terraform plan --destroy
 terraform plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
 terraform apply
+terraform apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 terraform destroy
 terraform import <hmm> <something>
 terraform state list # list all modules
 terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
-terraform init
-terraform plan
-terraform plan --destroy
-terraform plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
-terraform apply
-terraform destroy
-terraform import <hmm> <something>
-terraform state list # list all modules
-terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 
-
+tg init
+tg plan
+tg plan --destroy
+tg plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+tg apply
+tg apply -parallelism=1 # Changes default parallel tasks from 10 to 1
+tg destroy
+tg import <hmm> <something>
+tg state list # list all modules
+tg state mv <from> <to>
+tg state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 
 vagrant global-status
 vagrant halt
