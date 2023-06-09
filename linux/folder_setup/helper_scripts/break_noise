@@ -1,2 +1,0 @@
-set -e
-$@ && echo "Success" && say "Good News, Everyone!" || (echo "Failure" && say "Failed again, try again soon.")

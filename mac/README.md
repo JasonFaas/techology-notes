@@ -35,3 +35,6 @@
 ## Homebrew info
 * `https://formulae.brew.sh/`
   * example: `https://formulae.brew.sh/formula/awscli`
+* favorites:
+  * `brew install --cask alt-tab`
+
