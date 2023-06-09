@@ -1,3 +1,5 @@
+aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'
+
 aws ec2 describe-instances help
 aws ec2 describe-instances --filters Name=iam-instance-profile.arn,Values=<arn>
 aws ec2 help
@@ -73,25 +75,11 @@ brew install kubernetes-cli
 brew install kubent
 brew install k9s
 brew install stern
+brew install --cask alt-tab
 brew update
 brew upgrade package_name
 brew update
 brew upgrade package_name
-
-cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
-cat > ~/Desktop/tempfiles/temp.json <<EOF\
-{\
-  "hello": "world"\
-}\
-EOF
-cd ~/Code/
-chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
-curl wttr.in/Milton+KY
-curl wttr.in/Santa+Clara
-curl wttr.in/Xian
-curl --socks5-hostname 127.0.0.1:<port_connected_on> <full_url_like_on_proxy_machine>
-curl --netrc-file <netrc-cred-file> <URL>
-
 
 cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
 cat > ~/Desktop/tempfiles/temp.json <<EOF\
@@ -113,20 +101,11 @@ TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, different from pwd
 dirname -- ~/.aws/config # List folder path for a specific file
 
-date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
-date +"%s" # epoch time
-TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
 echo "$?"
 export EXPORT_COMMAND_EX=$(date)
 
 for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
-find ~/Code/techology-notes -iname '*md'
-find ~/Code/techology-notes/ -name README.md
-
-git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-git reset --hard HEAD
 find ~/Code/techology-notes -iname '*md'
 find ~/Code/techology-notes/ -name README.md
 
@@ -144,9 +123,6 @@ gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to ori
 helm status master
 helm upgrade --help
 helm ls -a # current state of cluster
-
-helm status master
-helm upgrade --help
 
 kctl config view # view config file, will list all context options
 kubectl config get-contexts
@@ -185,13 +161,6 @@ kctl get pods --namespace <namespace>
 kctl get nodes -A
 kctl logs -p <pod-name> --namespace <namespace>
 kctl logs -f <some_pod_from "kctl get all">
-
-kctx -c # only the current context
-kctx -c
-
-kns <namespace>
-
-
 
 kubent # list all k8s deprecations
 
@@ -290,16 +259,6 @@ vagrant ssh
 vagrant ssh -c "pwd"
 vagrant up
 
-vagrant global-status
-vagrant halt
-vagrant plugin install plugin_name
-vagrant scp local_file_or_dir vm_id:path_on_vm
-vagrant ssh
-vagrant ssh -c "pwd"
-vagrant up
-
 which python3
 whoami
 
-which python3
-whoami

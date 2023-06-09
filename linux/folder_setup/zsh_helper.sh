@@ -92,6 +92,9 @@ export Color_Off='\033[0m'       # Text Reset
 function gitpushall {
   git add . && git commit -m "$1" && git push
 }
+function gitcheck {
+  git checkout "$1" && git pull
+}
 function gitcheckpush {
   git checkout -b "$1" && git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 }
@@ -126,7 +129,7 @@ alias gitpush="git push"
 alias gitaddall="git add ."
 alias gitstatus="git status"
 alias gitcommit="git commit -m "
-alias gitdiff="git diff"
+alias gitdiff="git status && git diff"
 
 ## terraform and k8s
 alias tg=terragrunt
@@ -136,7 +139,8 @@ alias kns=kubens
 alias kctx=kubectx
 alias tgapply="terragrunt apply"
 alias tgplan="terragrunt plan"
-alias tginit="rm -rf .terraform/ && terragrunt init"
+alias tginit="terragrunt init"
+alias rmtf="rm -rf .terraform/"
 
 alias sgpt="~/Library/Python/3.9/bin/sgpt"
 alias s="sgpt"
