@@ -11,3 +11,8 @@
   * Grammarly
   * Console Recorder for AWS
   * DuckDuckGo Privacy Essentials
+
+## Special URLs:
+* chrome://net-internals/#dns
+  * Clear host cache
+  * DNS Lookup

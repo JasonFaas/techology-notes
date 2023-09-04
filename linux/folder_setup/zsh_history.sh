@@ -1,3 +1,6 @@
+awslogin
+awscompleter
+
 aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'
 
 aws ec2 describe-instances help
@@ -29,6 +32,10 @@ aws ec2 describe-security-groups --filters "Name=group-name,Values=<sg_name>" --
 aws ec2 help
 aws ec2 start-instances --instance-ids <instance_ids>
 aws ec2 stop-instances --instance-ids <instance_id>
+
+aws eks describe-cluster --name <name of cluster>
+aws eks list-clusters
+aws eks update-kubeconfig --name <name of cluster> # this will download the kubeconfig of the cluster to your config file if kubectx is activated
 
 aws events list-rules --name-prefix <event-bridge-prefix>
 
@@ -66,7 +73,6 @@ aws ec2 describe-volumes --query 'Volumes[::2]'
 aws ec2 describe-volumes --query 'Volumes[::-2]'
 aws ec2 describe-volumes --query 'Volumes[*].Attachments'
 aws ec2 describe-volumes --query 'Volumes[*].Attachments[*].State'
-
 
 brew install aws-iam-authenticator
 brew install awscli
@@ -124,8 +130,21 @@ helm status master
 helm upgrade --help
 helm ls -a # current state of cluster
 
+jq '.[1]' # after input
+jq '.[0][2]' # after input
+jq '.[0].[0:3]' # after input
+jq '.apiVersion'
+jq "['AttachedPolicies']"
+jq ".SecretList[*]"
+jq '.[] | select(.id==6912)'
+jq -r ".SecretList[] | .Name=='secret_list_name'" # "-r" removes quotations
+jq '.MetricAlarms[] | select(.StateValue == "ALARM") | select(.AlarmName | contains "lambda")'
+jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName' # comes after `aws cloudwatch describe-alarms`
+jq ".[0]"  | sed "s/\"//g" # comes after `aws ec2 describe-security-groups --filters "Name=group-name,Values=<sg_name>" --query="SecurityGroups[*].GroupId"`
+
+kctl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
 kctl config view # view config file, will list all context options
-kubectl config get-contexts
+kctl config get-contexts
 kctl config use-context <fill_in_from_kctx_options> # same as kctx <fill_in>
 kctl describe pod <pod-name> --namespace <namespace>
 kctl describe ns # list details for all namespaces
@@ -137,6 +156,8 @@ kctl get cm -n <namespace>
 kctl get cm <vuln-feed-config> -n argento-system -o yaml
 kctl get deployment <pod_prefix> -o yaml
 kctl get events
+kctl get jobs -A
+kctl get cronjobs -A
 kctl get pods -A
 kctl get pods --namespace <namespace>
 kctl get nodes -A
@@ -205,7 +226,7 @@ set -x # print all executed commands - helps with debugging
 set +x # do not print all executed commands - less code output when running shell scripts
 set -u # error message will display when using unconfigured variable
 set +u # do not display error message with unconfigured variable
-set -v # original command will be outputed before running
+set -v # original command will be output before running
 set +v # do not re-state command just specified
 source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
 ssh -i <private_key_file> <user>@<ec2-instance-id> # have to have ssm setup
@@ -238,6 +259,7 @@ terraform import <hmm> <something>
 terraform state list # list all modules
 terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
+terraform state replace-provider registry.terraform.io/-/aws  registry.terraform.io/hashicorp/aws # Used commonly during terraform upgrades when providers update do not go through correctly
 
 tg init
 tg plan
@@ -262,3 +284,4 @@ vagrant up
 which python3
 whoami
 
+xargs -I {} echo {} # utilize this after a pipeline to take the multi-line output of previous command to run multiple commands here

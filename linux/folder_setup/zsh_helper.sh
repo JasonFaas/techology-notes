@@ -138,9 +138,16 @@ alias kctl=kubectl
 alias kns=kubens
 alias kctx=kubectx
 alias tgapply="terragrunt apply"
+alias tga="terragrunt apply"
+alias tga1="tga -parallelism=1"
 alias tgplan="terragrunt plan"
 alias tginit="terragrunt init"
 alias rmtf="rm -rf .terraform/"
+alias rmtfa="rm -rf .terraform*"
+
+alias awslogin="aws sso login"
+alias awscompleter="complete -C $(which aws_completer) aws"
+alias awsc="complete -C $(which aws_completer) aws"
 
 alias sgpt="~/Library/Python/3.9/bin/sgpt"
 alias s="sgpt"
