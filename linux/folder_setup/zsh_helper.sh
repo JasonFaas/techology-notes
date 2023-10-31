@@ -89,6 +89,13 @@ export Color_Off='\033[0m'       # Text Reset
 
 # Alias
 ## GIT
+function cdgitroot {
+  while (! ls | grep Volumes) && (! test -e .git)
+  do
+    echo "Up Dir"
+    cd ../
+  done
+}
 function gitpushall {
   git add . && git commit -m "$1" && git push
 }
@@ -130,6 +137,7 @@ alias gitaddall="git add ."
 alias gitstatus="git status"
 alias gitcommit="git commit -m "
 alias gitdiff="git status && git diff"
+alias gitd="git status && git diff"
 
 ## terraform and k8s
 alias tg=terragrunt
@@ -140,9 +148,10 @@ alias kctx=kubectx
 alias tgapply="terragrunt apply"
 alias tga="terragrunt apply"
 alias tga1="tga -parallelism=1"
+alias tgimport="terragrunt import"
 alias tgplan="terragrunt plan"
 alias tginit="terragrunt init"
-alias rmtf="rm -rf .terraform/"
+alias rmtf="rm -f .terraform/terraform.tfstate"
 alias rmtfa="rm -rf .terraform*"
 
 alias awslogin="aws sso login"

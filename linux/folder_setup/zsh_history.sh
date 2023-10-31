@@ -94,6 +94,7 @@ cat > ~/Desktop/tempfiles/temp.json <<EOF\
 }\
 EOF
 cd ~/Code/
+cdgitroot
 chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
 curl wttr.in/Milton+KY
 curl wttr.in/Santa+Clara
@@ -123,12 +124,16 @@ gitpull
 gitaddall
 gitstatus
 gitcommit
+gitd
 gitdiff
 gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
 
 helm status master
 helm upgrade --help
 helm ls -a # current state of cluster
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx # name of the repo is typically the final part of the path
+helm search repo ingress-nginx/ingress-nginx --versions # list all versions of https://kubernetes.github.io/ingress-nginx (logged as ingress-nginx in "repo add" command) for chart "ingress-nginx"
+helm search repo ingress-nginx/ingress-nginx # list most recent chart "ingress-nginx" for url https://kubernetes.github.io/ingress-nginx which the url was logged as ingress-nginx in "repo add" command
 
 jq '.[1]' # after input
 jq '.[0][2]' # after input
@@ -166,7 +171,6 @@ kctl get svc -n <hmm>
 kctl delete pod <pod_name> -n <namespace>
 kctl logs -p <pod-name> --namespace <namespace>
 kctl logs -f <some_pod_from "kctl get all">
-kctl get jobs
 
 kctx -c # only the current context
 kctx <environment to switch to>
@@ -217,6 +221,11 @@ ps -ef
 python3 --version
 python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 
+printf "${On_Blue}${White}Background and text color changed for eye-catching terminal output${Color_Off}\n"
+
+rmtf # Delete Terraform State file - .terraform/terraform.tfstate
+rmtfa # Delete all hidden terraform files - .terraform*
+
 say "Failed again, try again soon."
 say "Good News, Everyone!"
 sed -i '' "s/~ resource/  resource/g" input.txt # Update file in place
@@ -261,6 +270,10 @@ terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 terraform state replace-provider registry.terraform.io/-/aws  registry.terraform.io/hashicorp/aws # Used commonly during terraform upgrades when providers update do not go through correctly
 
+tga
+tgimport
+tgplan
+tga1 # single threaded terragrunt apply
 tg init
 tg plan
 tg plan --destroy
@@ -269,6 +282,7 @@ tg apply
 tg apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 tg destroy
 tg import <hmm> <something>
+tg import "module.stuff.aws_cloudwatch_event_target.lambda_target" "<target_rule_name>/$(aws events list-targets-by-rule --rule <target_rule_name> | jq -r '.Targets[0].Id')" # Import aws_cloudwatch_event_target
 tg state list # list all modules
 tg state mv <from> <to>
 tg state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
