@@ -21,6 +21,8 @@ aws s3 ls s3://bucket-name/
 aws s3 ls s3://bucket-name/folder/
 aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
 
+aws sso login
+
 aws secretsmanager get-secret-value --secret-id <secret_name> --no-cli-pager
 aws secretsmanager list-secrets --filters Key=name,Values=<secret_name>
 
@@ -116,6 +118,7 @@ for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 find ~/Code/techology-notes -iname '*md'
 find ~/Code/techology-notes/ -name README.md
 
+git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 git reset --hard HEAD
 gitpushall "commit_message" # git add . && git commit -m commit_message && git push
@@ -123,10 +126,13 @@ gitpush
 gitpull
 gitaddall
 gitstatus
+git stash
+git stash pop
 gitcommit
 gitd
 gitdiff
 gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
+gitcp git_commit_id # git cherry-pick git_commit_id
 
 helm status master
 helm upgrade --help
@@ -287,6 +293,9 @@ tg state list # list all modules
 tg state mv <from> <to>
 tg state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 
+test -d ${HOME}/Desktop # does the Desktop folder exist
+test -f ${HOME}/.zshrc # does the specific file exist
+
 vagrant global-status
 vagrant halt
 vagrant plugin install plugin_name
@@ -299,3 +308,4 @@ which python3
 whoami
 
 xargs -I {} echo {} # utilize this after a pipeline to take the multi-line output of previous command to run multiple commands here
+xargs -I {} sh -c "echo {};ls -al {}" # utilize this command after a multi-line input. Running with sh allows for multiple commands to be run
