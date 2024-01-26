@@ -1,3 +1,9 @@
+[ 7 -gt 5 ] # this will return 0
+[ 7 -lt 5 ] # this will return 1
+[ "abc" = "def" ] # this will return 1
+[ "abc" != "def" ] # this will return 0
+[ "abc" != "abc" ] # this will return 1
+
 awslogin
 awscompleter
 
@@ -15,11 +21,13 @@ aws lambda get-function --function-name <function_name>
 
 aws s3 cp fromFile s3://toBucket/toFileName
 aws s3 cp s3://fromBucket/fromFolder/ toFolder/ --recursive
+aws s3 ls s3://mybucket/path/ | awk '{print $4}'
 aws s3 ls
 aws s3 ls --recursive s3://bucket_name
 aws s3 ls s3://bucket-name/
 aws s3 ls s3://bucket-name/folder/
 aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
+
 
 aws sso login
 
@@ -200,7 +208,6 @@ kns <namespace>
 mkdir -p ~/level_1/level_2/
 mkdir -p ~/level_1/level_2/
 
-rm -rf .terraform;tg init && say "init complete";tg apply
 
 pip freeze
 pip install --upgrade pip
@@ -229,8 +236,13 @@ python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 
 printf "${On_Blue}${White}Background and text color changed for eye-catching terminal output${Color_Off}\n"
 
+realpath ${HOME}/Desktop # Get full absolute path of folder or file
+
+rm -rf .terraform;tg init && say "init complete";tg apply
 rmtf # Delete Terraform State file - .terraform/terraform.tfstate
 rmtfa # Delete all hidden terraform files - .terraform*
+rmtf && tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt && tgapply
+rmtf && tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 
 say "Failed again, try again soon."
 say "Good News, Everyone!"
@@ -263,10 +275,13 @@ ssh <user>@<ip> "echo 'command_string';pwd;ls"
 ssh-add -k ~/.ssh/id_rsa
 ssh-add -l
 
+sudo su # Option to get access switch to super user
+sudo su - # Option to get access switch to super user, potentially within aws ec2 instance when connecting through session manager
+
 terraform init
 terraform plan
 terraform plan --destroy
-terraform plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+terraform -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 terraform apply
 terraform apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 terraform destroy
@@ -292,8 +307,10 @@ tg import "module.stuff.aws_cloudwatch_event_target.lambda_target" "<target_rule
 tg state list # list all modules
 tg state mv <from> <to>
 tg state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
+tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 
 test -d ${HOME}/Desktop # does the Desktop folder exist
+test -e .git # True if file exists (regardless of type)
 test -f ${HOME}/.zshrc # does the specific file exist
 
 vagrant global-status
@@ -309,3 +326,8 @@ whoami
 
 xargs -I {} echo {} # utilize this after a pipeline to take the multi-line output of previous command to run multiple commands here
 xargs -I {} sh -c "echo {};ls -al {}" # utilize this command after a multi-line input. Running with sh allows for multiple commands to be run
+
+yq e '.spec.template.spec.containers[0].args += ["-enable_offline_telemetry=true"]' -i inputfile.yaml # Add specific line to yaml file utilizing structure
+yq e '.spec.template.spec.containers[0].args[] | select(. == "-cron_period=10m0s")' inputfile.yaml # Check if very specific line is a specific place in yaml structure
+yq e '.spec.template.spec.containers[0].args[]' inputfile.yaml | grep -E '^-cron_period=' # Utilize yq to narrow down search if trying to be more generic and then utilize grep
+grep -cron_period= inputfile.yaml # most generic search of yaml file instead of yq

@@ -133,3 +133,5 @@ dmypy.json
 delete_me*
 
 *pem
+
+.gradle/
