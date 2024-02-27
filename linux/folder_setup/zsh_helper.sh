@@ -88,6 +88,12 @@ export Color_Off='\033[0m'       # Text Reset
 
 
 # Alias
+
+function echo_exit_status {
+  echo "$?"
+}
+alias exit_status="echo_exit_status"
+
 ## GIT
 function cdgitroot {
   while (! ls | grep Volumes) && (! test -e .git)

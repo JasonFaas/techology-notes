@@ -119,7 +119,10 @@ dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, d
 dirname -- ~/.aws/config # List folder path for a specific file
 
 echo "$?"
+echo "defd" | grep -q "def" # returns true as def is a substring of defd
 export EXPORT_COMMAND_EX=$(date)
+echo_exit_status
+exit_status
 
 for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
@@ -141,6 +144,9 @@ gitd
 gitdiff
 gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
 gitcp git_commit_id # git cherry-pick git_commit_id
+git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
+
+grep # to compare 2 strings, start with echo command
 
 helm status master
 helm upgrade --help
@@ -157,9 +163,10 @@ jq "['AttachedPolicies']"
 jq ".SecretList[*]"
 jq '.[] | select(.id==6912)'
 jq -r ".SecretList[] | .Name=='secret_list_name'" # "-r" removes quotations
-jq '.MetricAlarms[] | select(.StateValue == "ALARM") | select(.AlarmName | contains "lambda")'
+jq '.MetricAlarms[] | select(.StateValue == "ALARM") | select(.AlarmName | contains "lambda")' # hmm, may not work
 jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName' # comes after `aws cloudwatch describe-alarms`
 jq ".[0]"  | sed "s/\"//g" # comes after `aws ec2 describe-security-groups --filters "Name=group-name,Values=<sg_name>" --query="SecurityGroups[*].GroupId"`
+jq -r '.ClusterInfoList[].ClusterArn | select(contains("cluster_name"))' # from aws kafka list-clusters-v2
 
 kctl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
 kctl config view # view config file, will list all context options
@@ -200,6 +207,8 @@ kctl get pods --namespace <namespace>
 kctl get nodes -A
 kctl logs -p <pod-name> --namespace <namespace>
 kctl logs -f <some_pod_from "kctl get all">
+kubectl get deployments -n master -o custom-columns=NAME:.metadata.name --no-headers | xargs -I {} kubectl scale deployment -n master {} --replicas=0 # Set all deployments in master namespace to 0 pods
+
 
 kubent # list all k8s deprecations
 
