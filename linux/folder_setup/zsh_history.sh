@@ -45,6 +45,7 @@ aws ec2 stop-instances --instance-ids <instance_id>
 
 aws eks describe-cluster --name <name of cluster>
 aws eks list-clusters
+aws eks list-clusters --no-cli-pager | jq -r '.clusters[]' | xargs -I {} sh -c "echo {}; aws eks describe-cluster --name {} | jq '.cluster.version'"
 aws eks update-kubeconfig --name <name of cluster> # this will download the kubeconfig of the cluster to your config file if kubectx is activated
 
 aws events list-rules --name-prefix <event-bridge-prefix>
@@ -106,6 +107,7 @@ EOF
 cd ~/Code/
 cdgitroot
 chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
+curl http://www.google.com/
 curl wttr.in/Milton+KY
 curl wttr.in/Santa+Clara
 curl wttr.in/Xian
@@ -154,6 +156,7 @@ helm ls -a # current state of cluster
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx # name of the repo is typically the final part of the path
 helm search repo ingress-nginx/ingress-nginx --versions # list all versions of https://kubernetes.github.io/ingress-nginx (logged as ingress-nginx in "repo add" command) for chart "ingress-nginx"
 helm search repo ingress-nginx/ingress-nginx # list most recent chart "ingress-nginx" for url https://kubernetes.github.io/ingress-nginx which the url was logged as ingress-nginx in "repo add" command
+#
 
 jq '.[1]' # after input
 jq '.[0][2]' # after input
@@ -208,7 +211,8 @@ kctl get nodes -A
 kctl logs -p <pod-name> --namespace <namespace>
 kctl logs -f <some_pod_from "kctl get all">
 kubectl get deployments -n master -o custom-columns=NAME:.metadata.name --no-headers | xargs -I {} kubectl scale deployment -n master {} --replicas=0 # Set all deployments in master namespace to 0 pods
-
+kubectl scale deploy -n master <deployment> --replicas=0 # will scale pods to 0 for specific deployment
+kubectl version | grep "Server" # List version of k8s on current context
 
 kubent # list all k8s deprecations
 
@@ -311,9 +315,11 @@ tg plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
 tg apply
 tg apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 tg destroy
+tg import '' ''
 tg import <hmm> <something>
 tg import "module.stuff.aws_cloudwatch_event_target.lambda_target" "<target_rule_name>/$(aws events list-targets-by-rule --rule <target_rule_name> | jq -r '.Targets[0].Id')" # Import aws_cloudwatch_event_target
 tg state list # list all modules
+tg state list > ~/Desktop/${TERRAFORM_LOGS}/terraform_state--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 tg state mv <from> <to>
 tg state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
@@ -332,6 +338,11 @@ vagrant up
 
 which python3
 whoami
+
+aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/temp_elb_target_groups.txt\
+while IFS= read -r line; do\
+  echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\
+done < ~/Desktop/temp_elb_target_groups.txt
 
 xargs -I {} echo {} # utilize this after a pipeline to take the multi-line output of previous command to run multiple commands here
 xargs -I {} sh -c "echo {};ls -al {}" # utilize this command after a multi-line input. Running with sh allows for multiple commands to be run
