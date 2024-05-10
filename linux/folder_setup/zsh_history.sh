@@ -1,3 +1,9 @@
+[ 7 -gt 5 ] # this will return 0
+[ 7 -lt 5 ] # this will return 1
+[ "abc" = "def" ] # this will return 1
+[ "abc" != "def" ] # this will return 0
+[ "abc" != "abc" ] # this will return 1
+
 awslogin
 awscompleter
 
@@ -15,11 +21,13 @@ aws lambda get-function --function-name <function_name>
 
 aws s3 cp fromFile s3://toBucket/toFileName
 aws s3 cp s3://fromBucket/fromFolder/ toFolder/ --recursive
+aws s3 ls s3://mybucket/path/ | awk '{print $4}'
 aws s3 ls
 aws s3 ls --recursive s3://bucket_name
 aws s3 ls s3://bucket-name/
 aws s3 ls s3://bucket-name/folder/
 aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
+
 
 aws sso login
 
@@ -37,6 +45,7 @@ aws ec2 stop-instances --instance-ids <instance_id>
 
 aws eks describe-cluster --name <name of cluster>
 aws eks list-clusters
+aws eks list-clusters --no-cli-pager | jq -r '.clusters[]' | xargs -I {} sh -c "echo {}; aws eks describe-cluster --name {} | jq '.cluster.version'"
 aws eks update-kubeconfig --name <name of cluster> # this will download the kubeconfig of the cluster to your config file if kubectx is activated
 
 aws events list-rules --name-prefix <event-bridge-prefix>
@@ -98,6 +107,7 @@ EOF
 cd ~/Code/
 cdgitroot
 chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
+curl http://www.google.com/
 curl wttr.in/Milton+KY
 curl wttr.in/Santa+Clara
 curl wttr.in/Xian
@@ -111,7 +121,10 @@ dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, d
 dirname -- ~/.aws/config # List folder path for a specific file
 
 echo "$?"
+echo "defd" | grep -q "def" # returns true as def is a substring of defd
 export EXPORT_COMMAND_EX=$(date)
+echo_exit_status
+exit_status
 
 for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
@@ -133,6 +146,9 @@ gitd
 gitdiff
 gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
 gitcp git_commit_id # git cherry-pick git_commit_id
+git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
+
+grep # to compare 2 strings, start with echo command
 
 helm status master
 helm upgrade --help
@@ -140,6 +156,7 @@ helm ls -a # current state of cluster
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx # name of the repo is typically the final part of the path
 helm search repo ingress-nginx/ingress-nginx --versions # list all versions of https://kubernetes.github.io/ingress-nginx (logged as ingress-nginx in "repo add" command) for chart "ingress-nginx"
 helm search repo ingress-nginx/ingress-nginx # list most recent chart "ingress-nginx" for url https://kubernetes.github.io/ingress-nginx which the url was logged as ingress-nginx in "repo add" command
+#
 
 jq '.[1]' # after input
 jq '.[0][2]' # after input
@@ -149,9 +166,10 @@ jq "['AttachedPolicies']"
 jq ".SecretList[*]"
 jq '.[] | select(.id==6912)'
 jq -r ".SecretList[] | .Name=='secret_list_name'" # "-r" removes quotations
-jq '.MetricAlarms[] | select(.StateValue == "ALARM") | select(.AlarmName | contains "lambda")'
+jq '.MetricAlarms[] | select(.StateValue == "ALARM") | select(.AlarmName | contains "lambda")' # hmm, may not work
 jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName' # comes after `aws cloudwatch describe-alarms`
 jq ".[0]"  | sed "s/\"//g" # comes after `aws ec2 describe-security-groups --filters "Name=group-name,Values=<sg_name>" --query="SecurityGroups[*].GroupId"`
+jq -r '.ClusterInfoList[].ClusterArn | select(contains("cluster_name"))' # from aws kafka list-clusters-v2
 
 kctl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
 kctl config view # view config file, will list all context options
@@ -192,6 +210,9 @@ kctl get pods --namespace <namespace>
 kctl get nodes -A
 kctl logs -p <pod-name> --namespace <namespace>
 kctl logs -f <some_pod_from "kctl get all">
+kubectl get deployments -n master -o custom-columns=NAME:.metadata.name --no-headers | xargs -I {} kubectl scale deployment -n master {} --replicas=0 # Set all deployments in master namespace to 0 pods
+kubectl scale deploy -n master <deployment> --replicas=0 # will scale pods to 0 for specific deployment
+kubectl version | grep "Server" # List version of k8s on current context
 
 kubent # list all k8s deprecations
 
@@ -200,7 +221,6 @@ kns <namespace>
 mkdir -p ~/level_1/level_2/
 mkdir -p ~/level_1/level_2/
 
-rm -rf .terraform;tg init && say "init complete";tg apply
 
 pip freeze
 pip install --upgrade pip
@@ -229,8 +249,13 @@ python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 
 printf "${On_Blue}${White}Background and text color changed for eye-catching terminal output${Color_Off}\n"
 
+realpath ${HOME}/Desktop # Get full absolute path of folder or file
+
+rm -rf .terraform;tg init && say "init complete";tg apply
 rmtf # Delete Terraform State file - .terraform/terraform.tfstate
 rmtfa # Delete all hidden terraform files - .terraform*
+rmtf && tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt && tgapply
+rmtf && tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 
 say "Failed again, try again soon."
 say "Good News, Everyone!"
@@ -263,10 +288,13 @@ ssh <user>@<ip> "echo 'command_string';pwd;ls"
 ssh-add -k ~/.ssh/id_rsa
 ssh-add -l
 
+sudo su # Option to get access switch to super user
+sudo su - # Option to get access switch to super user, potentially within aws ec2 instance when connecting through session manager
+
 terraform init
 terraform plan
 terraform plan --destroy
-terraform plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
+terraform -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 terraform apply
 terraform apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 terraform destroy
@@ -287,13 +315,17 @@ tg plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
 tg apply
 tg apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 tg destroy
+tg import '' ''
 tg import <hmm> <something>
 tg import "module.stuff.aws_cloudwatch_event_target.lambda_target" "<target_rule_name>/$(aws events list-targets-by-rule --rule <target_rule_name> | jq -r '.Targets[0].Id')" # Import aws_cloudwatch_event_target
 tg state list # list all modules
+tg state list > ~/Desktop/${TERRAFORM_LOGS}/terraform_state--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 tg state mv <from> <to>
 tg state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
+tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 
 test -d ${HOME}/Desktop # does the Desktop folder exist
+test -e .git # True if file exists (regardless of type)
 test -f ${HOME}/.zshrc # does the specific file exist
 
 vagrant global-status
@@ -307,5 +339,15 @@ vagrant up
 which python3
 whoami
 
+aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/temp_elb_target_groups.txt\
+while IFS= read -r line; do\
+  echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\
+done < ~/Desktop/temp_elb_target_groups.txt
+
 xargs -I {} echo {} # utilize this after a pipeline to take the multi-line output of previous command to run multiple commands here
 xargs -I {} sh -c "echo {};ls -al {}" # utilize this command after a multi-line input. Running with sh allows for multiple commands to be run
+
+yq e '.spec.template.spec.containers[0].args += ["-enable_offline_telemetry=true"]' -i inputfile.yaml # Add specific line to yaml file utilizing structure
+yq e '.spec.template.spec.containers[0].args[] | select(. == "-cron_period=10m0s")' inputfile.yaml # Check if very specific line is a specific place in yaml structure
+yq e '.spec.template.spec.containers[0].args[]' inputfile.yaml | grep -E '^-cron_period=' # Utilize yq to narrow down search if trying to be more generic and then utilize grep
+grep -cron_period= inputfile.yaml # most generic search of yaml file instead of yq

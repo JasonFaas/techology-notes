@@ -88,6 +88,12 @@ export Color_Off='\033[0m'       # Text Reset
 
 
 # Alias
+
+function echo_exit_status {
+  echo "$?"
+}
+alias exit_status="echo_exit_status"
+
 ## GIT
 function cdgitroot {
   while (! ls | grep Volumes) && (! test -e .git)
@@ -153,7 +159,7 @@ alias tgimport="terragrunt import"
 alias tgplan="terragrunt plan"
 alias tginit="terragrunt init"
 alias rmtf="rm -f .terraform/terraform.tfstate"
-alias rmtfa="rm -rf .terraform*"
+alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform*"
 
 alias awslogin="aws sso login"
 alias awscompleter="complete -C $(which aws_completer) aws"
