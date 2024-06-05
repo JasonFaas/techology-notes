@@ -17,6 +17,8 @@ aws ec2 stop-instances --instance-ids <instance_id>
 
 aws help --no-cli-pager
 
+aws kafka describe-cluster-v2 --cluster-arn $(aws kafka list-clusters-v2 --no-cli-pager | jq -r '.ClusterInfoList[0].ClusterArn') | rg "State" # Get state of only
+
 aws lambda get-function --function-name <function_name>
 
 aws s3 cp fromFile s3://toBucket/toFileName
@@ -85,6 +87,15 @@ aws ec2 describe-volumes --query 'Volumes[::-2]'
 aws ec2 describe-volumes --query 'Volumes[*].Attachments'
 aws ec2 describe-volumes --query 'Volumes[*].Attachments[*].State'
 
+az login
+az account list | jq '.[].name'
+az account show | jq '.name'
+az account set --subscription $(az account list | jq -r '.[0].name')
+az --version
+az storage account list | jq '.[].name' # List all storage accounts
+az storage container list --account-name <StorageAccountName> --account-key <StorageAccountKey> --output table
+az storage blob list --container-name <ContainerName> --account-name <StorageAccountName> --account-key <StorageAccountKey> --output table
+
 brew install aws-iam-authenticator
 brew install awscli
 brew install jq
@@ -93,6 +104,7 @@ brew install kubent
 brew install k9s
 brew install stern
 brew install --cask alt-tab
+brew install azure-cli && az login
 brew update
 brew upgrade package_name
 brew update
@@ -120,6 +132,8 @@ TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, different from pwd
 dirname -- ~/.aws/config # List folder path for a specific file
 
+docker pull docker.io/appdynamics/cluster-agent:latest # pull latest version of docker image
+
 echo "$?"
 echo "defd" | grep -q "def" # returns true as def is a substring of defd
 export EXPORT_COMMAND_EX=$(date)
@@ -128,8 +142,8 @@ exit_status
 
 for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
-find ~/Code/techology-notes -iname '*md'
-find ~/Code/techology-notes/ -name README.md
+find ~/Code/ARG/techology-notes -iname '*md'
+find ~/Code/ARG/techology-notes/ -name README.md
 
 git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
@@ -170,6 +184,7 @@ jq '.MetricAlarms[] | select(.StateValue == "ALARM") | select(.AlarmName | conta
 jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName' # comes after `aws cloudwatch describe-alarms`
 jq ".[0]"  | sed "s/\"//g" # comes after `aws ec2 describe-security-groups --filters "Name=group-name,Values=<sg_name>" --query="SecurityGroups[*].GroupId"`
 jq -r '.ClusterInfoList[].ClusterArn | select(contains("cluster_name"))' # from aws kafka list-clusters-v2
+jq '.results[] | {name: .name, size: .full_size}' # example for when you want to select multiple fields. This specific example is from curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/?page_size=100"
 
 kctl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
 kctl config view # view config file, will list all context options
@@ -339,10 +354,19 @@ vagrant up
 which python3
 whoami
 
-aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/temp_elb_target_groups.txt\
+aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/tempfile.txt\
 while IFS= read -r line; do\
   echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\
 done < ~/Desktop/temp_elb_target_groups.txt
+
+aws kafka list-clusters-v2 --no-cli-pager | jq -r '.ClusterInfoList[].ClusterArn' > $HOME/tempfile.txt;while IFS= read -r line; do\
+  echo "$line"; aws kafka describe-cluster-v2 --cluster-arn $line | rg "State"\
+done < $HOME/tempfile.txt
+
+while IFS= read -r line; do\
+  echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\
+done < ~/Desktop/tempfile.txt
+
 
 xargs -I {} echo {} # utilize this after a pipeline to take the multi-line output of previous command to run multiple commands here
 xargs -I {} sh -c "echo {};ls -al {}" # utilize this command after a multi-line input. Running with sh allows for multiple commands to be run
