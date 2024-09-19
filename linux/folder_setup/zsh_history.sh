@@ -120,6 +120,8 @@ TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, different from pwd
 dirname -- ~/.aws/config # List folder path for a specific file
 
+docker version
+
 echo "$?"
 echo "defd" | grep -q "def" # returns true as def is a substring of defd
 export EXPORT_COMMAND_EX=$(date)
