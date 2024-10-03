@@ -17,6 +17,8 @@ aws ec2 stop-instances --instance-ids <instance_id>
 
 aws help --no-cli-pager
 
+aws kafka describe-cluster-v2 --cluster-arn $(aws kafka list-clusters-v2 --no-cli-pager | jq -r '.ClusterInfoList[0].ClusterArn') | rg "State" # Get state of only
+
 aws lambda get-function --function-name <function_name>
 
 aws s3 cp fromFile s3://toBucket/toFileName
@@ -85,6 +87,21 @@ aws ec2 describe-volumes --query 'Volumes[::-2]'
 aws ec2 describe-volumes --query 'Volumes[*].Attachments'
 aws ec2 describe-volumes --query 'Volumes[*].Attachments[*].State'
 
+az login
+az account list | jq '.[].name'
+az account show | jq '.name'
+az account set --subscription $(az account list | jq -r '.[0].name')
+az --version
+az storage account list | jq '.[].name' # List all storage accounts
+az storage container list --account-name <StorageAccountName> --account-key <StorageAccountKey> --output table
+az storage blob list --container-name <ContainerName> --account-name <StorageAccountName> --account-key <StorageAccountKey> --output table
+az storage blob upload \
+  --account-name mystorageaccount \
+  --container-name mycontainer \
+  --name myfile \
+  --file /path/to/local/file
+
+
 brew install aws-iam-authenticator
 brew install awscli
 brew install jq
@@ -93,6 +110,7 @@ brew install kubent
 brew install k9s
 brew install stern
 brew install --cask alt-tab
+brew install azure-cli && az login
 brew update
 brew upgrade package_name
 brew update
@@ -120,18 +138,24 @@ TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, different from pwd
 dirname -- ~/.aws/config # List folder path for a specific file
 
+# docker commands, a lot of them occur outside of actual docker application
+docker pull docker.io/appdynamics/cluster-agent:latest # pull latest version of docker image
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ECR_URL # Docker login to AWS ECR
+curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/" | jq '.results[].name' # list all tags for a docker image
+aws ecr describe-images --repository-name $(aws ecr describe-repositories | jq -r '.repositories[0].repositoryName') | jq '.imageDetails[].imageTags' # list all tags for the first repo in AWS ECR
 docker version
 
 echo "$?"
 echo "defd" | grep -q "def" # returns true as def is a substring of defd
+echo "Both stdout and stderr" &> file.txt # Note that you might need to be more explicit like "1>&2" to redirect stdout to stderr
 export EXPORT_COMMAND_EX=$(date)
 echo_exit_status
 exit_status
 
 for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
-find ~/Code/techology-notes -iname '*md'
-find ~/Code/techology-notes/ -name README.md
+find ~/Code/ARG/techology-notes -iname '*md'
+find ~/Code/ARG/techology-notes/ -name README.md
 
 git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
@@ -148,6 +172,7 @@ gitd
 gitdiff
 gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
 gitcp git_commit_id # git cherry-pick git_commit_id
+gitcherry # git cherry-pick git_commit_id
 git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
 
 grep # to compare 2 strings, start with echo command
@@ -172,7 +197,11 @@ jq '.MetricAlarms[] | select(.StateValue == "ALARM") | select(.AlarmName | conta
 jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName' # comes after `aws cloudwatch describe-alarms`
 jq ".[0]"  | sed "s/\"//g" # comes after `aws ec2 describe-security-groups --filters "Name=group-name,Values=<sg_name>" --query="SecurityGroups[*].GroupId"`
 jq -r '.ClusterInfoList[].ClusterArn | select(contains("cluster_name"))' # from aws kafka list-clusters-v2
+jq '.results[] | {name: .name, size: .full_size}' # example for when you want to select multiple fields. This specific example is from curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/?page_size=100"
+jq '.[] | select (.name == "value_of_map_key")' # example for when you want to select a specific map based on a key value pair
+jq -r '.spec.template.spec.containers[] | keys' # get keys from a dictionary
 
+kctl create namespace <namespace>
 kctl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
 kctl config view # view config file, will list all context options
 kctl config get-contexts
@@ -341,10 +370,19 @@ vagrant up
 which python3
 whoami
 
-aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/temp_elb_target_groups.txt\
+aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/tempfile.txt\
 while IFS= read -r line; do\
   echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\
 done < ~/Desktop/temp_elb_target_groups.txt
+
+aws kafka list-clusters-v2 --no-cli-pager | jq -r '.ClusterInfoList[].ClusterArn' > $HOME/tempfile.txt;while IFS= read -r line; do\
+  echo "$line"; aws kafka describe-cluster-v2 --cluster-arn $line | rg "State"\
+done < $HOME/tempfile.txt
+
+while IFS= read -r line; do\
+  echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\
+done < ~/Desktop/tempfile.txt
+
 
 xargs -I {} echo {} # utilize this after a pipeline to take the multi-line output of previous command to run multiple commands here
 xargs -I {} sh -c "echo {};ls -al {}" # utilize this command after a multi-line input. Running with sh allows for multiple commands to be run

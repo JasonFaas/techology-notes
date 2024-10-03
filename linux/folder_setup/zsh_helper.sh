@@ -145,6 +145,7 @@ alias gitcommit="git commit -m "
 alias gitdiff="git status && git diff"
 alias gitd="git status && git diff"
 alias gitcp="git cherry-pick"
+alias gitcherry="git cherry-pick"
 
 ## terraform and k8s
 alias tg=terragrunt

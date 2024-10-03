@@ -9,3 +9,8 @@
 * Items to change:
   * Close Other Tabs -> Shift+Command+W
   * Close Project    -> Control+Option+W
+
+## Terminal
+* Quick history search
+  * Control+R
+    * After typing in commands, hit Control+R to search through history like the up arrow
