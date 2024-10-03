@@ -143,6 +143,7 @@ docker pull docker.io/appdynamics/cluster-agent:latest # pull latest version of 
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ECR_URL # Docker login to AWS ECR
 curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/" | jq '.results[].name' # list all tags for a docker image
 aws ecr describe-images --repository-name $(aws ecr describe-repositories | jq -r '.repositories[0].repositoryName') | jq '.imageDetails[].imageTags' # list all tags for the first repo in AWS ECR
+docker version
 
 echo "$?"
 echo "defd" | grep -q "def" # returns true as def is a substring of defd
