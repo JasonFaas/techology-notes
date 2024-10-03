@@ -95,6 +95,12 @@ az --version
 az storage account list | jq '.[].name' # List all storage accounts
 az storage container list --account-name <StorageAccountName> --account-key <StorageAccountKey> --output table
 az storage blob list --container-name <ContainerName> --account-name <StorageAccountName> --account-key <StorageAccountKey> --output table
+az storage blob upload \
+  --account-name mystorageaccount \
+  --container-name mycontainer \
+  --name myfile \
+  --file /path/to/local/file
+
 
 brew install aws-iam-authenticator
 brew install awscli
@@ -132,10 +138,15 @@ TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 dirname -- "${BASH_SOURCE[0]}" # In a script, list folder of script being run, different from pwd
 dirname -- ~/.aws/config # List folder path for a specific file
 
+# docker commands, a lot of them occur outside of actual docker application
 docker pull docker.io/appdynamics/cluster-agent:latest # pull latest version of docker image
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ECR_URL # Docker login to AWS ECR
+curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/" | jq '.results[].name' # list all tags for a docker image
+aws ecr describe-images --repository-name $(aws ecr describe-repositories | jq -r '.repositories[0].repositoryName') | jq '.imageDetails[].imageTags' # list all tags for the first repo in AWS ECR
 
 echo "$?"
 echo "defd" | grep -q "def" # returns true as def is a substring of defd
+echo "Both stdout and stderr" &> file.txt # Note that you might need to be more explicit like "1>&2" to redirect stdout to stderr
 export EXPORT_COMMAND_EX=$(date)
 echo_exit_status
 exit_status
@@ -160,6 +171,7 @@ gitd
 gitdiff
 gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
 gitcp git_commit_id # git cherry-pick git_commit_id
+gitcherry # git cherry-pick git_commit_id
 git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
 
 grep # to compare 2 strings, start with echo command
@@ -185,7 +197,10 @@ jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName' # comes after `a
 jq ".[0]"  | sed "s/\"//g" # comes after `aws ec2 describe-security-groups --filters "Name=group-name,Values=<sg_name>" --query="SecurityGroups[*].GroupId"`
 jq -r '.ClusterInfoList[].ClusterArn | select(contains("cluster_name"))' # from aws kafka list-clusters-v2
 jq '.results[] | {name: .name, size: .full_size}' # example for when you want to select multiple fields. This specific example is from curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/?page_size=100"
+jq '.[] | select (.name == "value_of_map_key")' # example for when you want to select a specific map based on a key value pair
+jq -r '.spec.template.spec.containers[] | keys' # get keys from a dictionary
 
+kctl create namespace <namespace>
 kctl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
 kctl config view # view config file, will list all context options
 kctl config get-contexts
