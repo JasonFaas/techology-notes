@@ -175,6 +175,8 @@ gitcp git_commit_id # git cherry-pick git_commit_id
 gitcherry # git cherry-pick git_commit_id
 git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
 
+git clone https://github.com/JasonFaas/techology-notes.git
+
 grep # to compare 2 strings, start with echo command
 
 helm status master
