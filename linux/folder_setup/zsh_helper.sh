@@ -155,6 +155,8 @@ alias kns=kubens
 alias kctx=kubectx
 alias tgapply="terragrunt apply"
 alias tga="terragrunt apply"
+alias tfi="terraform init"
+alias tfa="terraform apply"
 alias tga1="tga -parallelism=1"
 alias tgimport="terragrunt import"
 alias tgplan="terragrunt plan"

@@ -104,15 +104,18 @@ az storage blob upload \
 
 brew install aws-iam-authenticator
 brew install awscli
+brew install git
 brew install jq
 brew install kubernetes-cli
+brew install kubens # this doesn't exist...there should be something else, right?
 brew install kubent
 brew install k9s
+brew install python && python3 -m venv ~/.venv/py3venv1
+brew install rg
 brew install stern
+brew install zsh
 brew install --cask alt-tab
 brew install azure-cli && az login
-brew update
-brew upgrade package_name
 brew update
 brew upgrade package_name
 
@@ -176,6 +179,7 @@ gitcherry # git cherry-pick git_commit_id
 git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
 
 git clone https://github.com/JasonFaas/techology-notes.git
+git clone https://github.com/JasonFaas/docker-experiment.git
 
 grep # to compare 2 strings, start with echo command
 
@@ -268,17 +272,6 @@ ps -ef
 python3 --version
 python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 pip freeze
-pip install --upgrade pip
-pip install --upgrade pip
-pip install -r requirements.txt
-pip install <library>
-pip install awscli
-printenv
-printenv PWD
-ps -ax
-ps -ef
-python3 --version
-python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 
 printf "${On_Blue}${White}Background and text color changed for eye-catching terminal output${Color_Off}\n"
 
