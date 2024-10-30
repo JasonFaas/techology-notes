@@ -74,6 +74,7 @@ aws s3 ls s3://bucket-name/folder/
 aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
 
 aws sts get-caller-identity
+aws sts get-caller-identity > "$HOME/Desktop/temp_aws_sts.txt" || aws sso login
 
 aws secretsmanager get-secret-value --secret-id <secret_name> --no-cli-pager
 aws secretsmanager list-secrets --filters Key=name,Values=<secret_name>
@@ -157,8 +158,8 @@ exit_status
 
 for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
-find ~/Code/ARG/techology-notes -iname '*md'
-find ~/Code/ARG/techology-notes/ -name README.md
+find ~/Code/1/techology-notes -iname '*md'
+find ~/Code/1/techology-notes/ -name README.md
 
 git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
