@@ -105,6 +105,7 @@ az storage blob upload \
 
 brew install aws-iam-authenticator
 brew install awscli
+brew install gh && gh auth login && gh extension install github/gh-copilot && gh copilot explain "Did I get everything setup correctly?" && gh copilot suggest "Did I get everything setup correctly?"
 brew install git
 brew install jq
 brew install kubernetes-cli
@@ -326,6 +327,8 @@ terraform apply
 terraform apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 terraform destroy
 terraform import <hmm> <something>
+tf import aws_instance.web i-12345678 # example
+tf import aws_cloudwatch_metric_alarm.my_alarm my_alarm_name # example
 terraform state list # list all modules
 terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory

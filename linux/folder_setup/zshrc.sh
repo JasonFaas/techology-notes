@@ -18,6 +18,9 @@ export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.docker/bin
 export PATH=$PATH:/usr/local/go/bin
+export GOPATH="/usr/local/go"
+export PATH=$GOPATH/bin:$PATH
+export PATH=$AWS_COMPLETER:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -34,10 +37,26 @@ autoload -Uz compinit && compinit
 #autoload -U +X compinit && compinit
 complete -C $AWS_COMPLETER aws
 #complete -C '$AWS_COMPLETER' aws
-echo "Run Command 'awscompleter' to enable aws cli auto complete. Still not sure why I can't run this in a script. Ask a friend."
-echo ""
 
 export GLOBAL_GITIGNORE="${HOME}/Code/1/techology-notes/git/global.gitignore"
-test -f $GLOBAL_GITIGNORE && sh -c "echo \"Global git file exists. Setting now.\"; echo \"\"; git config --global core.excludesfile $GLOBAL_GITIGNORE" || echo "Global git file DOES NOT EXIST. Fix this."
+test -f $GLOBAL_GITIGNORE && sh -c "git config --global core.excludesfile $GLOBAL_GITIGNORE" || sh -c "echo 'Global git file DOES NOT EXIST. Fix this'; echo ''"
 
-echo "Starting Azure AutoComplete" && source /usr/local/Cellar/azure-cli/2.61.0/etc/bash_completion.d/az && echo "Azure AutoComplete Complete" && az account show | jq '.name'
+# Check if the file does not exist
+mkdir -p "$HOME/Code/temp"
+FULL_TEMP_FILE_PATH="$HOME/Code/temp/once_a_month.txt"
+FULL_MONTHLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc.montly.sh"
+current_month=$(date +%m)
+if [ ! -f "$FULL_TEMP_FILE_PATH" ]; then
+    date +%m > "$FULL_TEMP_FILE_PATH"
+    echo "Running Monthly Script as it doesn't exist yet"
+    $FULL_MONTHLY_FILE_PATH
+else
+    TEMP_VAR=$(cat ~/Code/once_a_month.old.txt)
+    if [ "$current_month" != "$TEMP_VAR" ]; then
+        date +%m > "$FULL_TEMP_FILE_PATH"
+        echo "Running Monthly Script as it's a new month!"
+        $FULL_MONTHLY_FILE_PATH
+    else
+        echo "Not running Monthly Script as it's not a new month"
+    fi
+fi
