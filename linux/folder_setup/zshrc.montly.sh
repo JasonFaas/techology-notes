@@ -1,4 +1,5 @@
 brew update
+brew upgrade
 
 gh extension upgrade gh-copilot
 
