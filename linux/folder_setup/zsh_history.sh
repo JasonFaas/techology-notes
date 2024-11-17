@@ -48,7 +48,7 @@ aws ec2 stop-instances --instance-ids <instance_id>
 aws eks describe-cluster --name <name of cluster>
 aws eks list-clusters
 aws eks list-clusters --no-cli-pager | jq -r '.clusters[]' | xargs -I {} sh -c "echo {}; aws eks describe-cluster --name {} | jq '.cluster.version'"
-aws eks update-kubeconfig --name <name of cluster> # this will download the kubeconfig of the cluster to your config file if kubectx is activated
+aws eks update-kubeconfig --name $(aws eks list-clusters --no-cli-pager | jq -r '.clusters[0]') # this will download the kubeconfig of the cluster to your config file if kubectx is activated
 
 aws events list-rules --name-prefix <event-bridge-prefix>
 
@@ -109,6 +109,7 @@ brew install gh && gh auth login && gh extension install github/gh-copilot && gh
 brew install git
 brew install jq
 brew install kubernetes-cli
+brew install kubectx
 brew install kubens # this doesn't exist...there should be something else, right?
 brew install kubent
 brew install k9s

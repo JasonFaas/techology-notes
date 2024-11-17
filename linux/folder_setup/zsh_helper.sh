@@ -146,6 +146,9 @@ alias gitdiff="git status && git diff"
 alias gitd="git status && git diff"
 alias gitcp="git cherry-pick"
 alias gitcherry="git cherry-pick"
+alias gitstash="git stash"
+alias gitpop="git stash pop"
+alias gitstashpop="git stash pop"
 
 ## terraform and k8s
 alias tg=terragrunt
@@ -156,7 +159,8 @@ alias kctx=kubectx
 alias tgapply="terragrunt apply"
 alias tga="terragrunt apply"
 alias tfi="terraform init"
-alias tfa="terraform apply"
+alias tfa="say Running_Terraform && terraform apply && say Good_News_Everyone || say Terrible_News"
+alias tfplan="terraform plan"
 alias tga1="tga -parallelism=1"
 alias tgimport="terragrunt import"
 alias tgplan="terragrunt plan"

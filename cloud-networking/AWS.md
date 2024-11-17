@@ -3,6 +3,10 @@
 ## Full command list
 * https://docs.aws.amazon.com/cli/latest/reference/#available-services
 
+## EKS
+* Troubleshoot EKS Nodes not connecting:
+  * https://us-west-2.console.aws.amazon.com/systems-manager/automation/execute/AWSSupport-TroubleshootEKSWorkerNode?region=us-west-2#
+
 ## CLI Helper
 * Cloudtrail helper
   * https://www.gorillastack.com/blog/real-time-events/cloudtrail-event-names/
