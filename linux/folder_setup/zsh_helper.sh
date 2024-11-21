@@ -180,3 +180,24 @@ alias pip="pip3"
 function shell_say_result {
   $1 && echo "Success" && say "Good News, Everyone!" || (echo "Failure" && say "Failed again, try again soon.")
 }
+
+function gitpullfolders {
+  echo "Running Git Pull for all directories in $(pwd)"
+  echo ""
+  for dir in ./*/; do
+    (
+    # Check if the item is a directory and contains a .git folder
+    if [ -d "$dir" ] && [ -d "$dir/.git" ]; then
+      echo "Entering directory: $dir"
+      cd "$dir"
+
+      echo "Current branch: \"$(git branch --show-current)\""
+      git pull
+
+      echo ""
+    else
+      echo "Skipping $dir: Not a Git repository"
+    fi
+    )
+  done
+}

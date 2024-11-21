@@ -3,6 +3,7 @@
 [ "abc" = "def" ] # this will return 1
 [ "abc" != "def" ] # this will return 0
 [ "abc" != "abc" ] # this will return 1
+[ -d "$HOME" ] # This will return 0 as directory exists
 
 awslogin
 awscompleter
@@ -119,8 +120,8 @@ brew install stern
 brew install zsh
 brew install --cask alt-tab
 brew install azure-cli && az login
-brew update
-brew upgrade package_name
+brew update # update brew itself
+brew upgrade # optional to specify a "package_name"
 
 cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
 cat > ~/Desktop/tempfiles/temp.json <<EOF\
@@ -138,6 +139,8 @@ curl wttr.in/Xian
 curl --socks5-hostname 127.0.0.1:<port_connected_on> <full_url_like_on_proxy_machine>
 curl --netrc-file <netrc-cred-file> <URL>
 
+declare -f # list all shell function names
+
 date -u +"%Y-%m-%d--%T-%Z" # YYYY-MM-DD--HH-MM-SS-UTC
 date +"%s" # epoch time
 TZ=Asia/Shanghai date # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -150,6 +153,8 @@ aws ecr get-login-password --region us-west-2 | docker login --username AWS --pa
 curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/" | jq '.results[].name' # list all tags for a docker image
 aws ecr describe-images --repository-name $(aws ecr describe-repositories | jq -r '.repositories[0].repositoryName') | jq '.imageDetails[].imageTags' # list all tags for the first repo in AWS ECR
 docker version
+
+sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder # Clear local DNS cache
 
 echo "$?"
 echo "defd" | grep -q "def" # returns true as def is a substring of defd

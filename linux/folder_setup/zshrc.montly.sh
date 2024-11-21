@@ -8,6 +8,9 @@ echo ""
 
 echo "Shell: $SHELL"
 
+cd $HOME/Code/1/
+gitpullfolders
+cd $HOME
 
 #echo 'To get Azure Autocomplete, run "source /usr/local/Cellar/azure-cli/2.61.0/etc/bash_completion.d/az"'
 #echo "Starting Azure AutoComplete" && source /usr/local/Cellar/azure-cli/2.61.0/etc/bash_completion.d/az && echo "Azure AutoComplete Complete" && az account show | jq '.name'
