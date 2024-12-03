@@ -51,7 +51,7 @@ if [ ! -f "$FULL_TEMP_FILE_PATH" ]; then
     echo "Running Monthly Script as it doesn't exist yet"
     $FULL_MONTHLY_FILE_PATH
 else
-    TEMP_VAR=$(cat ~/Code/once_a_month.old.txt)
+    TEMP_VAR=$(cat $FULL_TEMP_FILE_PATH)
     if [ "$current_month" != "$TEMP_VAR" ]; then
         date +%m > "$FULL_TEMP_FILE_PATH"
         echo "Running Monthly Script as it's a new month!"

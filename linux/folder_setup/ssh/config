@@ -1,3 +1,2 @@
-Host i-*
-    ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=[%p]'"
-# e.g. ssh -i <private_key_file> <user>@<ec2-instance-id>
+include $HOME/Code/1/techology-notes/linux/folder_setup/ssh/config_aws_ssm
+include $HOME/Code/1/techology-notes/linux/folder_setup/ssh/config_git

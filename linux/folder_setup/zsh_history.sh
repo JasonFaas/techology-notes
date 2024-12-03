@@ -4,6 +4,8 @@
 [ "abc" != "def" ] # this will return 0
 [ "abc" != "abc" ] # this will return 1
 [ -d "$HOME" ] # This will return 0 as directory exists
+[ -n "$HOME" ] # This will return 0 as env var exists
+[ -z "$HOME" ] # This will return 1 as env var exists
 
 awslogin
 awscompleter

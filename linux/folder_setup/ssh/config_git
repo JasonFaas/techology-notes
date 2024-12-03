@@ -1,0 +1,15 @@
+# Always git clone with patter of
+  # "git clone ssh://git@<host>:/<username>/repo.git
+  # "git clone ssh://git@<host and port>/<username>/repo.git
+
+# GitHub Account
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+
+# Bitbucket Account
+Host bitbucket.org
+  HostName bitbucket.org
+  User git
+  IdentityFile ~/.ssh/id_ed25519

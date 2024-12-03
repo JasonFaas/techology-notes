@@ -103,6 +103,7 @@ function cdgitroot {
   done
 }
 function gitpushall {
+  cdgitroot
   git add . && git commit -m "$1" && git push
 }
 function gitcheck {
