@@ -108,6 +108,7 @@ az storage blob upload \
 
 brew install aws-iam-authenticator
 brew install awscli
+brew install --cask docker
 brew install gh && gh auth login && gh extension install github/gh-copilot && gh copilot explain "Did I get everything setup correctly?" && gh copilot suggest "Did I get everything setup correctly?"
 brew install git
 brew install jq
@@ -121,7 +122,6 @@ brew install pipx && pipx install kube-shell
 brew install rg
 brew install stern
 brew install zsh
-brew install --cask alt-tab
 brew install azure-cli && az login
 brew update # update brew itself
 brew upgrade # optional to specify a "package_name"
@@ -132,6 +132,7 @@ cat > ~/Desktop/tempfiles/temp.json <<EOF\
   "hello": "world"\
 }\
 EOF
+
 cd ~/Code/
 cdgitroot
 chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
@@ -261,6 +262,7 @@ kctl logs -f <some_pod_from "kctl get all">
 kubectl get deployments -n master -o custom-columns=NAME:.metadata.name --no-headers | xargs -I {} kubectl scale deployment -n master {} --replicas=0 # Set all deployments in master namespace to 0 pods
 kubectl scale deploy -n master <deployment> --replicas=0 # will scale pods to 0 for specific deployment
 kubectl version | grep "Server" # List version of k8s on current context
+kubectl describe nodes | grep "Architecture" # List architecture of nodes in current context, likely arm64 or amd64
 
 kubent # list all k8s deprecations
 
@@ -342,6 +344,8 @@ terraform state list # list all modules
 terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 terraform state replace-provider registry.terraform.io/-/aws  registry.terraform.io/hashicorp/aws # Used commonly during terraform upgrades when providers update do not go through correctly
+
+rmtf && tfi && tfplan
 
 tga
 tgimport
