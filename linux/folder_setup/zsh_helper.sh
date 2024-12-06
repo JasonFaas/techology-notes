@@ -176,7 +176,8 @@ alias awsc="complete -C $(which aws_completer) aws"
 alias sgpt="~/Library/Python/3.9/bin/sgpt"
 alias s="sgpt"
 
-alias pip="pip3"
+#alias pip="pip3"
+alias pip='echo "pip command is disabled. Use pipx instead."'
 
 function shell_say_result {
   $1 && echo "Success" && say "Good News, Everyone!" || (echo "Failure" && say "Failed again, try again soon.")

@@ -117,6 +117,7 @@ brew install kubens # this doesn't exist...there should be something else, right
 brew install kubent
 brew install k9s
 brew install python && python3 -m venv ~/.venv/py3venv1
+brew install pipx && pipx install kube-shell
 brew install rg
 brew install stern
 brew install zsh
