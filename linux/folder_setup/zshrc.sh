@@ -1,17 +1,5 @@
 echo "Welcome to iTerm2\n"
 
-function echo_time {
-  echo "$(date) Computer Time Zone"
-  echo "$(date +%s)                   Unix timestamp"
-  echo ""
-  echo "$(TZ=America/Los_Angeles date) Los Angeles, USA" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  date -u
-  echo "$(TZ=Europe/Amsterdam date) Amsterdam, Netherlands" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  echo "$(TZ=Asia/Kolkata date) Kolkata, India" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  echo "$(TZ=Asia/Shanghai date) Shanghai, China" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  echo ""
-}
-
 echo_time
 
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
