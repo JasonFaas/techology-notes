@@ -157,6 +157,7 @@ aws ecr get-login-password --region us-west-2 | docker login --username AWS --pa
 curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-agent/tags/" | jq '.results[].name' # list all tags for a docker image
 aws ecr describe-images --repository-name $(aws ecr describe-repositories | jq -r '.repositories[0].repositoryName') | jq '.imageDetails[].imageTags' # list all tags for the first repo in AWS ECR
 docker version
+docker inspect $AWS_ECR_REF.dkr.ecr.us-west-2.amazonaws.com/$SPECIFIC_REPO:latest | grep Architecture # List architecture of docker image likely amd64 or arm64
 
 sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder # Clear local DNS cache
 
@@ -171,6 +172,9 @@ for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
 find ~/Code/1/techology-notes -iname '*md'
 find ~/Code/1/techology-notes/ -name README.md
+
+gh copilot explain "jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'"
+gh copilot suggest "Macbook sed command to remove ok_actions from terraform files"
 
 git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
