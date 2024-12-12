@@ -7,7 +7,7 @@
 [ -n "$HOME" ] # This will return 0 as env var exists
 [ -z "$HOME" ] # This will return 1 as env var exists
 
-awslogin
+aws_sso_login
 awscompleter
 
 aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'
@@ -184,6 +184,7 @@ gitpush
 gitpull
 gitaddall
 gitstatus
+gitpullstash # stash, pull, stash pop
 git stash
 git stash pop
 gitcommit

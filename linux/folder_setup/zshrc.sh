@@ -29,22 +29,7 @@ complete -C $AWS_COMPLETER aws
 export GLOBAL_GITIGNORE="${HOME}/Code/1/techology-notes/git/global.gitignore"
 test -f $GLOBAL_GITIGNORE && sh -c "git config --global core.excludesfile $GLOBAL_GITIGNORE" || sh -c "echo 'Global git file DOES NOT EXIST. Fix this'; echo ''"
 
-# Check if the file does not exist
-mkdir -p "$HOME/Code/temp"
-FULL_TEMP_FILE_PATH="$HOME/Code/temp/once_a_month.txt"
+FULL_TEMP_FILE_PATH="$HOME/temp/techology_monthly.txt"
 FULL_MONTHLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc.montly.sh"
 current_month=$(date +%m)
-if [ ! -f "$FULL_TEMP_FILE_PATH" ]; then
-    date +%m > "$FULL_TEMP_FILE_PATH"
-    echo "Running Monthly Script as it doesn't exist yet"
-    $FULL_MONTHLY_FILE_PATH
-else
-    TEMP_VAR=$(cat $FULL_TEMP_FILE_PATH)
-    if [ "$current_month" != "$TEMP_VAR" ]; then
-        date +%m > "$FULL_TEMP_FILE_PATH"
-        echo "Running Monthly Script as it's a new month!"
-        $FULL_MONTHLY_FILE_PATH
-    else
-        echo "Not running Monthly Script as it's not a new month"
-    fi
-fi
+run_command_if_file_not_same_as_value $FULL_MONTHLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_month

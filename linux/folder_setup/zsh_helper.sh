@@ -115,8 +115,10 @@ function cdgitroot {
   done
 }
 function gitpushall {
+  CURR_DIR=$(pwd)
   cdgitroot
   git add . && git commit -m "$1" && git push
+  cd $CURR_DIR
 }
 function gitcheck {
   git checkout "$1" && git pull
@@ -181,12 +183,13 @@ alias tginit="terragrunt init"
 alias rmtf="rm -f .terraform/terraform.tfstate"
 alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform*"
 
-alias awslogin="aws sso login"
 alias awscompleter="complete -C $(which aws_completer) aws"
 alias awsc="complete -C $(which aws_completer) aws"
 
 alias sgpt="~/Library/Python/3.9/bin/sgpt"
 alias s="sgpt"
+
+alias aws_sso_login="aws sso login"
 
 #alias pip="pip3"
 alias pip='echo "pip command is disabled. Use pipx instead."'
@@ -214,4 +217,40 @@ function gitpullfolders {
     fi
     )
   done
+}
+
+function run_command_if_file_not_same_as_value {
+  mkdir -p "$HOME/temp"
+  CMD_TO_RUN=$1
+  TEMP_FILE_PATH=$2
+  VALUE_EXPECTED=$3
+  CURR_PATH=$(pwd)/
+#  echo "${b#$a}"
+
+  if [ ! -f "$TEMP_FILE_PATH" ]; then
+    echo "Running \"${CMD_TO_RUN#$CURR_PATH}\" as ${TEMP_FILE_PATH#$CURR_PATH} does not exist."
+    $CMD_TO_RUN
+  else
+    TEMP_VAR=$(cat $TEMP_FILE_PATH)
+    if [ "$VALUE_EXPECTED" != "$TEMP_VAR" ]; then
+      echo "Running \"${CMD_TO_RUN#$CURR_PATH}\" as value is different in ${TEMP_FILE_PATH#$CURR_PATH}."
+      $CMD_TO_RUN
+    else
+      echo "Not running \"${CMD_TO_RUN#$CURR_PATH}\" as value is same in ${TEMP_FILE_PATH#$CURR_PATH}."
+    fi
+  fi
+  echo $VALUE_EXPECTED > $TEMP_FILE_PATH
+  echo ""
+}
+
+function aws_sso_login_daily {
+  run_command_if_file_not_same_as_value aws_sso_login $HOME/temp/daily_aws_login.txt $(date +%j)
+}
+
+function echo_alarms_aws {
+  aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'
+}
+
+function gitpullstash {
+  git stash && git pull && git stash pop
 }
