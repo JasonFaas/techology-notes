@@ -189,7 +189,9 @@ alias awsc="complete -C $(which aws_completer) aws"
 alias sgpt="~/Library/Python/3.9/bin/sgpt"
 alias s="sgpt"
 
-alias aws_sso_login="aws sso login"
+function aws_sso_login {
+  aws sso login
+}
 
 #alias pip="pip3"
 alias pip='echo "pip command is disabled. Use pipx instead."'
@@ -243,8 +245,10 @@ function run_command_if_file_not_same_as_value {
   echo ""
 }
 
-function aws_sso_login_daily {
-  run_command_if_file_not_same_as_value aws_sso_login $HOME/temp/daily_aws_login.txt $(date +%j)
+function aws_sso_login_regular {
+  three_hour_block=$(echo "15 / 3" | bc)
+  eighth_daily=$(date +%j)-$three_hour_block
+  run_command_if_file_not_same_as_value aws_sso_login $HOME/temp/daily_aws_login.txt $eighth_daily
 }
 
 function echo_alarms_aws {
