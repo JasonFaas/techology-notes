@@ -224,19 +224,19 @@ function run_command_if_file_not_same_as_value {
   CMD_TO_RUN=$1
   TEMP_FILE_PATH=$2
   VALUE_EXPECTED=$3
-  CURR_PATH=$(pwd)/
+  HOME_PATH=${HOME}/
 #  echo "${b#$a}"
 
   if [ ! -f "$TEMP_FILE_PATH" ]; then
-    echo "Running \"${CMD_TO_RUN#$CURR_PATH}\" as ${TEMP_FILE_PATH#$CURR_PATH} does not exist."
+    echo "Running \"${CMD_TO_RUN#$HOME_PATH}\" as ${TEMP_FILE_PATH#$HOME_PATH} does not exist."
     $CMD_TO_RUN
   else
     TEMP_VAR=$(cat $TEMP_FILE_PATH)
     if [ "$VALUE_EXPECTED" != "$TEMP_VAR" ]; then
-      echo "Running \"${CMD_TO_RUN#$CURR_PATH}\" as value is different in ${TEMP_FILE_PATH#$CURR_PATH}."
+      echo "Running \"${CMD_TO_RUN#$HOME_PATH}\" as value is different in ${TEMP_FILE_PATH#$HOME_PATH}."
       $CMD_TO_RUN
     else
-      echo "Not running \"${CMD_TO_RUN#$CURR_PATH}\" as value is same in ${TEMP_FILE_PATH#$CURR_PATH}."
+      echo "Not running \"${CMD_TO_RUN#$HOME_PATH}\" as value is same in ${TEMP_FILE_PATH#$HOME_PATH}."
     fi
   fi
   echo $VALUE_EXPECTED > $TEMP_FILE_PATH
@@ -248,7 +248,9 @@ function aws_sso_login_daily {
 }
 
 function echo_alarms_aws {
+  printf "${On_Green}$TF_VAR_aws_account-$TF_VAR_aws_region_name-$TF_VAR_stack CloudWatch Alarms${Color_Off}\n"
   aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'
+  echo ""
 }
 
 function gitpullstash {
