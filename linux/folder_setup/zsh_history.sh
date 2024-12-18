@@ -224,31 +224,31 @@ jq '.results[] | {name: .name, size: .full_size}' # example for when you want to
 jq '.[] | select (.name == "value_of_map_key")' # example for when you want to select a specific map based on a key value pair
 jq -r '.spec.template.spec.containers[] | keys' # get keys from a dictionary
 
-kctl create namespace <namespace>
-kctl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
-kctl config view # view config file, will list all context options
-kctl config get-contexts
-kctl config use-context <fill_in_from_kctx_options> # same as kctx <fill_in>
-kctl describe pod <pod-name> --namespace <namespace>
-kctl describe ns # list details for all namespaces
-kctl cluster-info
-kctl edit deployment.apps <pod-prefix> --namespace <namespace>
-kctl edit deployment <pod-prefix> --namespace <namespace>
-kctl get all
-kctl get cm -n <namespace>
-kctl get cm <vuln-feed-config> -n argento-system -o yaml
-kctl get deployment <pod_prefix> -o yaml
-kctl get events
-kctl get jobs -A
-kctl get cronjobs -A
-kctl get pods -A
-kctl get pods --namespace <namespace>
-kctl get nodes -A
-kctl get ns
-kctl get svc -n <hmm>
-kctl delete pod <pod_name> -n <namespace>
-kctl logs -p <pod-name> --namespace <namespace>
-kctl logs -f <some_pod_from "kctl get all">
+kubectl create namespace <namespace>
+kubectl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
+kubectl config view # view config file, will list all context options
+kubectl config get-contexts
+kubectl config use-context <fill_in_from_kctx_options> # same as kctx <fill_in>
+kubectl describe pod <pod-name> --namespace <namespace>
+kubectl describe ns # list details for all namespaces
+kubectl cluster-info
+kubectl edit deployment.apps <pod-prefix> --namespace <namespace>
+kubectl edit deployment <pod-prefix> --namespace <namespace>
+kubectl get all
+kubectl get cm -n <namespace>
+kubectl get cm <vuln-feed-config> -n argento-system -o yaml
+kubectl get deployment <pod_prefix> -o yaml
+kubectl get events
+kubectl get jobs -A
+kubectl get cronjobs -A
+kubectl get pods -A
+kubectl get pods --namespace <namespace>
+kubectl get nodes -A
+kubectl get ns
+kubectl get svc -n <hmm>
+kubectl delete pod <pod_name> -n <namespace>
+kubectl logs -p <pod-name> --namespace <namespace>
+kubectl logs -f <some_pod_from "kctl get all">
 
 kctx -c # only the current context
 kctx <environment to switch to>

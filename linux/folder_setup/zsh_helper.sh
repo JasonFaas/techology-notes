@@ -246,9 +246,9 @@ function run_command_if_file_not_same_as_value {
 }
 
 function aws_sso_login_regular {
-  three_hour_block=$(echo "15 / 3" | bc)
-  eighth_daily=$(date +%j)-$three_hour_block
-  run_command_if_file_not_same_as_value aws_sso_login $HOME/temp/daily_aws_login.txt $eighth_daily
+  six_hour_block=$(echo "$(date +%H) / 6" | bc)
+  quarter_daily=$(date +%j)-$six_hour_block
+  run_command_if_file_not_same_as_value aws_sso_login $HOME/temp/daily_aws_login.txt $quarter_daily
 }
 
 function echo_alarms_aws {

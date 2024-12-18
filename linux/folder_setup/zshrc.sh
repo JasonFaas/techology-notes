@@ -30,6 +30,6 @@ export GLOBAL_GITIGNORE="${HOME}/Code/1/techology-notes/git/global.gitignore"
 test -f $GLOBAL_GITIGNORE && sh -c "git config --global core.excludesfile $GLOBAL_GITIGNORE" || sh -c "echo 'Global git file DOES NOT EXIST. Fix this'; echo ''"
 
 FULL_TEMP_FILE_PATH="$HOME/temp/techology_monthly.txt"
-FULL_MONTHLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc.montly.sh"
+FULL_MONTHLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_monthly.sh"
 current_month=$(date +%m)
 run_command_if_file_not_same_as_value $FULL_MONTHLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_month
