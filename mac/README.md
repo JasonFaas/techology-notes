@@ -3,11 +3,11 @@
 ## Set up for terminal:
 * iTerm
   * https://medium.com/swlh/power-up-your-terminal-using-oh-my-zsh-iterm2-c5a03f73a9fb
-  * https://www.dev-diaries.com/blog/terminal-history-auto-suggestions-as-you-type/
-  * https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
-    * Add plugins=(zsh-autosuggestions) at plugins location of ~/.zshrc
-  * https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x
-    * Jump Word AKA Option+Left/Right
+    * iterm2
+    * zsh
+    * oh-my-zsh
+    * All other helper tools are installed via brew, see zsh_history.sh
+    * add source references from `zshrc_copy_to_actual.sh`
 
 ## App Store:
 * Redhot Timer
@@ -19,15 +19,11 @@
 * 1Password
 * Micro Snitch
 
-## PyCharm
+## IntelliJ
 * Plugins
   * HashiCorp Terraform / HCL language support
-
-## Terminal Config
-* TODO: Add to terminal config
-  * `pip install --upgrade pip`
-  * `brew update`
-  * `brew upgrade`
+  * Python Community Edition
+  * GitHub CoPilot
 
 ## Install Ubuntu on Mac from Mac
 * https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview
@@ -38,3 +34,12 @@
 * favorites:
   * `brew install --cask alt-tab`
 
+## Terraform on Apple Silicon
+* `cd ~ && curl -LO https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_darwin_arm64.zip && unzip terraform_1.5.7_darwin_arm64.zip && sudo mv terraform /opt/homebrew/bin/ && terraform version'
+
+## Browser
+* Brave
+  * Extensions
+    * 1Password
+    * Minim: https://chromewebstore.google.com/detail/minim-a-minimal-newtab/kpblgdhkligkbbnbpkigppblggflihgn
+    * UBlock Origin Lite: https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh

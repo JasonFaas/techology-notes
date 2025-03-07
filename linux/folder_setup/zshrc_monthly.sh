@@ -2,6 +2,7 @@ source $(dirname $BASH_SOURCE)/zsh_helper.sh
 
 brew update
 brew upgrade
+pip install --upgrade pip
 
 gh extension upgrade gh-copilot
 
