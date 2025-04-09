@@ -295,7 +295,9 @@ ps -ax
 ps -ef
 python3 --version
 python3 -m venv ~/.venv/py3venv1  # Create virtual environment
-pip freeze
+python3 -m pip freeze
+python3 -m pip install --upgrade pip
+python3 -m pip install <package_name>
 
 printf "${On_Blue}${White}Background and text color changed for eye-catching terminal output${Color_Off}\n"
 
