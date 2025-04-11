@@ -15,7 +15,7 @@ def count_unique_mandarin_chars(file_path):
     return len(unique_chars)
 
 if __name__ == "__main__":
-    file_path = "中文__Paragraph.txt"  # Replace with your file path
+    file_path = "/Users/jasonoclaf/Desktop/Paragraph.txt"  # Replace with your file path
     unique_count = count_unique_mandarin_chars(file_path)
     print(f"Number of unique Mandarin characters: {unique_count}")
 
