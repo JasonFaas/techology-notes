@@ -236,6 +236,7 @@ kubectl describe ns # list details for all namespaces
 kubectl cluster-info
 kubectl edit deployment.apps <pod-prefix> --namespace <namespace>
 kubectl edit deployment <pod-prefix> --namespace <namespace>
+kubectl exec -it <pod-name> --namespace <namespace> -- /bin/bash # exec into pod
 kubectl get all
 kubectl get cm -n <namespace>
 kubectl get cm <vuln-feed-config> -n argento-system -o yaml
