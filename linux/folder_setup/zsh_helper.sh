@@ -172,6 +172,7 @@ alias kctl=kubectl
 alias kns=kubens
 alias kctx=kubectx
 alias tgapply="terragrunt apply"
+alias tgia="terragrunt init && terragrunt apply"
 alias tga="terragrunt apply"
 alias tfi="terraform init"
 alias tfa="say Running_Terraform && terraform apply && say Good_News_Everyone || say Terrible_News"

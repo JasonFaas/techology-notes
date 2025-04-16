@@ -120,6 +120,7 @@ brew install kubent
 brew install k9s
 brew install python && python3 -m venv ~/.venv/py3venv1
 brew install pipx && pipx install kube-shell
+brew install postgresql
 brew install rg
 brew install session-manager-plugin # aws ssm
 brew install stern
@@ -133,11 +134,6 @@ brew update # update brew itself
 brew upgrade # optional to specify a "package_name"
 
 cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
-cat > ~/Desktop/tempfiles/temp.json <<EOF\
-{\
-  "hello": "world"\
-}\
-EOF
 
 cd ~/Code/
 cdgitroot
@@ -201,8 +197,8 @@ gitcp git_commit_id # git cherry-pick git_commit_id
 gitcherry # git cherry-pick git_commit_id
 git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
 
-git clone https://github.com/JasonFaas/techology-notes.git
-git clone https://github.com/JasonFaas/docker-experiment.git
+git clone git@github.com:JasonFaas/techology-notes.git
+git clone git@github.com:JasonFaas/docker-experiment.git
 
 grep # to compare 2 strings, start with echo command
 
@@ -361,6 +357,7 @@ terraform state replace-provider registry.terraform.io/-/aws  registry.terraform
 rmtf && tfi && tfplan
 
 tga
+tgia # terragrunt init && terragrunt apply
 tgimport
 tgplan
 tga1 # single threaded terragrunt apply
@@ -383,6 +380,8 @@ tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m
 test -d ${HOME}/Desktop # does the Desktop folder exist
 test -e .git # True if file exists (regardless of type)
 test -f ${HOME}/.zshrc # does the specific file exist
+
+unset AWS_PROFILE # or any environment variable
 
 vagrant global-status
 vagrant halt
@@ -416,3 +415,9 @@ yq e '.spec.template.spec.containers[0].args += ["-enable_offline_telemetry=true
 yq e '.spec.template.spec.containers[0].args[] | select(. == "-cron_period=10m0s")' inputfile.yaml # Check if very specific line is a specific place in yaml structure
 yq e '.spec.template.spec.containers[0].args[]' inputfile.yaml | grep -E '^-cron_period=' # Utilize yq to narrow down search if trying to be more generic and then utilize grep
 grep -cron_period= inputfile.yaml # most generic search of yaml file instead of yq
+
+cat > ~/Desktop/tempfiles/temp.json <<EOF\
+{\
+  "hello": "world"\
+}\
+EOF
