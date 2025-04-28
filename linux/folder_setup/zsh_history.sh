@@ -279,7 +279,7 @@ kns <namespace>
 mkdir -p ~/level_1/level_2/
 mkdir -p ~/level_1/level_2/
 
-
+ping -c 3 ec2.us-west-2.amazonaws.com
 pip freeze
 pip install --upgrade pip
 pip install --upgrade pip

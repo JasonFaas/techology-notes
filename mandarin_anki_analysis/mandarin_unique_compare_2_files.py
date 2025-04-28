@@ -8,8 +8,8 @@ def extract_mandarin_chars(file_path):
     return set(chars)
 
 def compare_mandarin_chars(file1_path, file2_path):
-    chars1 = extract_mandarin_chars("/Users/jasonoclaf/Desktop/Vocab.txt")
-    chars2 = extract_mandarin_chars("/Users/jasonoclaf/Desktop/Paragraph.txt")
+    chars1 = extract_mandarin_chars("/Users/jafaas/Desktop/Vocab.txt")
+    chars2 = extract_mandarin_chars("/Users/jafaas/Desktop/Paragraph.txt")
 
     only_in_file1 = chars1 - chars2
     only_in_file2 = chars2 - chars1
