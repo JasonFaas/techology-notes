@@ -6,12 +6,12 @@ patch:
     good_old_caps_lock: true
 
   menu:
-    page_size: 9
+    page_size: 8
     candidate_format: "%c. %s"  # Makes candidates show nicely with number + character
 
   style:
     font_face: "Helvetica Neue"
-    font_point: 16
+    font_point: 32 # default is 14, maximum is 32
     candidate_text_color: 0x000000
     comment_text_color: 0x888888
     label_color: 0x666666
