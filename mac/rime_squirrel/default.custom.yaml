@@ -6,7 +6,7 @@ patch:
     good_old_caps_lock: true
 
   menu:
-    page_size: 8
+    page_size: 7
     candidate_format: "%c. %s"  # Makes candidates show nicely with number + character
 
   style:
@@ -23,3 +23,4 @@ patch:
       '?': '？'
       '!': '！'
 
+  spelling_hints: 1
