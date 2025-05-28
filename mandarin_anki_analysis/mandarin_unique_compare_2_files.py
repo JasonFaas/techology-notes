@@ -1,5 +1,10 @@
 import re
 
+FILE_PATH_PARAGRAPH = "/Users/jafaas/Desktop/Paragraph.txt"
+
+FILE_PATH_VOCAB = "/Users/jafaas/Desktop/Vocab.txt"
+
+
 def extract_mandarin_chars(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read()
@@ -8,8 +13,8 @@ def extract_mandarin_chars(file_path):
     return set(chars)
 
 def compare_mandarin_chars(file1_path, file2_path):
-    chars1 = extract_mandarin_chars("/Users/jafaas/Desktop/Vocab.txt")
-    chars2 = extract_mandarin_chars("/Users/jafaas/Desktop/Paragraph.txt")
+    chars1 = extract_mandarin_chars(FILE_PATH_VOCAB)
+    chars2 = extract_mandarin_chars(FILE_PATH_PARAGRAPH)
 
     only_in_file1 = chars1 - chars2
     only_in_file2 = chars2 - chars1
@@ -22,10 +27,10 @@ if __name__ == "__main__":
 
     only_in_file1, only_in_file2 = compare_mandarin_chars(file1, file2)
 
-    print(f"{len(only_in_file1)} Characters only in file 1:")
+    print(f"{len(only_in_file1)} Characters only in \"{FILE_PATH_VOCAB}\":")
     print("".join(sorted(only_in_file1)))
 
-    print(f"\n{len(only_in_file2)} Characters only in file 2:")
+    print(f"\n{len(only_in_file2)} Characters only in \"{FILE_PATH_PARAGRAPH}\":")
     print("".join(sorted(only_in_file2)))
 
 

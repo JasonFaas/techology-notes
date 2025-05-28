@@ -1,3 +1,5 @@
+export HOMEBREW_AUTO_UPDATE_SECS=604800 # every week
+
 export TextUpdate='\033'
 export DefaultFont='[0;'
 export ColorBlack='30m'

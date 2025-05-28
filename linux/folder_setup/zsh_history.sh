@@ -118,6 +118,7 @@ brew install kubectx
 #brew install kubens # believe this comes with another program
 brew install kubent
 brew install k9s
+docker version && kubectl version && brew install minikube && minikube start && minikube status && kubectx && kubectl get nodes
 brew install python && python3 -m venv ~/.venv/py3venv1
 brew install pipx && pipx install kube-shell
 brew install postgresql
@@ -276,7 +277,16 @@ kubent # list all k8s deprecations
 
 kns <namespace>
 
-mkdir -p ~/level_1/level_2/
+minikube start
+minikube stop
+minikube delete
+minikube status
+minikube ip
+minikube addons list
+minikube addons enable ingress
+minikube addons enable metrics-server
+minikube dashboard
+
 mkdir -p ~/level_1/level_2/
 
 ping -c 3 ec2.us-west-2.amazonaws.com
