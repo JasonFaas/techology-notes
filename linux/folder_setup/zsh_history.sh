@@ -346,6 +346,7 @@ ssh -p <port> <user>@<ip_address>
 ssh <user>@<ip> "echo 'command_string';pwd;ls"
 ssh-add -k ~/.ssh/id_rsa
 ssh-add -l
+ssh $(aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | select(.Tags[]? | select(.Value == "specific_tag_value")) | .InstanceId')
 
 sudo su # Option to get access switch to super user
 sudo su - # Option to get access switch to super user, potentially within aws ec2 instance when connecting through session manager
