@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kcna
+spec:
+  selector:
+    matchLabels:
+      app: kcna
+  template:
+    metadata:
+      labels:
+        app: kcna
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
