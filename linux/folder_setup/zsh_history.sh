@@ -247,6 +247,7 @@ kubectl get jobs -A
 kubectl get cronjobs -A
 kubectl get pods -A
 kubectl get pods --namespace <namespace>
+kubectl get pods -A --field-selector spec.nodeName=<node_name> # Output pods on this Node
 kubectl get nodes -A
 kubectl get ns
 kubectl get svc -n <hmm>
@@ -254,6 +255,7 @@ kubectl delete pod <pod_name> -n <namespace>
 kubectl logs -p <pod-name> --namespace <namespace>
 kubectl logs -f <some_pod_from "kctl get all">
 kgp # kubectl get pods
+kgn # kubectl get nodes
 ka-f <file_name> # kubectl apply from the file
 
 kctx -c # only the current context
@@ -288,6 +290,7 @@ minikube addons list
 minikube addons enable ingress
 minikube addons enable metrics-server
 minikube dashboard
+minikube node add
 
 mkdir -p ~/level_1/level_2/
 
