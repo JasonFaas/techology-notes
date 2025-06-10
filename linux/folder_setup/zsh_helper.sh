@@ -167,9 +167,13 @@ alias gitstash="git stash"
 alias gitpop="git stash pop"
 alias gitstashpop="git stash pop"
 
-## terraform and k8s
+## terraform
 alias tg=terragrunt
 alias tf=terraform
+
+# k8s
+alias kgp="kubectl get pods"
+alias ka-f="kubectl apply -f $1"
 alias kctl=kubectl
 alias kns=kubens
 alias kctx=kubectx

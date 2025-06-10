@@ -253,6 +253,8 @@ kubectl get svc -n <hmm>
 kubectl delete pod <pod_name> -n <namespace>
 kubectl logs -p <pod-name> --namespace <namespace>
 kubectl logs -f <some_pod_from "kctl get all">
+kgp # kubectl get pods
+ka-f <file_name> # kubectl apply from the file
 
 kctx -c # only the current context
 kctx <environment to switch to>
