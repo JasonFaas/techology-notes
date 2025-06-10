@@ -174,6 +174,7 @@ alias tf=terraform
 # k8s
 alias kgp="kubectl get pods"
 alias kgn="kubectl get nodes"
+alias kgd="kubectl get deployment"
 alias ka-f="kubectl apply -f $1"
 alias kctl=kubectl
 alias kns=kubens

@@ -167,6 +167,8 @@ sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder # Clear local DN
 echo "$?"
 echo "defd" | grep -q "def" # returns true as def is a substring of defd
 echo "Both stdout and stderr" &> file.txt # Note that you might need to be more explicit like "1>&2" to redirect stdout to stderr
+echo -n "secret_string" | base64
+
 export EXPORT_COMMAND_EX=$(date)
 echo_exit_status
 exit_status
@@ -256,6 +258,7 @@ kubectl logs -p <pod-name> --namespace <namespace>
 kubectl logs -f <some_pod_from "kctl get all">
 kgp # kubectl get pods
 kgn # kubectl get nodes
+kgd # kubectl get deployments
 ka-f <file_name> # kubectl apply from the file
 
 kctx -c # only the current context
@@ -282,6 +285,7 @@ kubent # list all k8s deprecations
 kns <namespace>
 
 minikube start
+minikube start -p <profile> --nodes <count> # start a profile (or create if needed) with so many nodes
 minikube stop
 minikube delete
 minikube status
@@ -291,6 +295,9 @@ minikube addons enable ingress
 minikube addons enable metrics-server
 minikube dashboard
 minikube node add
+minikube profile list # list all current profiles
+minikube profile <profile> # switch to a specific profile
+
 
 mkdir -p ~/level_1/level_2/
 

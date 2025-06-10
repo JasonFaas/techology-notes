@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kcna
+spec:
+  replicas: 5
+  selector:
+      matchLabels:
+        app: kcna
+  template:
+    metadata:
+      labels:
+        app: kcna
+    spec:
+      containers:
+        - image: nginx
+          name: nginx
+      tolerations:
+        - key: "key1"
+          operator: "Equal"
+          value: "value1"
+          effect: "NoSchedule"
