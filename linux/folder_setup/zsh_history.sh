@@ -279,6 +279,7 @@ kubectl get deployments -n master -o custom-columns=NAME:.metadata.name --no-hea
 kubectl scale deploy -n master <deployment> --replicas=0 # will scale pods to 0 for specific deployment
 kubectl version | grep "Server" # List version of k8s on current context
 kubectl describe nodes | grep "Architecture" # List architecture of nodes in current context, likely arm64 or amd64
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
 
 kubent # list all k8s deprecations
 
@@ -286,6 +287,7 @@ kns <namespace>
 
 minikube start
 minikube start -p <profile> --nodes <count> # start a profile (or create if needed) with so many nodes
+minikube start -p mk --nodes 2
 minikube stop
 minikube delete
 minikube status
@@ -297,6 +299,7 @@ minikube dashboard
 minikube node add
 minikube profile list # list all current profiles
 minikube profile <profile> # switch to a specific profile
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
 
 
 mkdir -p ~/level_1/level_2/
