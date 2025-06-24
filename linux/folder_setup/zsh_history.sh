@@ -290,6 +290,9 @@ kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/downloa
 
 kubent # list all k8s deprecations
 
+# kubectl apply command to apply all yaml files in a directory
+kubectl apply -f <directory> --recursive # apply all yaml files in a directory
+
 kns <namespace>
 
 minikube start
