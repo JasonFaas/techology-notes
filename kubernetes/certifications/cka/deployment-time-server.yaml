@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-server-jnf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: time-server-jnf
+  template:
+    metadata:
+      labels:
+        app: time-server-jnf
+    spec:
+      containers:
+        - name: app
+          image: localhost:5000/my-image:latest  # Use your local registry address
+          imagePullPolicy: IfNotPresent         # Critical for local images
+          ports:
+            - containerPort: 80
