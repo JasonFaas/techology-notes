@@ -154,6 +154,9 @@ function gitcheckm {
     echo "What? You don't have master or main branch? Fix this script or check your 'git branch' output"
   fi
 }
+
+alias vi="echo \"You should really try vim\""
+
 alias gitpull="git pull"
 alias gitpush="git push"
 alias gitaddall="git add ."
@@ -172,10 +175,14 @@ alias tg=terragrunt
 alias tf=terraform
 
 # k8s
-alias kgp="kubectl get pods"
-alias kgn="kubectl get nodes"
-alias kgd="kubectl get deployment"
-alias ka-f="kubectl apply -f $1"
+alias k-g-s="kubectl get service"
+alias k-g-e="kubectl get endpoints"
+alias k-g-es="kubectl get endpointslices"
+
+alias k-g-p="kubectl get pods"
+alias k-g-n="kubectl get nodes"
+alias k-g-d="kubectl get deployment"
+alias k-a--f="kubectl apply -f $1"
 alias kctl=kubectl
 alias kns=kubens
 alias kctx=kubectx
