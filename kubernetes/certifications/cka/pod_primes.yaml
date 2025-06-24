@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bash-primes
+spec:
+  terminationGracePeriodSeconds: 10
+  containers:
+  - name: primes
+    image: bash
+    command: ["bash", "-c"]
+    args:
+    - |
+      n=2
+      while true; do
+        is_prime=1
+        for ((i=2; i*i<=n; i++)); do
+          if ((n % i == 0)); then is_prime=0; break; fi
+        done
+        if ((is_prime)); then echo "Prime: $n"; date -u; sleep 10; fi
+        ((n++))
+        sleep 2
+      done
+  restartPolicy: Always
