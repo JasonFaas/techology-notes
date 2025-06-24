@@ -302,6 +302,7 @@ minikube ip
 minikube addons list
 minikube addons enable ingress
 minikube addons enable metrics-server
+minikube addons enable registry
 minikube dashboard
 minikube node add
 minikube profile list # list all current profiles

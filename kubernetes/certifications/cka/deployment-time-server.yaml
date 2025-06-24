@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: localhost:5000/my-image:latest  # Use your local registry address
+          image: localhost:5001/my-image:latest  # Use your local registry address
           imagePullPolicy: IfNotPresent         # Critical for local images
           ports:
             - containerPort: 80
