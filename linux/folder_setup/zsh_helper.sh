@@ -175,14 +175,16 @@ alias tg=terragrunt
 alias tf=terraform
 
 # k8s
-alias kubectl-state="kubectl config current-context && echo "" && k-g-n && echo "" && kubectl-taints && echo "" && k-g-d && echo "" && k-g-p"
+alias kubectl-state="kubectl config current-context && echo "" && k-g-n && echo "" && kubectl-taints && echo "" && k-g-d && echo "" && k-g-pod && echo "" && k-g-pv && echo "" && k-g-pvc"
 alias kubectl-taints="kubectl get nodes --no-headers -o custom-columns=NAME:.metadata.name | xargs -I {} sh -c \"echo {} && kubectl describe node {} | rg 'Taint' && kubectl get pods --field-selector spec.nodeName={} && echo ''\""
 alias kubectl-pods-on-node="kubectl get pods --field-selector spec.nodeName=$1"
 alias k-g-s="kubectl get service"
 alias k-g-e="kubectl get endpoints"
 alias k-g-es="kubectl get endpointslices"
 
-alias k-g-p="kubectl get pods"
+alias k-g-pod="kubectl get pods"
+alias k-g-pv="kubectl get pv"
+alias k-g-pvc="kubectl get pvc"
 alias k-g-n="kubectl get nodes"
 alias k-g-d="kubectl get deployment"
 alias k-a--f="kubectl apply -f $1"

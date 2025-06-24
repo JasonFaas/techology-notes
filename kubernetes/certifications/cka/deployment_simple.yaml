@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kcna
+  name: cka-nginx-1
 spec:
   selector:
     matchLabels:
-      app: kcna
+      app: cka-nginx-1
   template:
     metadata:
       labels:
-        app: kcna
+        app: cka-nginx-1
     spec:
       containers:
         - name: nginx

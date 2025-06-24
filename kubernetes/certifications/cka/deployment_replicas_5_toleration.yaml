@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: cka-nginx-5-toleration
 spec:
-  replicas: 5
+  replicas: 3
   selector:
       matchLabels:
         app: cka-nginx-5-toleration
