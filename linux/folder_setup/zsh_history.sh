@@ -229,6 +229,8 @@ jq '.results[] | {name: .name, size: .full_size}' # example for when you want to
 jq '.[] | select (.name == "value_of_map_key")' # example for when you want to select a specific map based on a key value pair
 jq -r '.spec.template.spec.containers[] | keys' # get keys from a dictionary
 
+kubectl-state
+kubectl-taint
 kubectl create namespace <namespace>
 kubectl get deployments -A -o custom-columns=NAME:.metadata.name --no-headers
 kubectl config view # view config file, will list all context options
@@ -251,6 +253,7 @@ kubectl get pods -A
 kubectl get pods --namespace <namespace>
 kubectl get pods -A --field-selector spec.nodeName=<node_name> # Output pods on this Node
 kubectl get nodes -A
+kubectl get node mk -o json
 kubectl get ns
 kubectl get svc -n <hmm>
 kubectl delete pod <pod_name> -n <namespace>
