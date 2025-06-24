@@ -252,6 +252,7 @@ kubectl get cronjobs -A
 kubectl get pods -A
 kubectl get pods --namespace <namespace>
 kubectl get pods -A --field-selector spec.nodeName=<node_name> # Output pods on this Node
+kubectl get pods --field-selector spec.nodeName=<node_name>
 kubectl get nodes -A
 kubectl get node mk -o json
 kubectl get ns
