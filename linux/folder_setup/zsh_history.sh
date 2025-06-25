@@ -310,6 +310,8 @@ minikube dashboard
 minikube node add
 minikube profile list # list all current profiles
 minikube profile <profile> # switch to a specific profile
+minikube -p mk update-context
+minikube update-context -p mk
 kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
 
 
