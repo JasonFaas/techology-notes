@@ -1,0 +1,11 @@
+{
+    "accept_multiple_answers_for_these_notetypes": {},
+    "easy if shorter than": 6,
+    "good if shorter than": 10,
+    "hard if shorter than": 20,
+    "hard interval for cards with 2 or 3 buttons means again": false,
+    "ignore case when comparing": false,
+    "on mismatch ignore user rating, always rate as again/1 (2.1.20+ only)": false,
+    "on mistake set focus on again": false,
+    "show tooltip for confirmation": true
+}
