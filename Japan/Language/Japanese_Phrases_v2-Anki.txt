@@ -55,3 +55,4 @@ Basic_input_With_Reversed,日本語::Basic_Phrases,止めてください,Stop pl
 Basic_input_With_Reversed,日本語::Basic_Phrases,どこに行きたいですか？,Where do you want to go? (or use "__ ni ikitai" for "I want to go to __").,Doko ni ikitai desu ka?
 Basic_input_With_Reversed,日本語::Basic_Phrases,行ってきます,I’m leaving (said when leaving home or hotel).,Ittekimasu
 Basic_input_With_Reversed,日本語::Basic_Phrases,行ってらっしゃい,Take care (response to "ittekimasu").,Itterasshai
+Basic_input_With_Reversed,日本語::Basic_Phrases,ごちそうさまでした,Thank you for the meal,Gochisosamadeshita
