@@ -1,0 +1,20 @@
+#separator:comma
+#html:false
+#notetype column:1
+#deck column:2
+
+Basic_input_With_Reversed,日本語::Basic_Phrases,私たちはアメリカからです。,We are from America.,Watashitachi wa Amerika kara desu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,父はただいま退職しました。,My father just retired.,Chichi wa tadaima taishoku shimashita.
+Basic_input_With_Reversed,日本語::Basic_Phrases,月曜日は父の66歳の誕生日です。,Monday is his 66th birthday.,Getsuyoubi wa chichi no rokujuu roku sai no tanjoubi desu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,私はナッツにアレルギーがあります。,I am allergic to nuts.,Watashi wa nattsu ni arerugii ga arimasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,私は焼いた魚にアレルギーがあります。,I am allergic to cooked fin fish.,Watashi wa yaita sakana ni arerugii ga arimasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,私は焼いた貝類は食べられます。,I can eat cooked shell fish.,Watashi wa yaita kai-rui wa taberaremasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,東京ドームに行きたいです。,We want to go to Tokyo Dome.,Tokyo Dome ni ikitai desu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,私たちはお腹が空きました。,We are hungry.,Watashitachi wa onaka ga sukimashita.
+Basic_input_With_Reversed,日本語::Basic_Phrases,大学で日本語を勉強しました。,I studied Japanese in college.,Daigaku de nihongo o benkyou shimashita.
+Basic_input_With_Reversed,日本語::Basic_Phrases,私は38歳です。,I am 38 years old.,Watashi wa sanjuu hassai desu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,[駅名]駅の近くに泊まっています。,We are staying near [blank] station.,[blank] eki no chikaku ni tomotte imasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,初めての日本旅行です。,This is our first trip to Japan.,Hajimete no Nihon ryokou desu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,次は中国の北京に行きます。,We are going to Beijing China next.,Tsugi wa Chugoku no Pekin ni ikimasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,新橋駅の近くに泊まっています。,We are staying near Shimbashi Station.,Shimbashi eki no chikaku ni tomotte imasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,私は鮭などの生魚は食べられます。,I can eat raw fin fish like salmon.,Watashi wa sake nado no nama sakana wa taberaremasu.

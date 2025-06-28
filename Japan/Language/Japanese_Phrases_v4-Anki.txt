@@ -1,0 +1,55 @@
+#separator:comma
+#html:false
+#notetype column:1
+#deck column:2
+
+Basic_input_With_Reversed,日本語::Basic_Phrases,一人,one person (formal/human),Hitori
+Basic_input_With_Reversed,日本語::Basic_Phrases,二人,two people (formal/human),Futari
+Basic_input_With_Reversed,日本語::Basic_Phrases,三人,three people (formal/human),San-nin
+Basic_input_With_Reversed,日本語::Basic_Phrases,四人,four people (formal/human),Yo-nin
+Basic_input_With_Reversed,日本語::Basic_Phrases,五人,five people (formal/human),Go-nin
+Basic_input_With_Reversed,日本語::Basic_Phrases,六人,six people (formal/human),Roku-nin
+Basic_input_With_Reversed,日本語::Basic_Phrases,一つ,one thing,hitotsu
+Basic_input_With_Reversed,日本語::Basic_Phrases,二つ,two things,futatsu
+Basic_input_With_Reversed,日本語::Basic_Phrases,三つ,three things,mittsu
+Basic_input_With_Reversed,日本語::Basic_Phrases,四つ,four things,yottsu
+Basic_input_With_Reversed,日本語::Basic_Phrases,五つ,five things,itsutsu
+Basic_input_With_Reversed,日本語::Basic_Phrases,六つ,six things,muttsu
+Basic_input_With_Reversed,日本語::Basic_Phrases,一,1,Ichi
+Basic_input_With_Reversed,日本語::Basic_Phrases,二,2,Ni
+Basic_input_With_Reversed,日本語::Basic_Phrases,三,3,San
+Basic_input_With_Reversed,日本語::Basic_Phrases,四,4,Shi/Yon
+Basic_input_With_Reversed,日本語::Basic_Phrases,五,5,Go
+Basic_input_With_Reversed,日本語::Basic_Phrases,六,6,Roku
+Basic_input_With_Reversed,日本語::Basic_Phrases,七,7,Nana/Shichi
+Basic_input_With_Reversed,日本語::Basic_Phrases,八,8,Hachi
+Basic_input_With_Reversed,日本語::Basic_Phrases,九,9,Kyu/Ku
+Basic_input_With_Reversed,日本語::Basic_Phrases,十,10,Juu
+Basic_input_With_Reversed,日本語::Basic_Phrases,十一,11,Juu-ichi
+Basic_input_With_Reversed,日本語::Basic_Phrases,十二,12,Juu-ni
+Basic_input_With_Reversed,日本語::Basic_Phrases,十三,13,Juu-san
+Basic_input_With_Reversed,日本語::Basic_Phrases,十四,14,Juu-shi/Juu-yon
+Basic_input_With_Reversed,日本語::Basic_Phrases,十五,15,Juu-go
+Basic_input_With_Reversed,日本語::Basic_Phrases,十六,16,Juu-roku
+Basic_input_With_Reversed,日本語::Basic_Phrases,十七,17,Juu-nana/Juu-shichi
+Basic_input_With_Reversed,日本語::Basic_Phrases,十八,18,Juu-hachi
+Basic_input_With_Reversed,日本語::Basic_Phrases,十九,19,Juu-kyu/Juu-ku
+Basic_input_With_Reversed,日本語::Basic_Phrases,二十,20,Ni-juu
+Basic_input_With_Reversed,日本語::Basic_Phrases,二十二,22,Ni-juu-ni
+Basic_input_With_Reversed,日本語::Basic_Phrases,三十三,33,San-juu-san
+Basic_input_With_Reversed,日本語::Basic_Phrases,四十四,44,Yon-juu-yon
+Basic_input_With_Reversed,日本語::Basic_Phrases,五十五,55,Go-juu-go
+Basic_input_With_Reversed,日本語::Basic_Phrases,六十六,66,Roku-juu-roku
+Basic_input_With_Reversed,日本語::Basic_Phrases,七十七,77,Nana-juu-nana
+Basic_input_With_Reversed,日本語::Basic_Phrases,八十八,88,Hachi-juu-hachi
+Basic_input_With_Reversed,日本語::Basic_Phrases,九十九,99,Kyu-juu-kyu
+Basic_input_With_Reversed,日本語::Basic_Phrases,百,100,Hyaku
+Basic_input_With_Reversed,日本語::Basic_Phrases,百五,105,Hyaku-go
+Basic_input_With_Reversed,日本語::Basic_Phrases,二百五十六,256,Ni-hyaku go-juu roku
+Basic_input_With_Reversed,日本語::Basic_Phrases,五百十二,512,Go-hyaku juu-ni
+Basic_input_With_Reversed,日本語::Basic_Phrases,千,1000,Sen
+Basic_input_With_Reversed,日本語::Basic_Phrases,千二十四,1024,Sen ni-juu yon
+Basic_input_With_Reversed,日本語::Basic_Phrases,二千四十八,2048,Ni-sen yon-juu hachi
+Basic_input_With_Reversed,日本語::Basic_Phrases,四千九十六,4096,Yon-sen kyuu-juu roku
+Basic_input_With_Reversed,日本語::Basic_Phrases,八千百九十二,8192,Hassen hyaku kyuu-juu ni
+Basic_input_With_Reversed,日本語::Basic_Phrases,一万,10000,Ichi-man

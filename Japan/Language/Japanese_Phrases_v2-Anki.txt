@@ -1,0 +1,57 @@
+#separator:comma
+#html:false
+#notetype column:1
+#deck column:2
+
+Basic_input_With_Reversed,日本語::Basic_Phrases,すみません,Excuse me/Sorry (also used to get attention).,Sumimasen
+Basic_input_With_Reversed,日本語::Basic_Phrases,はい,Yes.,Hai
+Basic_input_With_Reversed,日本語::Basic_Phrases,いいえ,No.,Iie
+Basic_input_With_Reversed,日本語::Basic_Phrases,いくらですか？,How much is it?.,Ikura desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,駅はどこですか？,Where is the train station?.,Eki wa doko desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,お願いします,Please (when making a request).,Onegaishimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases,新幹線,Bullet train,Shinkansen
+Basic_input_With_Reversed,日本語::Basic_Phrases,切符,Ticket.,Kippu
+Basic_input_With_Reversed,日本語::Basic_Phrases,サイン,Autograph.,Sain
+Basic_input_With_Reversed,日本語::Basic_Phrases,安打,Hit.,Anda
+Basic_input_With_Reversed,日本語::Basic_Phrases,ホームラン,Home run.,Hōmuran
+Basic_input_With_Reversed,日本語::Basic_Phrases,勝利,Win.,Shouri
+Basic_input_With_Reversed,日本語::Basic_Phrases,敗戦,Loss.,Haisen
+Basic_input_With_Reversed,日本語::Basic_Phrases,投手,Pitcher.,Toushu
+Basic_input_With_Reversed,日本語::Basic_Phrases,打者,Batter.,Dasha
+Basic_input_With_Reversed,日本語::Basic_Phrases,審判,Umpire.,Shinpan
+Basic_input_With_Reversed,日本語::Basic_Phrases,かっとばせ！,Popular cheer: "Send it flying!".,Kattobase!
+Basic_input_With_Reversed,日本語::Basic_Phrases,ゲームセンター,Arcade/Game Center.,Geemu Sentaa
+Basic_input_With_Reversed,日本語::Basic_Phrases,コイン,Coin (for arcade machines).,Koin
+Basic_input_With_Reversed,日本語::Basic_Phrases,チケット,Ticket.,Chiketto
+Basic_input_With_Reversed,日本語::Basic_Phrases,キャラクター,Character (for prize machines).,Kyarakutā
+Basic_input_With_Reversed,日本語::Basic_Phrases,サイン,Signature (if you want a prize signed).,Sain
+Basic_input_With_Reversed,日本語::Basic_Phrases,いらっしゃいませ,Welcome (greeting from staff).,Irasshaimase
+Basic_input_With_Reversed,日本語::Basic_Phrases,よやくあります,I have a reservation,Yoyaku arimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases, よやくないです,I don’t have a reservation.,yoyaku nai desu
+Basic_input_With_Reversed,日本語::Basic_Phrases,せきはありますか？,Are there any seats available?.,Seki wa arimasu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,二人でお願いします。,For two people please (at restaurants).,Futari de onegaishimasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,きつえん,Smoking.,Kitsuen
+Basic_input_With_Reversed,日本語::Basic_Phrases,禁煙席をお願いします。,Non-smoking seat please.,Kin'en seki o onegaishimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases,メニューください,Menu please.,Menyu kudasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,これはなんですか？,What is this?.,Kore wa nan desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,これをください,I’ll have this please.,Kore wo kudasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,いただきます,Said before eating (like "Bon appétit").,Itadakimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases,おいしい,Delicious.,Oishii
+Basic_input_With_Reversed,日本語::Basic_Phrases,おかわりください,Another please.,Okawari kudasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,お任せで,Chef’s recommendation (especially at sushi restaurants).,Omakase de
+Basic_input_With_Reversed,日本語::Basic_Phrases,ゴルフドライブレンジ,Golf driving range (loanword commonly used).,Gorufu doraibu renji
+Basic_input_With_Reversed,日本語::Basic_Phrases,切符,Ticket.,Kippu
+Basic_input_With_Reversed,日本語::Basic_Phrases,コース,Course (sometimes used for golf).,Kōsu
+Basic_input_With_Reversed,日本語::Basic_Phrases,ボール,Ball (golf balls).,Bōru
+Basic_input_With_Reversed,日本語::Basic_Phrases,コード,Golf club (though "gorufu kurabu" is also understood).,Kōdo
+Basic_input_With_Reversed,日本語::Basic_Phrases,何枚ですか？,How many (tickets/balls)? (replace "mai" with the counter for flat objects e.g. tickets).,Nanmai desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,公園,Park.,Kōen
+Basic_input_With_Reversed,日本語::Basic_Phrases,ベンチ,Bench.,Benchi
+Basic_input_With_Reversed,日本語::Basic_Phrases,水,Water (useful if you want to fill a bottle at a fountain).,Mizu
+Basic_input_With_Reversed,日本語::Basic_Phrases,休み,Rest/break.,Yasumi
+Basic_input_With_Reversed,日本語::Basic_Phrases,静かにしてください,Please be quiet (for a peaceful atmosphere).,Shizuka ni shite kudasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,今何時ですか？,What time is it now?.,Ima nanji desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,止めてください,Stop please.,Tomete kudasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,どこに行きたいですか？,Where do you want to go? (or use "__ ni ikitai" for "I want to go to __").,Doko ni ikitai desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,行ってきます,I’m leaving (said when leaving home or hotel).,Ittekimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases,行ってらっしゃい,Take care (response to "ittekimasu").,Itterasshai

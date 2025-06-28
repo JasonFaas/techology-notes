@@ -1,0 +1,27 @@
+#separator:comma
+#html:false
+#notetype column:1
+#deck column:2
+
+Basic_input_With_Reversed,日本語::Basic_Phrases,Hello,こんにちは,Konnichiwa
+Basic_input_With_Reversed,日本語::Basic_Phrases,Good morning,おはようございます,Ohayou gozaimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases,Good afternoon,こんにちは,Konnichiwa
+Basic_input_With_Reversed,日本語::Basic_Phrases,Good evening,こんばんは,Konbanwa
+Basic_input_With_Reversed,日本語::Basic_Phrases,Good night,おやすみなさい,Oyasuminasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,Thank you,ありがとうございます,Arigatou gozaimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases,Excuse me / Sorry,すみません,Sumimasen
+Basic_input_With_Reversed,日本語::Basic_Phrases,Where is the bathroom?,トイレはどこですか？,Toire wa doko desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,How much is this?,これはいくらですか？,Kore wa ikura desu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,I would like this,これをください,Kore o kudasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,Check, please,お会計お願いします,Okaikei onegaishimasu
+Basic_input_With_Reversed,日本語::Basic_Phrases,Do you speak English?,英語が話せますか？,Eigo ga hanasemasu ka?
+Basic_input_With_Reversed,日本語::Basic_Phrases,I don’t understand,わかりません,Wakarimasen
+Basic_input_With_Reversed,日本語::Basic_Phrases,Please help me,助けてください,Tasukete kudasai
+Basic_input_With_Reversed,日本語::Basic_Phrases,My name is...,私の名前は...です,Watashi no namae wa ... desu
+Basic_input_With_Reversed,日本語::Basic_Phrases,Monday,月曜日,Getsuyoubi
+Basic_input_With_Reversed,日本語::Basic_Phrases,Tuesday,火曜日,Kayoubi
+Basic_input_With_Reversed,日本語::Basic_Phrases,Wednesday,水曜日,Suiyoubi
+Basic_input_With_Reversed,日本語::Basic_Phrases,Thursday,木曜日,Mokuyoubi
+Basic_input_With_Reversed,日本語::Basic_Phrases,Friday,金曜日,Kinyoubi
+Basic_input_With_Reversed,日本語::Basic_Phrases,Saturday,土曜日,Doyoubi
+Basic_input_With_Reversed,日本語::Basic_Phrases,Sunday,日曜日,Nichiyoubi
