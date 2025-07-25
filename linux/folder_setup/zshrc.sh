@@ -33,3 +33,7 @@ FULL_TEMP_FILE_PATH="$HOME/temp/techology_monthly.txt"
 FULL_MONTHLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_monthly.sh"
 current_month=$(date +%m)
 run_command_if_file_not_same_as_value $FULL_MONTHLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_month
+
+echo "ps"
+ps | rg -v "zsh"
+echo ""
