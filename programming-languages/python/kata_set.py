@@ -1,0 +1,8 @@
+sett = set([1,3,4])
+print(len(sett))
+print(4 in sett)
+sett.remove(4)
+print(len(sett))
+sett.add(3)
+print(len(sett))
+print(sett)
