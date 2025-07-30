@@ -1,0 +1,9 @@
+#separator:comma
+#html:false
+#notetype column:1
+#deck column:2
+
+Basic_input_With_Reversed,日本語::Basic_Phrases,辛い,spicy or hot,karai
+Basic_input_With_Reversed,日本語::Basic_Phrases,辛いものが苦手です,I am not good with spicy food.,Karai mono ga nigate desu
+Basic_input_With_Reversed,日本語::Basic_Phrases,辛いですか？,Is it spicy?, (Karai desu ka?)
+Basic_input_With_Reversed,日本語::Basic_Phrases,辛くないのをお願いします,Not spicy please.,Karaku nai no o negation shimasu

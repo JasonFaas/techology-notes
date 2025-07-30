@@ -18,7 +18,7 @@ def count_frequent_mandarin_chars(file_path, min_occurrences=3):
     return frequent_chars, in_frequent_chars
 
 if __name__ == "__main__":
-    file_path = "/Users/jafaas//Desktop/Paragraph.txt"  # Replace with your actual file path
+    file_path = "/Users/jasonoclaf//Desktop/中文__听.txt"  # Replace with your actual file path
     result_3_plus, result_2_1 = count_frequent_mandarin_chars(file_path)
     
     print(f"Mandarin characters with at least 3 occurrences:\n")

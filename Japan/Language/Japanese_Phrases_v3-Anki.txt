@@ -18,3 +18,7 @@ Basic_input_With_Reversed,日本語::Basic_Phrases,初めての日本旅行で�
 Basic_input_With_Reversed,日本語::Basic_Phrases,次は中国の北京に行きます。,We are going to Beijing China next.,Tsugi wa Chugoku no Pekin ni ikimasu.
 Basic_input_With_Reversed,日本語::Basic_Phrases,新橋駅の近くに泊まっています。,We are staying near Shimbashi Station.,Shimbashi eki no chikaku ni tomotte imasu.
 Basic_input_With_Reversed,日本語::Basic_Phrases,私は鮭などの生魚は食べられます。,I can eat raw fin fish like salmon.,Watashi wa sake nado no nama sakana wa taberaremasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,今日、東京ドームで野球の試合を見ます。,Today I'm going to watch a baseball game at Tokyo Dome.,Kyō, Tōkyō dōmu de yakyū no shiai o mimasu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,読売ジャイアンツと広島東洋カープです。,It (the baseball match) is between the Yomiuri Giants and the Hiroshima Toyo Carp.,Yomiuri jaiantsu to Hiroshima tōyō kāpudesu.
+Basic_input_With_Reversed,日本語::Basic_Phrases,明日,Tomorrow,Ashita
+Basic_input_With_Reversed,日本語::Basic_Phrases,昨日,Yesterday,Kinō
