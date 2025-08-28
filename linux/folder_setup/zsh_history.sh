@@ -145,6 +145,7 @@ curl wttr.in/Santa+Clara
 curl wttr.in/Xian
 curl --socks5-hostname 127.0.0.1:<port_connected_on> <full_url_like_on_proxy_machine>
 curl --netrc-file <netrc-cred-file> <URL>
+curl http://localhost:8080
 
 declare -f # list all shell function names
 
@@ -161,6 +162,14 @@ curl -s "https://registry.hub.docker.com/v2/repositories/appdynamics/cluster-age
 aws ecr describe-images --repository-name $(aws ecr describe-repositories | jq -r '.repositories[0].repositoryName') | jq '.imageDetails[].imageTags' # list all tags for the first repo in AWS ECR
 docker version
 docker inspect $AWS_ECR_REF.dkr.ecr.us-west-2.amazonaws.com/$SPECIFIC_REPO:latest | grep Architecture # List architecture of docker image likely amd64 or arm64
+docker ps -q --filter ancestor=nginx
+docker ps
+docker images
+docker stop <container_id>
+docker start <container_id>
+docker logs <container_id>
+docker exec <container_id> env # list environment variables in running container
+
 
 sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder # Clear local DNS cache
 
