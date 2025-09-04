@@ -306,7 +306,7 @@ kns <namespace>
 
 minikube start
 minikube start -p <profile> --nodes <count> # start a profile (or create if needed) with so many nodes
-minikube start -p mk --nodes 2
+minikube start -p mk --nodes 2 --driver=docker
 minikube stop
 minikube delete
 minikube status
