@@ -41,3 +41,11 @@ echo ""
 echo "\$ docker ps"
 docker ps
 echo ""
+
+echo "\$ kubectx # replace with kubectl command"
+kubectx
+echo ""
+
+echo "\$ kubectl get nodes"
+kubectl get nodes
+echo ""
