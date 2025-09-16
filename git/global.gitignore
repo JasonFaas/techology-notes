@@ -140,5 +140,7 @@ delete_me*
 bootstrap
 
 *tfplan
+*tfstate
+.terraform/
 
 .DS_Store
