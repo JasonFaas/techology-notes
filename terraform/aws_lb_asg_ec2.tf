@@ -69,6 +69,10 @@ resource "aws_lb" "app_lb" {
   subnets            = module.vpc[0].public_subnets
 }
 
+output "LB_DNS" {
+    value = aws_lb.app_lb.dns_name
+}
+
 resource "aws_lb_target_group" "app_tg" {
   name     = "app-tg"
   port     = 80
