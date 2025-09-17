@@ -34,6 +34,11 @@ FULL_MONTHLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_mo
 current_month=$(date +%m)
 run_command_if_file_not_same_as_value $FULL_MONTHLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_month
 
+FULL_TEMP_FILE_PATH="$HOME/temp/techology_weekly.txt"
+FULL_WEEKLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_weekly.sh"
+current_week=$(date +%U)
+run_command_if_file_not_same_as_value $FULL_WEEKLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_week
+
 echo "\$ ps"
 ps | rg -v "zsh"
 echo ""
@@ -49,3 +54,5 @@ echo ""
 echo "\$ kubectl get nodes"
 kubectl get nodes
 echo ""
+
+cd $HOME/Code/1

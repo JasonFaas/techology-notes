@@ -252,6 +252,7 @@ function run_command_if_file_not_same_as_value {
 
   if [ ! -f "$TEMP_FILE_PATH" ]; then
     echo "Running \"${CMD_TO_RUN#$HOME_PATH}\" as ${TEMP_FILE_PATH#$HOME_PATH} does not exist."
+    echo ""
     $CMD_TO_RUN
   else
     TEMP_VAR=$(cat $TEMP_FILE_PATH)
