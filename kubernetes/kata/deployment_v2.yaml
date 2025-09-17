@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-mk
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helloo
+  template:
+    metadata:
+      labels:
+        app: helloo
+    spec:
+      containers:
+      - name: helloo
+        image: kicbase/echo-server:1.0
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hello-sa
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+spec:
+  serviceAccountName: hello-sa
+  containers:
+  - name: hello-pod
+    image: nginx
