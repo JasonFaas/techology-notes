@@ -1,5 +1,17 @@
 FROM ubuntu:22.04
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y curl wget vim net-tools iputils-ping && rm -rf /var/lib/apt/lists/*
-CMD ["/bin/bash"]
+
+ENV container=docker
+
+RUN useradd -m -s /bin/bash docker && \
+    echo "docker:docker" | chpasswd && \
+    usermod -aG sudo docker
+
+# Install systemd
+RUN apt-get update && \
+    apt-get install -y systemd systemd-sysv dbus && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+STOPSIGNAL SIGRTMIN+3
+CMD ["/sbin/init"]
 
