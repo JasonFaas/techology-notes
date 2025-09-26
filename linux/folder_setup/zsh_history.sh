@@ -139,6 +139,7 @@ cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certific
 cd ~/Code/
 cdgitroot
 chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
+chmod 0700 what.sh # User only read-4, write-2, execute-1
 curl http://www.google.com/
 curl wttr.in/Milton+KY
 curl wttr.in/Santa+Clara
