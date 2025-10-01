@@ -12,6 +12,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+
+RUN apt-get update && apt-get install -y vim-tiny && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+#     apt-get install -y systemd systemd-sysv dbus vim-tiny nano && \
+
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
 
