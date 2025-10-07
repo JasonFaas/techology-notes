@@ -39,6 +39,11 @@ FULL_WEEKLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_wee
 current_week=$(date +%U)
 run_command_if_file_not_same_as_value $FULL_WEEKLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_week
 
+FULL_TEMP_FILE_PATH="$HOME/temp/techology_3_hours.txt"
+FULL_WEEKLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_3_hours.sh"
+current_3_hours=$(echo $(( $(date +"%s") / 3600 / 3)))
+run_command_if_file_not_same_as_value $FULL_WEEKLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_3_hours
+
 echo "\$ ps"
 ps | rg -v "zsh"
 echo ""
