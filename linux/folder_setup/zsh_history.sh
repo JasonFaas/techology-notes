@@ -142,9 +142,10 @@ cdgitroot
 chmod 0600 ~/.ssh/priv_key # User only read-4 and write-2
 chmod 0700 what.sh # User only read-4, write-2, execute-1
 curl http://www.google.com/
-curl wttr.in/Milton+KY
-curl wttr.in/Santa+Clara
-curl wttr.in/Xian
+curl 'wttr.in/Santa+Clara?m'
+curl 'wttr.in/Xian?m'
+curl 'wttr.in/Milton+KY?m'
+curl 'wttr.in/Santa+Clara?format=%t&m'
 curl --socks5-hostname 127.0.0.1:<port_connected_on> <full_url_like_on_proxy_machine>
 curl --netrc-file <netrc-cred-file> <URL>
 curl http://localhost:8080
