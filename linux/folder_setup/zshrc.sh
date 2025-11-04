@@ -2,6 +2,8 @@ echo "Welcome to iTerm2\n"
 
 echo_time
 
+rm $HOME/.vimrc
+
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.docker/bin
@@ -61,3 +63,4 @@ kubectl get nodes
 echo ""
 
 cd $HOME/Code/1
+
