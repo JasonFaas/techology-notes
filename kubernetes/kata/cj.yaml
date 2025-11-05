@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hourly-math
+spec:
+  schedule: "37 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: "OnFailure"
+          containers:
+          - name: ubuntu
+            image: ubuntu
+            command: ['expr', '3', '+', '2']
