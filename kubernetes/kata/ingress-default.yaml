@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wear-watch
+spec:
+  defaultBackend:
+    service:
+      name: see-service
+      port:
+        number: 80
