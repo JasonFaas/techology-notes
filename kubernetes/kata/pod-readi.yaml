@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readi
+spec:
+  containers:
+  - name: whatwhat
+    image: busybox
+    command: ["sleep"]
+    args: ["3600"]
+    readinessProbe:
+      initialDelaySeconds: 5
+      periodSeconds: 1
+      httpGet:
+        port: 80
+        path: /what
+        scheme: HTTP

@@ -112,6 +112,7 @@ brew install awscli
 brew install --cask docker
 brew install gh && gh auth login && gh extension install github/gh-copilot && gh copilot explain "Did I get everything setup correctly?" && gh copilot suggest "Did I get everything setup correctly?"
 brew install git
+brew install go
 brew install helm
 brew install jq
 brew install kubernetes-cli
