@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: quick-math
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: math-me
+            image: ubuntu
+            args:
+            - "expr"
+            - "3"
+            - "+"
+            - "2"

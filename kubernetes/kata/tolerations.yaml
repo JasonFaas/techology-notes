@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tol-pod
+spec:
+  containers:
+  - name: nginx-tol
+    image: nginx
+  tolerations:
+  - effect: NoExecute
+    key: what
+    value: who
+    operator: Equal
+
