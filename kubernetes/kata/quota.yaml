@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: rq-def
+  namespace: default
+spec:
+  hard:
+    pods: 20
+    requests.cpu: 4
+    limits.memory: 10Mi
