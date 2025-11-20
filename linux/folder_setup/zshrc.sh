@@ -1,4 +1,5 @@
-echo "Welcome to iTerm2\n"
+say "It is currently $(curl 'wttr.in/Santa+Clara?format=%t&m')" &
+echo "Welcome to iTerm2"
 
 echo_time
 

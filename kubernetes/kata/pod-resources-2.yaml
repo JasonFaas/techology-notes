@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - resources:
+      requests:
+        cpu: 0.005
+        memory: 5Mi
+      limits:
+        cpu: 0.02
+        memory: 1Gi
