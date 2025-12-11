@@ -103,6 +103,14 @@ function echo_time {
   echo ""
 }
 
+function echo_weather {
+  echo "$(curl 'wttr.in/Santa+Clara?format=%t&m')"
+}
+
+function echo_weather_say {
+  say "$(curl 'wttr.in/Santa+Clara?format=%t&m')"
+}
+
 function echo_exit_status {
   echo "$?"
 }

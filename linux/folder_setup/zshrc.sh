@@ -1,6 +1,7 @@
-say "It is currently $(curl 'wttr.in/Santa+Clara?format=%t&m')" &
 echo "Welcome to iTerm2"
 
+echo ""
+echo '$ echo_time'
 echo_time
 
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
