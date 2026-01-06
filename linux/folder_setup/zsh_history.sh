@@ -109,6 +109,7 @@ az storage blob upload \
 
 brew install aws-iam-authenticator
 brew install awscli
+brew install bat
 brew install coreutils # gshuf among other tools
 brew install --cask docker
 brew install gh && gh auth login && gh extension install github/gh-copilot && gh copilot explain "Did I get everything setup correctly?" && gh copilot suggest "Did I get everything setup correctly?"
@@ -132,7 +133,7 @@ brew install terragrunt
 brew install zsh && echo "export ZSH=\"$HOME/.oh-my-zsh\"" >> ${HOME}/.zshrc && echo "source $ZSH/oh-my-zsh.sh" >> ${HOME}/.zshrc
 # chatgpt for "How to add "⌥ ←" and "⌥→" to jump forwards / backwards words in iTerm 2?"
 brew install zsh-autosuggestions && echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${HOME}/.zshrc
-brew install zsh-syntax-highlighting && echo "source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${HOME}/.zshrc
+brew install zsh-syntax-highlighting && echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${HOME}/.zshrc
 brew install azure-cli && az login
 brew update # update brew itself
 brew upgrade # optional to specify a "package_name"
