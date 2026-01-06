@@ -26,9 +26,6 @@ autoload -Uz compinit && compinit
 #autoload -U +X bashcompinit && bashcompinit
 #autoload -U +X compinit && compinit
 complete -C $AWS_COMPLETER aws
-#complete -C '$AWS_COMPLETER' aws
-#source <(kubectl completion zsh)
-#source <(helm completion zsh)
 #terraform -install-autocomplete
 
 export GLOBAL_GITIGNORE="${HOME}/Code/1/techology-notes/git/global.gitignore"

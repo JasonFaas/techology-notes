@@ -106,12 +106,12 @@ az storage blob upload \
   --name myfile \
   --file /path/to/local/file
 
-
+brew install --cask docker
+brew install --cask sublime-text
 brew install aws-iam-authenticator
 brew install awscli
 brew install bat
 brew install coreutils # gshuf among other tools
-brew install --cask docker
 brew install gh && gh auth login && gh extension install github/gh-copilot && gh copilot explain "Did I get everything setup correctly?" && gh copilot suggest "Did I get everything setup correctly?"
 brew install git
 brew install go
