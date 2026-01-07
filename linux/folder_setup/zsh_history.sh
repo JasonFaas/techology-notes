@@ -108,6 +108,7 @@ az storage blob upload \
 
 brew install --cask docker
 brew install --cask sublime-text
+brew install ansible
 brew install aws-iam-authenticator
 brew install awscli
 brew install bat
