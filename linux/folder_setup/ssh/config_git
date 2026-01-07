@@ -2,14 +2,24 @@
   # "git clone ssh://git@<host>:/<username>/repo.git
   # "git clone ssh://git@<host and port>/<username>/repo.git
 
+# For specific key for specific repo
+# git clone git@jasonfaas:JasonFaas/techology-notes.git
+# Host jasonfaas
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/id_ed25519-jasonfaas-specific-key
+#   IdentitiesOnly yes
+
 # GitHub Account
 Host github.com
   HostName github.com
   User git
   IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
 
 # Bitbucket Account
 Host bitbucket.org
   HostName bitbucket.org
   User git
   IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
