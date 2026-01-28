@@ -7,7 +7,6 @@
 * `terraform plan --destroy`
 * `terraform graph`
 * `terraform apply`
-* `terraform apply --auto-approve`
   * Auto approve apply
 * `terraform output`
 * `terraform destroy`

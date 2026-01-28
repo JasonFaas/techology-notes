@@ -109,6 +109,7 @@ az storage blob upload \
 brew install --cask docker
 brew install --cask sublime-text
 brew install ansible
+brew install atuin
 brew install aws-iam-authenticator
 brew install awscli
 brew install bat
@@ -125,7 +126,10 @@ brew install kubent
 brew install k9s
 docker version && kubectl version && brew install minikube && minikube start && minikube status && kubectx && kubectl get nodes
 brew install python && python3 -m venv ~/.venv/py3venv1
+brew install pipenv
 brew install pipx && pipx install kube-shell
+brew install pyenv
+brew install pyenv-virtualenv
 brew install postgresql
 brew install rg
 brew install session-manager-plugin # aws ssm
@@ -180,14 +184,20 @@ docker exec <container_id> env # list environment variables in running container
 
 sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder # Clear local DNS cache
 
-echo "$?"
+echo $? # print the exit status of the last command
 echo "defd" | grep -q "def" # returns true as def is a substring of defd
 echo "Both stdout and stderr" &> file.txt # Note that you might need to be more explicit like "1>&2" to redirect stdout to stderr
 echo -n "secret_string" | base64
 
+echo -e "\033]50;SetProfile=Production\007" # Set iTerm2 profile to Production
+echo -e "\033]50;SetProfile=Default\007"
+
 export EXPORT_COMMAND_EX=$(date)
 echo_exit_status
 exit_status
+echo-time # outputs time for my timezone, UTC, and other timezones
+echotime # outputs time for my timezone, UTC, and other timezones
+
 
 for TEMP_FILE in "$HOME"/*;do; echo $TEMP_FILE; done
 
@@ -196,6 +206,9 @@ find ~/Code/1/techology-notes/ -name README.md
 
 gh copilot explain "jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'"
 gh copilot suggest "Macbook sed command to remove ok_actions from terraform files"
+gh auth login && export GITHUB_TOKEN=$(gh auth token)
+ghalogin # alias for gh auth login && export GITHUB_TOKEN=$(gh auth token)
+ghatoken # alias for export GITHUB_TOKEN=$(gh auth token)
 
 git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
@@ -333,6 +346,8 @@ kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/downloa
 
 mkdir -p ~/level_1/level_2/
 
+pre-commit run --from-ref origin/master --to-ref HEAD # run pre-commit hooks for all files in the current branch
+
 ping -c 3 ec2.us-west-2.amazonaws.com
 pip freeze
 pip install --upgrade pip
@@ -349,6 +364,7 @@ python3 -m venv ~/.venv/py3venv1  # Create virtual environment
 python3 -m pip freeze
 python3 -m pip install --upgrade pip
 python3 -m pip install <package_name>
+python3 -m pip install boto3
 
 printf "${On_Blue}${White}Background and text color changed for eye-catching terminal output${Color_Off}\n"
 
@@ -395,6 +411,7 @@ ssh $(aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | select(.
 sudo su # Option to get access switch to super user
 sudo su - # Option to get access switch to super user, potentially within aws ec2 instance when connecting through session manager
 
+terraform fmt -recursive # format all terraform files in the current directory
 terraform init
 terraform plan
 terraform plan --destroy
@@ -436,6 +453,14 @@ tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m
 test -d ${HOME}/Desktop # does the Desktop folder exist
 test -e .git # True if file exists (regardless of type)
 test -f ${HOME}/.zshrc # does the specific file exist
+
+tshlo # tsh app logout; tsh logout
+tsh status
+tsh app ls
+tsh app login --aws-role
+tsh app logout
+tsh version
+tsh login --proxy # currently prefer app login than proxy login, though holding this for now
 
 unset AWS_PROFILE # or any environment variable
 

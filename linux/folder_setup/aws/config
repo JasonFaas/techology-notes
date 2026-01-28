@@ -1,0 +1,8 @@
+[default]
+region = us-west-2
+output = json
+cli_pager =
+
+[profile east1]
+region = us-east-1
+output = json

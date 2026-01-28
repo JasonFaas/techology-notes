@@ -90,8 +90,8 @@ export Color_Off='\033[0m'       # Text Reset
 
 
 # Alias
-
-function echo_time {
+alias echotime="echo-time"
+function echo-time {
   echo "$(date) Computer Time Zone"
   echo "$(date +%s)                   Unix timestamp"
 #  echo ""
@@ -127,6 +127,22 @@ function cdgitroot {
 function gitpushall {
   CURR_DIR=$(pwd)
   cdgitroot
+  echo "Running pre-commit hooks"
+  
+  echo "Pre-commit hooks completed"
+  git add . && git commit -m "$1" && git push
+  cd $CURR_DIR
+}
+function gitpushall-checks {
+  CURR_DIR=$(pwd)
+  cdgitroot
+  echo "Running pre-commit hooks"
+
+  pre-commit run --from-ref origin/master --to-ref HEAD
+  terraform fmt -recursive
+  yamllint -c .yamllint --strict .
+  
+  echo "Pre-commit hooks completed"
   git add . && git commit -m "$1" && git push
   cd $CURR_DIR
 }
@@ -171,12 +187,29 @@ alias gitaddall="git add ."
 alias gitstatus="git status"
 alias gitcommit="git commit -m "
 alias gitdiff="git status && git diff"
+alias gitdiff-w="git status && git diff -w"
 alias gitd="git status && git diff"
 alias gitcp="git cherry-pick"
 alias gitcherry="git cherry-pick"
 alias gitstash="git stash"
 alias gitpop="git stash pop"
 alias gitstashpop="git stash pop"
+alias ghalogin="gh auth login && echo $(gh auth token) > ~/Desktop/temp/gh-auth-token && ghatoken"
+alias ghatoken="export GH_TOKEN=$(cat ~/Desktop/temp/gh-auth-token) && export GITHUB_TOKEN=$(cat ~/Desktop/temp/gh-auth-token)"
+
+alias tshlogout-techology="pkill -f 'tsh proxy aws'; tsh app logout; tsh logout; unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN; unset HTTPS_PROXY; echo 'AWS credentials cleared'" # marked as legacy to more easily share my enterprise version
+alias tshlogout-techology="pkill -f 'tsh proxy aws'; tsh app logout; tsh logout; unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN; unset HTTPS_PROXY; echo 'AWS credentials cleared'"
+function tshapplogout-techology() {
+    pkill -f 'tsh proxy aws'
+    tsh app logout
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+    unset HTTPS_PROXY
+    echo 'AWS credentials cleared'
+    echo "Setting Default iterm2 Profile"
+    echo -e "\033]50;SetProfile=Default\007" || true
+}
 
 ## terraform
 alias tg=terragrunt
@@ -204,10 +237,10 @@ alias tgia="terragrunt init && terragrunt apply"
 alias tga="terragrunt apply"
 alias tfi="terraform init"
 alias tfa="say Running_Terraform && terraform apply && say 'Good News, Everyone!' || say Terrible_News"
-alias tfplan="terraform plan"
+alias tfplan="terraform plan -lock=false -out=$HOME/temp/terraform.plan"
 alias tga1="tga -parallelism=1"
 alias tgimport="terragrunt import"
-alias tgplan="terragrunt plan"
+alias tgplan="terragrunt plan -lock=false"
 alias tginit="terragrunt init"
 alias rmtf="rm -f .terraform/terraform.tfstate"
 alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform*"
@@ -290,3 +323,22 @@ function echo_alarms_aws {
 function gitpullstash {
   git stash && git pull && git stash pop
 }
+
+function echo-aws {
+  echo ""
+
+  # only run if $HOME/.aws/temp-export.sh does not exist
+  if [ ! -f "$HOME/.aws/temp-export.sh" ]; then
+    echo "AWS credentials not found, please run 'tshlogin' to login to AWS"
+    return
+  fi
+  
+  echo "Currently connected to AWS account:"
+  echo-aws-account-info > $HOME/temp/aws-account-info.txt
+  # cat $HOME/temp/aws-account-info.txt
+  aws sts get-caller-identity --no-cli-pager > $HOME/temp/aws-caller-identity.txt
+  # cat $HOME/temp/aws-caller-identity.txt
+  cat $HOME/temp/aws-account-info.txt | grep $(cat $HOME/temp/aws-caller-identity.txt | jq -r '.Account')
+  cat $HOME/temp/aws-caller-identity.txt | jq -r '.Arn'
+}
+alias echoaws=echo-aws

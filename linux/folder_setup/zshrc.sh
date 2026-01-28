@@ -1,8 +1,8 @@
 echo "Welcome to iTerm2"
 
 echo ""
-echo '$ echo_time'
-echo_time
+echo '$ echo-time'
+echo-time
 
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
 export PATH=$PATH:/usr/local/bin
@@ -64,3 +64,10 @@ echo ""
 
 cd $HOME/Code/1
 
+ln -s "$HOME/Code/1" "$HOME/workspace" # symlink to workspace folder, aka Eclipse paradigm
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init --path)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
