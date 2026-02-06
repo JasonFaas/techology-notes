@@ -116,6 +116,15 @@ function echo_exit_status {
 }
 alias exit_status="echo_exit_status"
 
+alias cd1="cd $HOME/Code/1"
+alias cd2="cd $HOME/Code/2"
+alias cd3="cd $HOME/Code/3"
+alias cd4="cd $HOME/Code/4"
+alias cd5="cd $HOME/Code/5"
+alias cd6="cd $HOME/Code/6"
+alias cd7="cd $HOME/Code/7"
+alias cd8="cd $HOME/Code/8"
+
 ## GIT
 function cdgitroot {
   while (! ls | grep Volumes) && (! test -e .git)
@@ -124,6 +133,8 @@ function cdgitroot {
     cd ../
   done
 }
+alias gpa="gitpushall"
+alias gpa-c="gitpushall-checks"
 function gitpushall {
   CURR_DIR=$(pwd)
   cdgitroot
@@ -236,8 +247,9 @@ alias tgapply="terragrunt apply"
 alias tgia="terragrunt init && terragrunt apply"
 alias tga="terragrunt apply"
 alias tfi="terraform init"
-alias tfa="say Running_Terraform && terraform apply && say 'Good News, Everyone!' || say Terrible_News"
-alias tfplan="terraform plan -lock=false -out=$HOME/temp/terraform.plan"
+alias tfa="terraform apply"
+alias tfa-say="say Running_Terraform && tfa && say 'Good News, Everyone!' || say Terrible_News"
+alias tfplan="terraform plan -lock=false -out=$HOME/Desktop/temp/terraform-$(basename $PWD)-$(date +%s).plan" # outfile will be in $HOME/temp/terraform-{curr_dir}-{epoch}.plan
 alias tga1="tga -parallelism=1"
 alias tgimport="terragrunt import"
 alias tgplan="terragrunt plan -lock=false"
@@ -332,7 +344,7 @@ function echo-aws {
     echo "AWS credentials not found, please run 'tshlogin' to login to AWS"
     return
   fi
-  
+
   echo "Currently connected to AWS account:"
   echo-aws-account-info > $HOME/temp/aws-account-info.txt
   # cat $HOME/temp/aws-account-info.txt
@@ -342,3 +354,4 @@ function echo-aws {
   cat $HOME/temp/aws-caller-identity.txt | jq -r '.Arn'
 }
 alias echoaws=echo-aws
+alias echoawsaccountinfo=echo-aws-account-info
