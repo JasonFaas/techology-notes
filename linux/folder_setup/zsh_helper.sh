@@ -114,6 +114,9 @@ function echo_weather_say {
 function echo_exit_status {
   echo "$?"
 }
+
+alias awsw="aws sts get-caller-identity"
+
 alias exit_status="echo_exit_status"
 
 alias cd1="cd $HOME/Code/1"
@@ -157,36 +160,48 @@ function gitpushall-checks {
   git add . && git commit -m "$1" && git push
   cd $CURR_DIR
 }
+
 function gitcheck {
-  git checkout "$1" && git pull
+  # first run git branch and check if $1 branch exists
+  # elif git ls-remote --heads origin "$1" | grep "refs/heads/$1"; then
+  # else
+  if git branch | grep "$1"; then
+    echo "$1 branch exists locally, checkout and pull"
+    git checkout "$1" && git pull
+    return
+  elif git ls-remote --heads origin "$1" | grep "refs/heads/$1"; then
+    echo "$1 branch exists remotely, checkout and pull"
+    git checkout "$1" && git pull
+    return
+  else
+    echo "$1 branch does not exist, creating it"
+    git checkout -b "$1" && git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+    return
+  fi
 }
+
 function gitcheckpush {
+  echo "Deprecated function, use gitcheck instead"
   git checkout -b "$1" && git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 }
+
 function gitcheckm {
   echo "Attempting to checkout main/master branch"
 
-  git status > ~/tmp.txt
-  if ! $(grep -q "Your branch is up to date" ~/tmp.txt) || ! $(grep -q "nothing to commit, working tree clean" ~/tmp.txt)
-  then
-    echo "Clean up your branch before switching to master/main branch with automation"
-    return
-  fi
-
-  git branch > ~/tmp.txt
-  if $(grep -q master ~/tmp.txt)
-  then
-    echo "git checkout master && git pull"
+  # if git ls-remote --heads origin master | grep "refs/heads"
+  # elif git ls-remote --heads origin main | grep "refs/heads"
+  if git ls-remote --heads origin master | grep "refs/heads/master"; then
+    echo "Master branch exists, checkout and pull"
     git checkout master && git pull
     return
-  fi
-
-  if $(grep -q main ~/tmp.txt)
-  then
-    echo "git checkout main && git pull"
-    git checkout master && git pull
+  elif git ls-remote --heads origin main | grep "refs/heads/main"; then
+    echo "Main branch exists, checkout and pull"
+    git checkout main && git pull
+    return
   else
     echo "What? You don't have master or main branch? Fix this script or check your 'git branch' output"
+    cd $HOME
+    return
   fi
 }
 
@@ -247,9 +262,15 @@ alias tgapply="terragrunt apply"
 alias tgia="terragrunt init && terragrunt apply"
 alias tga="terragrunt apply"
 alias tfi="terraform init"
+alias tfshow="terraform show -no-color"
 alias tfa="terraform apply"
 alias tfa-say="say Running_Terraform && tfa && say 'Good News, Everyone!' || say Terrible_News"
-alias tfplan="terraform plan -lock=false -out=$HOME/Desktop/temp/terraform-$(basename $PWD)-$(date +%s).plan" # outfile will be in $HOME/temp/terraform-{curr_dir}-{epoch}.plan
+function tfplan {
+  TF_TARGET=$1
+
+  terraform plan -lock=false -out=$HOME/Desktop/temp/terraform-$(basename $PWD)-$(date +%s).plan $TF_TARGET
+  echo "Plan file saved to $HOME/Desktop/temp/terraform-$(basename $PWD)-$(date +%s).plan" # outfile will be in $HOME/temp/terraform-{curr_dir}-{epoch}.plan
+}
 alias tga1="tga -parallelism=1"
 alias tgimport="terragrunt import"
 alias tgplan="terragrunt plan -lock=false"
@@ -300,20 +321,19 @@ function run_command_if_file_not_same_as_value {
   CMD_TO_RUN=$1
   TEMP_FILE_PATH=$2
   VALUE_EXPECTED=$3
-  HOME_PATH=${HOME}/
 #  echo "${b#$a}"
 
   if [ ! -f "$TEMP_FILE_PATH" ]; then
-    echo "Running \"${CMD_TO_RUN#$HOME_PATH}\" as ${TEMP_FILE_PATH#$HOME_PATH} does not exist."
+    echo "Running \"${CMD_TO_RUN}\" as ${TEMP_FILE_PATH} does not exist."
     echo ""
     $CMD_TO_RUN
   else
     TEMP_VAR=$(cat $TEMP_FILE_PATH)
     if [ "$VALUE_EXPECTED" != "$TEMP_VAR" ]; then
-      echo "Running \"${CMD_TO_RUN#$HOME_PATH}\" as value is different in ${TEMP_FILE_PATH#$HOME_PATH}."
+      echo "Running \"${CMD_TO_RUN}\" as value is different in ${TEMP_FILE_PATH}."
       $CMD_TO_RUN
     else
-      echo "Not running \"${CMD_TO_RUN#$HOME_PATH}\" as value is same in ${TEMP_FILE_PATH#$HOME_PATH}."
+      echo "Not running \"${CMD_TO_RUN}\" as value is same in ${TEMP_FILE_PATH}."
     fi
   fi
   echo $VALUE_EXPECTED > $TEMP_FILE_PATH

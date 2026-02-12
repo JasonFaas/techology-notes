@@ -8,6 +8,7 @@
 [ -z "$HOME" ] # This will return 1 as env var exists
 echo $(( $(date +"%s") / 3600))
 
+awsw # aws sts get-caller-identity
 aws_sso_login
 awscompleter
 
@@ -210,6 +211,8 @@ gh auth login && export GITHUB_TOKEN=$(gh auth token)
 ghalogin # alias for gh auth login && export GITHUB_TOKEN=$(gh auth token)
 ghatoken # alias for export GITHUB_TOKEN=$(gh auth token)
 
+git pull --no-rebase origin main
+git pull --no-rebase origin master
 git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 git reset --hard HEAD
