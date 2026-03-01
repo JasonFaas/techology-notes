@@ -1,6 +1,6 @@
+import argparse
 import csv
 import json
-import sys
 import time
 import urllib.parse
 import webbrowser
@@ -64,20 +64,39 @@ def get_authenticated_session():
     sess.headers.update({"Authorization": f"Bearer {cfg['access_token']}"})
     return sess
 
-def get_latest_activity(sess):
-    params = {"per_page": 1, "page": 1}
-    r = sess.get(f"{API_BASE}/athlete/activities", params=params)
+def _check_auth_error(r):
     if r.status_code == 401:
         errors = r.json().get("errors", [])
         if any(e.get("field") == "activity:read_permission" for e in errors):
             raise RuntimeError(
                 "Token is missing activity:read scope. Run: python what.py --auth"
             )
+
+def get_latest_activity(sess):
+    r = sess.get(f"{API_BASE}/athlete/activities", params={"per_page": 1, "page": 1})
+    _check_auth_error(r)
     r.raise_for_status()
     activities = r.json()
     if not activities:
         raise RuntimeError("No activities found")
     return activities[0]
+
+def get_activities_for_year(sess, year=None):
+    params = {"per_page": 100, "page": 1}
+    if year:
+        params["after"]  = int(datetime(year,     1, 1, tzinfo=timezone.utc).timestamp())
+        params["before"] = int(datetime(year + 1, 1, 1, tzinfo=timezone.utc).timestamp())
+    activities = []
+    while True:
+        r = sess.get(f"{API_BASE}/athlete/activities", params=params)
+        _check_auth_error(r)
+        r.raise_for_status()
+        batch = r.json()
+        if not batch:
+            break
+        activities.extend(batch)
+        params["page"] += 1
+    return [a for a in activities if a.get("type") == "Run"]
 
 def get_streams(sess, activity_id):
     # We need time, distance, heart rate
@@ -125,56 +144,73 @@ def compute_fastest_intervals(streams):
     return results
 
 def format_time(seconds):
-    m = int(seconds // 60)
-    s = seconds - 60 * m
-    return f"{m:d}:{s:04.1f}"
+    seconds = int(seconds)
+    h = seconds // 3600
+    m = (seconds % 3600) // 60
+    s = seconds % 60
+    return f"{h}:{m:02d}:{s:02d}"
 
-def write_csv(date, max_hr, fastest):
-    filename = f"best-efforts-{int(time.time())}.csv"
-    headers = ["Date", "Max-HR"] + [label for label, _ in TARGET_DISTANCES]
-    row = {
-        "Date": date,
-        "Max-HR": f"{max_hr:.0f}" if max_hr is not None else "",
-    }
-    for label, _ in TARGET_DISTANCES:
-        row[label] = format_time(fastest[label]) if label in fastest else ""
-
-    with open(filename, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=headers)
-        writer.writeheader()
-        writer.writerow(row)
-
-    return filename
-
-
-def main():
-    sess = get_authenticated_session()
-    activity = get_latest_activity(sess)
-    activity_id = activity["id"]
-    activity_date = datetime.fromisoformat(
+def activity_date(activity):
+    return datetime.fromisoformat(
         activity["start_date_local"].replace("Z", "+00:00")
     ).strftime("%Y-%m-%d")
 
-    print(f"Latest activity id: {activity_id}  date: {activity_date}")
-    streams = get_streams(sess, activity_id)
-
+def process_activity(sess, activity):
+    aid = activity["id"]
+    date = activity_date(activity)
+    streams = get_streams(sess, aid)
     max_hr = compute_max_hr(streams)
-    if max_hr is not None:
-        print(f"Max HR: {max_hr:.0f} bpm")
-    else:
-        print("No heart rate data for this activity.")
-
     fastest = compute_fastest_intervals(streams)
-    if not fastest:
-        print("No distance/time streams available.")
-        return
 
-    print("Fastest intervals (approx):")
-    for label, t in fastest.items():
-        print(f"  {label}: {format_time(t)}")
+    hr_str = f"{max_hr:.0f}" if max_hr is not None else ""
+    interval_str = ", ".join(
+        f"{lbl}: {format_time(fastest[lbl])}" for lbl in fastest
+    ) or "no interval data"
+    print(f"  {date}  HR={hr_str or 'n/a'}  {interval_str}")
 
-    filename = write_csv(activity_date, max_hr, fastest)
-    print(f"\nSaved to {filename}")
+    row = {"Date": date, "Max-HR": hr_str}
+    for label, _ in TARGET_DISTANCES:
+        row[label] = format_time(fastest[label]) if label in fastest else ""
+    return row
+
+def write_csv(rows):
+    filename = Path.home() / "Desktop" / f"best-efforts-{int(time.time())}.csv"
+    headers = ["Date", "Max-HR"] + [label for label, _ in TARGET_DISTANCES]
+    with open(filename, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(rows)
+    return filename
+
+def main(year=None):
+    sess = get_authenticated_session()
+
+    if year == "all":
+        activities = get_activities_for_year(sess)
+        if not activities:
+            print("No runs found.")
+            return
+        activities.sort(key=lambda a: a["start_date_local"])
+        print(f"Found {len(activities)} runs across all time. Fetching streams...")
+    elif year:
+        activities = get_activities_for_year(sess, year)
+        if not activities:
+            print(f"No runs found for {year}.")
+            return
+        activities.sort(key=lambda a: a["start_date_local"])
+        print(f"Found {len(activities)} runs for {year}. Fetching streams...")
+    else:
+        activities = [get_latest_activity(sess)]
+        print(f"Fetching latest run ({activity_date(activities[0])})...")
+
+    rows = []
+    for i, activity in enumerate(activities, 1):
+        if year:
+            print(f"[{i}/{len(activities)}]", end=" ")
+        rows.append(process_activity(sess, activity))
+
+    filename = write_csv(rows)
+    print(f"\nSaved {len(rows)} row(s) to {filename}")
 
 def authorize():
     """Run the OAuth flow to get a new token with activity:read_all scope."""
@@ -237,8 +273,16 @@ def authorize():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--auth":
+    parser = argparse.ArgumentParser(description="Export Strava run best efforts to CSV.")
+    parser.add_argument("--auth", action="store_true", help="Re-authorize with Strava.")
+    parser.add_argument("--year", help="Fetch all runs for a given year (e.g. 2025) or 'all'.")
+    args = parser.parse_args()
+
+    if args.auth:
         authorize()
     else:
-        main()
+        year = args.year
+        if year and year != "all":
+            year = int(year)
+        main(year=year)
 
