@@ -136,6 +136,7 @@ brew install rg
 brew install session-manager-plugin # aws ssm
 brew install stern
 brew install terragrunt
+brew install xsv # csv tool
 brew install zsh && echo "export ZSH=\"$HOME/.oh-my-zsh\"" >> ${HOME}/.zshrc && echo "source $ZSH/oh-my-zsh.sh" >> ${HOME}/.zshrc
 # chatgpt for "How to add "⌥ ←" and "⌥→" to jump forwards / backwards words in iTerm 2?"
 brew install zsh-autosuggestions && echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${HOME}/.zshrc
@@ -145,6 +146,10 @@ brew update # update brew itself
 brew upgrade # optional to specify a "package_name"
 
 cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
+
+claude
+cde-continue
+cde-resume
 
 cd ~/Code/
 cdgitroot
@@ -233,6 +238,8 @@ gitcherry # git cherry-pick git_commit_id
 git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
 gpa # gitpushall
 gpa-c # gitpushall-checks
+gitupdatecurrentwithmaster
+pwdgit # print normal pwd, though with git root folder highlighted if possible
 
 git clone git@github.com:JasonFaas/techology-notes.git
 git clone git@github.com:JasonFaas/docker-experiment.git
@@ -476,6 +483,8 @@ vagrant scp local_file_or_dir vm_id:path_on_vm
 vagrant ssh
 vagrant ssh -c "pwd"
 vagrant up
+
+vim ~/.zsh_history # edit the zsh history file
 
 which python3
 whoami

@@ -90,6 +90,16 @@ export Color_Off='\033[0m'       # Text Reset
 
 
 # Alias
+function cde {
+  source ~/.aws/temp-export.sh && cd $HOME/Code/1 && claude --continue
+}
+function cde-continue {
+  claude --continue
+}
+function cde-resume {
+  claude --resume
+}
+
 alias echotime="echo-time"
 function echo-time {
   echo "$(date) Computer Time Zone"
@@ -117,7 +127,7 @@ function echo_exit_status {
 
 alias awsw="aws sts get-caller-identity"
 
-alias exit_status="echo_exit_status"
+alias echoexit="echo_exit_status"
 
 alias cd1="cd $HOME/Code/1"
 alias cd2="cd $HOME/Code/2"
@@ -127,6 +137,7 @@ alias cd5="cd $HOME/Code/5"
 alias cd6="cd $HOME/Code/6"
 alias cd7="cd $HOME/Code/7"
 alias cd8="cd $HOME/Code/8"
+alias cdtech="cd techology-notes/"
 
 ## GIT
 function cdgitroot {
@@ -152,12 +163,14 @@ function gitpushall-checks {
   cdgitroot
   echo "Running pre-commit hooks"
 
-  pre-commit run --from-ref origin/master --to-ref HEAD
-  terraform fmt -recursive
-  yamllint -c .yamllint --strict .
+  pre-commit run --from-ref origin/master --to-ref HEAD && echo "Pre-commit against branch completed"
+  terraform fmt -recursive && echo "Terraform fmt completed"
+  yamllint -c .yamllint --strict . && echo "Yamllint completed"
   
-  echo "Pre-commit hooks completed"
-  git add . && git commit -m "$1" && git push
+  
+  echo "About to add, pre-commit run, commit, and push"
+  git add . && pre-commit run && git commit -m "$1" && git push
+  echo "Completed add, pre-commit run, commit, and push"
   cd $CURR_DIR
 }
 
@@ -207,6 +220,16 @@ function gitcheckm {
 
 alias vi="echo \"You should really try vim\""
 
+# print normal pwd, though with git root folder highlighted if possible
+# search current folder, then parents, etc, looking for .git,
+# then run "pwd | grep $GIT_ROOT_FOLDER"
+# GIT_ROOT_FOLDER should only be the actual folder name, not the path
+alias pwdg=pwdgit
+function pwdgit {
+  GIT_ROOT_FOLDER=$(basename $(git rev-parse --show-toplevel))
+  pwd | sed "s/$GIT_ROOT_FOLDER/$(echo -e "${BRed}$GIT_ROOT_FOLDER${Color_Off}")/g"
+}
+alias gitupdatecurrentwithmaster="git fetch origin && git merge origin/HEAD && git push" # update current branch with master
 alias gitpull="git pull"
 alias gitpush="git push"
 alias gitaddall="git add ."
@@ -262,14 +285,22 @@ alias tgapply="terragrunt apply"
 alias tgia="terragrunt init && terragrunt apply"
 alias tga="terragrunt apply"
 alias tfi="terraform init"
+alias tfiplan="tfi && tfplan"
 alias tfshow="terraform show -no-color"
 alias tfa="terraform apply"
+alias tfmv="terraform state mv"
 alias tfa-say="say Running_Terraform && tfa && say 'Good News, Everyone!' || say Terrible_News"
 function tfplan {
-  TF_TARGET=$1
+  TF_TARGET=$@
+  
+  mkdir -p $HOME/Desktop/terraform/
+  TF_PLAN_FILE=$HOME/Desktop/terraform/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%s)
 
-  terraform plan -lock=false -out=$HOME/Desktop/temp/terraform-$(basename $PWD)-$(date +%s).plan $TF_TARGET
-  echo "Plan file saved to $HOME/Desktop/temp/terraform-$(basename $PWD)-$(date +%s).plan" # outfile will be in $HOME/temp/terraform-{curr_dir}-{epoch}.plan
+  terraform plan -lock=false -out=$TF_PLAN_FILE.plan $TF_TARGET
+  tfshow $TF_PLAN_FILE.plan > $TF_PLAN_FILE.txt
+  echo ""
+  echo "Plan file saved to $TF_PLAN_FILE.plan"
+  echo "Text file saved to $TF_PLAN_FILE.txt"
 }
 alias tga1="tga -parallelism=1"
 alias tgimport="terragrunt import"
