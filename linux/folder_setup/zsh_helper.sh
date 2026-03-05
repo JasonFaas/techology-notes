@@ -217,7 +217,6 @@ function gitcheckm {
     return
   fi
 }
-
 alias vi="echo \"You should really try vim\""
 
 # print normal pwd, though with git root folder highlighted if possible
@@ -286,17 +285,24 @@ alias tgia="terragrunt init && terragrunt apply"
 alias tga="terragrunt apply"
 alias tfi="terraform init"
 alias tfiplan="tfi && tfplan"
+alias tfip="tfi && tfplan"
 alias tfshow="terraform show -no-color"
 alias tfa="terraform apply"
 alias tfmv="terraform state mv"
+alias tfrm="terraform state rm"
 alias tfa-say="say Running_Terraform && tfa && say 'Good News, Everyone!' || say Terrible_News"
+function teeout {
+
+  mkdir -p $HOME/Desktop/output/
+  OUTPUT_FILE=$HOME/Desktop/output/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%Y%m%d%H%M%S)
+
+  tee $OUTPUT_FILE.txt
+}
 function tfplan {
-  TF_TARGET=$@
-  
   mkdir -p $HOME/Desktop/terraform/
   TF_PLAN_FILE=$HOME/Desktop/terraform/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%s)
 
-  terraform plan -lock=false -out=$TF_PLAN_FILE.plan $TF_TARGET
+  terraform plan -lock=false -out=$TF_PLAN_FILE.plan "$@"
   tfshow $TF_PLAN_FILE.plan > $TF_PLAN_FILE.txt
   echo ""
   echo "Plan file saved to $TF_PLAN_FILE.plan"
@@ -389,20 +395,15 @@ function gitpullstash {
 
 function echo-aws {
   echo ""
-
-  # only run if $HOME/.aws/temp-export.sh does not exist
-  if [ ! -f "$HOME/.aws/temp-export.sh" ]; then
-    echo "AWS credentials not found, please run 'tshlogin' to login to AWS"
-    return
-  fi
-
-  echo "Currently connected to AWS account:"
+  echo "Likely connected to AWS account:"
+  echo "--------------------------------"
   echo-aws-account-info > $HOME/temp/aws-account-info.txt
-  # cat $HOME/temp/aws-account-info.txt
   aws sts get-caller-identity --no-cli-pager > $HOME/temp/aws-caller-identity.txt
-  # cat $HOME/temp/aws-caller-identity.txt
   cat $HOME/temp/aws-account-info.txt | grep $(cat $HOME/temp/aws-caller-identity.txt | jq -r '.Account')
-  cat $HOME/temp/aws-caller-identity.txt | jq -r '.Arn'
+  STS_ARN=$(cat $HOME/temp/aws-caller-identity.txt | jq -r '.Arn')
+
+  role_path=$(echo "$STS_ARN" | sed 's/^.*://')
+  echo "$role_path"
 }
 alias echoaws=echo-aws
 alias echoawsaccountinfo=echo-aws-account-info
