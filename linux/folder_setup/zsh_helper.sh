@@ -205,11 +205,11 @@ function gitcheckm {
   # elif git ls-remote --heads origin main | grep "refs/heads"
   if git ls-remote --heads origin master | grep "refs/heads/master"; then
     echo "Master branch exists, checkout and pull"
-    git checkout master && git pull
+    git checkout master && git pull && git status
     return
   elif git ls-remote --heads origin main | grep "refs/heads/main"; then
     echo "Main branch exists, checkout and pull"
-    git checkout main && git pull
+    git checkout main && git pull && git status
     return
   else
     echo "What? You don't have master or main branch? Fix this script or check your 'git branch' output"
@@ -233,6 +233,7 @@ alias gitpull="git pull"
 alias gitpush="git push"
 alias gitaddall="git add ."
 alias gitstatus="git status"
+alias gitstat="git status"
 alias gitcommit="git commit -m "
 alias gitdiff="git status && git diff"
 alias gitdiff-w="git status && git diff -w"
