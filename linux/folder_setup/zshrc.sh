@@ -73,3 +73,7 @@ ln -s "$HOME/Code/1" "$HOME/workspace" # symlink to workspace folder, aka Eclips
 # eval "$(pyenv init --path)"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+
+for cmd in ${(k)functions} ${(k)aliases}; do
+    print -s "$cmd"
+done

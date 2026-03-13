@@ -383,10 +383,6 @@ printf "${On_Blue}${White}Background and text color changed for eye-catching ter
 realpath ${HOME}/Desktop # Get full absolute path of folder or file
 
 rm -rf .terraform;tg init && say "init complete";tg apply
-rmtf # Delete Terraform State file - .terraform/terraform.tfstate
-rmtfa # Delete all hidden terraform files - .terraform*
-rmtf && tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt && tgapply
-rmtf && tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
 
 say "Failed again, try again soon."
 say "Good News, Everyone!"
@@ -439,34 +435,10 @@ terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 terraform state replace-provider registry.terraform.io/-/aws  registry.terraform.io/hashicorp/aws # Used commonly during terraform upgrades when providers update do not go through correctly
 
-rmtf && tfi && tfplan
-
-tga
-tgia # terragrunt init && terragrunt apply
-tgimport
-tgplan
-tga1 # single threaded terragrunt apply
-tg init
-tg plan
-tg plan --destroy
-tg plan -no-color > ~/terraform_plan-$(date -u +"%Y-%m-%d--%T-%Z").txt
-tg apply
-tg apply -parallelism=1 # Changes default parallel tasks from 10 to 1
-tg destroy
-tg import '' ''
-tg import <hmm> <something>
-tg import "module.stuff.aws_cloudwatch_event_target.lambda_target" "<target_rule_name>/$(aws events list-targets-by-rule --rule <target_rule_name> | jq -r '.Targets[0].Id')" # Import aws_cloudwatch_event_target
-tg state list # list all modules
-tg state list > ~/Desktop/${TERRAFORM_LOGS}/terraform_state--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
-tg state mv <from> <to>
-tg state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
-tgplan -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y-%m-%d--%H-%M-%Z")--${PWD##*/}.txt
-
 test -d ${HOME}/Desktop # does the Desktop folder exist
 test -e .git # True if file exists (regardless of type)
 test -f ${HOME}/.zshrc # does the specific file exist
 
-tshlo # tsh app logout; tsh logout
 tsh status
 tsh app ls
 tsh app login --aws-role
@@ -487,7 +459,6 @@ vagrant up
 vim ~/.zsh_history # edit the zsh history file
 
 which python3
-whoami
 
 aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/tempfile.txt\
 while IFS= read -r line; do\
