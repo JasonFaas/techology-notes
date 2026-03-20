@@ -219,6 +219,13 @@ function gitcheckm {
 }
 alias vi="echo \"You should really try vim\""
 
+alias echo-bt-battery="$HOME/workspace/techology-notes/mac/bluetooth/battery/bt-battery.py"
+alias echo-battery="$HOME/workspace/techology-notes/mac/battery.py"
+alias echobattery=echo-battery
+alias battery=echo-battery
+alias btbattery=echo-battery
+alias bt-battery=echo-bt-battery
+
 # print normal pwd, though with git root folder highlighted if possible
 # search current folder, then parents, etc, looking for .git,
 # then run "pwd | grep $GIT_ROOT_FOLDER"

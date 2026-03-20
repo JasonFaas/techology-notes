@@ -6,3 +6,5 @@ mkdir -p $HOME/Desktop/Screenshots/ && mv $HOME/Desktop/Screenshot*png $HOME/Des
 
 echo "brew upgrade claude-code"
 brew upgrade claude-code
+
+$HOME/workspace/techology-notes/mac/battery.py
