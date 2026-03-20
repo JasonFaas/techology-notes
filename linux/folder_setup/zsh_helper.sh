@@ -91,7 +91,7 @@ export Color_Off='\033[0m'       # Text Reset
 
 # Alias
 function cde {
-  source ~/.aws/temp-export.sh && cd $HOME/Code/1 && claude --continue
+  source ~/.aws/temp-export.sh && claude --continue
 }
 function cde-continue {
   claude --continue
@@ -225,6 +225,7 @@ alias vi="echo \"You should really try vim\""
 # GIT_ROOT_FOLDER should only be the actual folder name, not the path
 alias pwdg=pwdgit
 function pwdgit {
+  pwd | pbcopy
   GIT_ROOT_FOLDER=$(basename $(git rev-parse --show-toplevel))
   pwd | sed "s/$GIT_ROOT_FOLDER/$(echo -e "${BRed}$GIT_ROOT_FOLDER${Color_Off}")/g"
 }
@@ -285,7 +286,7 @@ alias kctx=kubectx
 alias tgapply="terragrunt apply"
 alias tgia="terragrunt init && terragrunt apply"
 alias tga="terragrunt apply"
-alias tfi="terraform init"
+alias tfi="pwdg && terraform init"
 alias tfiplan="tfi && tfplan"
 alias tfip="tfi && tfplan"
 alias tfia="tfi && tfa"

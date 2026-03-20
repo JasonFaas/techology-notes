@@ -8,10 +8,6 @@
 [ -z "$HOME" ] # This will return 1 as env var exists
 echo $(( $(date +"%s") / 3600))
 
-awsw # aws sts get-caller-identity
-aws_sso_login
-awscompleter
-
 aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'
 
 aws ec2 describe-instances help
@@ -54,6 +50,7 @@ aws eks describe-cluster --name <name of cluster>
 aws eks list-clusters
 aws eks list-clusters --no-cli-pager | jq -r '.clusters[]' | xargs -I {} sh -c "echo {}; aws eks describe-cluster --name {} | jq '.cluster.version'"
 aws eks update-kubeconfig --name $(aws eks list-clusters --no-cli-pager | jq -r '.clusters[0]') # this will download the kubeconfig of the cluster to your config file if kubectx is activated
+aws eks update-kubeconfig --name ${cluster_name} --role-arn arn:aws:iam::${ACCOUNT_ID}:role/${IAM_ROLE} --user-alias ${cluster_nickname}
 
 aws events list-rules --name-prefix <event-bridge-prefix>
 
@@ -146,10 +143,6 @@ brew update # update brew itself
 brew upgrade # optional to specify a "package_name"
 
 cat cert_file | openssl x509 -noout -enddate | sed -e 's/notAfter=//' # Certificate Age
-
-claude
-cde-continue
-cde-resume
 
 cd ~/Code/
 cdgitroot
@@ -434,6 +427,7 @@ terraform state list # list all modules
 terraform state mv <from> <to>
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 terraform state replace-provider registry.terraform.io/-/aws  registry.terraform.io/hashicorp/aws # Used commonly during terraform upgrades when providers update do not go through correctly
+terraform force-unlock <id>
 
 test -d ${HOME}/Desktop # does the Desktop folder exist
 test -e .git # True if file exists (regardless of type)
@@ -488,4 +482,4 @@ cat > ~/Desktop/tempfiles/temp.json <<EOF\
 }\
 EOF
 
-echoawsaccountinfo
+yamllint -c .yamllint --strict .
