@@ -231,6 +231,45 @@ function taws {
   tsh aws --app $TSH_AWS_ACCOUNT "$@"
 }
 
+function echo_tsh {
+  echo -e "${BBlue}TSH_AWS_ACCOUNT:${Color_Off} ${TSH_AWS_ACCOUNT:-"(not set)"}"
+  echo ""
+
+  echo -e "${BBlue}Teleport login status:${Color_Off}"
+  if tsh status 2>/dev/null | grep -q "Logged in"; then
+    tsh status 2>/dev/null | grep -E "Logged in|Profile URL|Valid until" | sed 's/^/  /'
+  else
+    echo "  (not logged in)"
+  fi
+  echo ""
+
+  echo -e "${BBlue}AWS apps currently logged in:${Color_Off}"
+  local apps
+  apps=$(tsh apps ls 2>/dev/null | rg ">.*-aws " 2>/dev/null)
+  if [[ -z "$apps" ]]; then
+    echo "  (none)"
+  else
+    echo "$apps" | while IFS= read -r line; do
+      app_name=$(echo "$line" | awk '{print $2}')
+      env_tag=$(echo "$line" | sed 's/.*env=\([^,]*\).*/\1/')
+      identity=$(tsh aws --app "$app_name" sts get-caller-identity 2>/dev/null)
+      account=$(echo "$identity" | grep '"Account"' | awk -F'"' '{print $4}')
+      role=$(echo "$identity" | grep '"Arn"' | sed 's/.*assumed-role\/\([^/]*\).*/\1/')
+      if [[ -z "$account" ]]; then
+        id_info="(session expired)"
+      else
+        id_info="account=$account, role=$role"
+      fi
+      if [[ "$app_name" == "$TSH_AWS_ACCOUNT" ]]; then
+        echo -e "  ${BGreen}* $app_name${Color_Off}  (env=$env_tag, $id_info) ${BGreen}<-- active${Color_Off}"
+      else
+        echo -e "  ${Yellow}  $app_name${Color_Off}  (env=$env_tag, $id_info)"
+      fi
+    done
+  fi
+}
+alias echotsh=echo_tsh
+
 # print normal pwd, though with git root folder highlighted if possible
 # search current folder, then parents, etc, looking for .git,
 # then run "pwd | grep $GIT_ROOT_FOLDER"
