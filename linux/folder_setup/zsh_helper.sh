@@ -91,7 +91,7 @@ export Color_Off='\033[0m'       # Text Reset
 
 # Alias
 function cde {
-  source ~/.aws/temp-export.sh && claude --continue
+  claude --continue
 }
 function cde-continue {
   claude --continue
@@ -226,6 +226,11 @@ alias battery=echo-battery
 alias btbattery=echo-battery
 alias bt-battery=echo-bt-battery
 
+function taws {
+  echo "Running aws cli with $TSH_AWS_ACCOUNT and SHOW IAM ROLE"
+  tsh aws --app $TSH_AWS_ACCOUNT "$@"
+}
+
 # print normal pwd, though with git root folder highlighted if possible
 # search current folder, then parents, etc, looking for .git,
 # then run "pwd | grep $GIT_ROOT_FOLDER"
@@ -309,6 +314,7 @@ function teeout {
 
   tee $OUTPUT_FILE.txt
 }
+alias tfp=tfplan
 function tfplan {
   mkdir -p $HOME/Desktop/terraform/
   TF_PLAN_FILE=$HOME/Desktop/terraform/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%s)

@@ -46,6 +46,8 @@ FULL_WEEKLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_8_h
 current_8_hours=$(echo $(( $(date +"%s") / 3600 / 8)))
 run_command_if_file_not_same_as_value $FULL_WEEKLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_8_hours
 
+complete -C aws_completer taws # autocomplete taws command
+
 export NO_PROXY="oidc.eks.us-west-2.amazonaws.com,52C83231B68C5BE63EA1CF35EA003920.gr7.us-west-2.eks.amazonaws.com"
 
 echo "\$ ps"
@@ -77,3 +79,4 @@ ln -s "$HOME/Code/1" "$HOME/workspace" # symlink to workspace folder, aka Eclips
 for cmd in ${(k)functions} ${(k)aliases}; do
     print -s "$cmd"
 done
+
