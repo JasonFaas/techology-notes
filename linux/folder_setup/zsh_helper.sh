@@ -343,6 +343,26 @@ alias tfip="tfi && tfplan"
 alias tfia="tfi && tfa"
 alias tfshow="terraform show -no-color"
 alias tfa="terraform apply"
+
+# tsh-wrapped terraform: uses TSH_AWS_ACCOUNT like taws
+function ttf {
+  tsh aws --app $TSH_AWS_ACCOUNT --exec terraform -- "$@"
+}
+alias ttfi="pwdg && ttf init"
+alias ttfip="ttfi && ttfplan"
+alias ttfia="ttfi && ttfa"
+alias ttfa="ttf apply"
+function ttfplan {
+  mkdir -p $HOME/Desktop/terraform/
+  TF_PLAN_FILE=$HOME/Desktop/terraform/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%s)
+
+  ttf plan -lock=false -out=$TF_PLAN_FILE.plan "$@"
+  tfshow $TF_PLAN_FILE.plan > $TF_PLAN_FILE.txt
+  echo ""
+  echo "Plan file saved to $TF_PLAN_FILE.plan"
+  echo "Text file saved to $TF_PLAN_FILE.txt"
+}
+alias ttfp=ttfplan
 alias tfmv="terraform state mv"
 alias tfrm="terraform state rm"
 alias tfa-say="say Running_Terraform && tfa && say 'Good News, Everyone!' || say Terrible_News"
