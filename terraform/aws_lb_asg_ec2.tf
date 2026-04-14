@@ -70,7 +70,7 @@ resource "aws_lb" "app_lb" {
 }
 
 output "LB_DNS" {
-    value = aws_lb.app_lb.dns_name
+  value = aws_lb.app_lb.dns_name
 }
 
 resource "aws_lb_target_group" "app_tg" {
@@ -103,9 +103,9 @@ resource "aws_lb_listener" "app_listener" {
 
 # Auto Scaling Group
 resource "aws_autoscaling_group" "asg" {
-  desired_capacity   = 1
-  max_size           = 2
-  min_size           = 1
+  desired_capacity = 1
+  max_size         = 2
+  min_size         = 1
 
   vpc_zone_identifier = module.vpc[0].public_subnets
 

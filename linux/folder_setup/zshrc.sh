@@ -1,3 +1,5 @@
+source "$HOME/workspace/techology-notes/linux/folder_setup/zsh_helpers.sh"
+
 echo "Welcome to iTerm2"
 
 echo ""

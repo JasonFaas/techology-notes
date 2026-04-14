@@ -1,0 +1,7 @@
+ZSHRC_DIR="$HOME/workspace/techology-notes/linux/folder_setup"
+source "$ZSHRC_DIR/zsh_helper_colors.sh"
+source "$ZSHRC_DIR/zsh_helper_other.sh"
+source "$ZSHRC_DIR/zsh_helper_git.sh"
+source "$ZSHRC_DIR/zsh_helper_aws.sh"
+source "$ZSHRC_DIR/zsh_helper_terraform.sh"
+source "$ZSHRC_DIR/zsh_helper_k8s.sh"

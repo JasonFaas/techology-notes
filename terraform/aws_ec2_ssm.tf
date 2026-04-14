@@ -52,8 +52,8 @@ resource "aws_instance" "ec2" {
   }
 }
 
-output ec2_instance {
-    value = aws_instance.ec2.id
+output "ec2_instance" {
+  value = aws_instance.ec2.id
 }
 
 # 🔹 Find the latest Amazon Linux 2 AMI
