@@ -87,3 +87,13 @@ function run_command_if_file_not_same_as_value {
   echo $VALUE_EXPECTED > $TEMP_FILE_PATH
   echo ""
 }
+
+alias rgrec=rg_recent
+function rg_recent {
+  rg  "$@" $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
+}
+
+alias cprec=cp_recent
+function cp_recent {
+  cp $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1) "$@"
+}

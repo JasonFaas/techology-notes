@@ -2,9 +2,21 @@ alias awsw="aws sts get-caller-identity"
 alias awscompleter="complete -C $(which aws_completer) aws"
 alias awsc="complete -C $(which aws_completer) aws"
 
-function taws {
-  echo "Running aws cli with $TSH_AWS_APP and SHOW IAM ROLE"
-  tsh aws --app $TSH_AWS_APP "$@"
+# function taws {
+#   /opt/homebrew/bin/aws "$@"
+# }
+
+function aws {
+  pwdg
+  
+  if [[ -n "$TSH_AWS_APP" ]]; then
+    echo "Running aws cli with $TSH_AWS_APP and SHOW IAM ROLE"
+    echo "\$ tsh aws --app $TSH_AWS_APP $@"
+    tsh aws --app $TSH_AWS_APP "$@" | teeout
+    echo ""
+  else
+    /opt/homebrew/bin/aws "$@"
+  fi
 }
 
 function echo_tsh {

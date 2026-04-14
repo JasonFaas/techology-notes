@@ -8,6 +8,7 @@ function tf {
   if [[ -n "$TSH_AWS_APP" ]]; then
     echo "\$ tsh aws --app $TSH_AWS_APP --exec terraform -- $@"
     tsh aws --app $TSH_AWS_APP --exec terraform -- "$@" | teeout
+    echo ""
   else
     terraform "$@" | teeout
   fi
@@ -44,8 +45,9 @@ alias rmtf="rm -f .terraform/terraform.tfstate"
 alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform*"
 
 function teeout {
-  TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y%m)/
+  TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y%m)
   mkdir -p $TEE_OUTPUT_DIR
-  OUTPUT_FILE=$TEE_OUTPUT_DIR/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%Y%m%d%H%M%S).txt
+  OUTPUT_FILE=$TEE_OUTPUT_DIR/$(basename "$(dirname "$PWD")")--$(basename "$PWD")--$(date +%Y%m%d%H%M%S).txt
+  echo "Most recent output file: $OUTPUT_FILE"
   tee $OUTPUT_FILE
 }
