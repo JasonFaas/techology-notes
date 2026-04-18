@@ -209,6 +209,7 @@ gh auth login && export GITHUB_TOKEN=$(gh auth token)
 ghalogin # alias for gh auth login && export GITHUB_TOKEN=$(gh auth token)
 ghatoken # alias for export GITHUB_TOKEN=$(gh auth token)
 
+git --no-pager log --format="%h %ad %s" --date=short -3 -- README.md # file name or folder name for history
 git pull --no-rebase origin main
 git pull --no-rebase origin master
 git cherry-pick <git_commit_id>

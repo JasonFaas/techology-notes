@@ -97,3 +97,8 @@ alias cprec=cp_recent
 function cp_recent {
   cp $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1) "$@"
 }
+
+alias catrec=cat_recent
+function cat_recent {
+  cat $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
+}
