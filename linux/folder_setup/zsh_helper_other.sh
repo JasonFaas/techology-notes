@@ -102,3 +102,10 @@ alias catrec=cat_recent
 function cat_recent {
   cat $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
 }
+
+function recent {
+  echo "Recent file: $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)" | pbcopy
+}
+
+alias recpbcopy=pbcopyrec
+alias pbcopyrec='echo "$HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)" | pbcopy'

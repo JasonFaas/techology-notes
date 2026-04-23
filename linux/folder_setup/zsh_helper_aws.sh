@@ -19,6 +19,15 @@ function aws {
   fi
 }
 
+function tsh_exec {
+  pwdg
+  echo "\$ tsh aws --app $TSH_AWS_APP --exec $@"
+  tsh aws --app $TSH_AWS_APP --exec "$@" | teeout
+  echo ""
+}
+alias tshexec=tsh_exec
+alias exectsh=tsh_exec
+
 function echo_tsh {
   echo -e "${BBlue}TSH_AWS_APP:${Color_Off} ${TSH_AWS_APP:-"(not set)"}"
   echo ""
