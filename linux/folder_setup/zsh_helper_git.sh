@@ -75,7 +75,7 @@ function gitcheckm {
 # print normal pwd, though with git root folder highlighted if possible
 alias pwdg=pwdgit
 function pwdgit {
-  pwd | pbcopy
+  pwd
   GIT_ROOT_FOLDER=$(basename $(git rev-parse --show-toplevel))
   pwd | sed "s/$GIT_ROOT_FOLDER/$(echo -e "${BRed}$GIT_ROOT_FOLDER${Color_Off}")/g"
 }

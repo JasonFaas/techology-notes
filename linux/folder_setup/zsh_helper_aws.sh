@@ -12,7 +12,7 @@ function aws {
   if [[ -n "$TSH_AWS_APP" ]]; then
     echo "Running aws cli with $TSH_AWS_APP and SHOW IAM ROLE"
     echo "\$ tsh aws --app $TSH_AWS_APP $@"
-    tsh aws --app $TSH_AWS_APP "$@" | teeout
+    tsh aws --app $TSH_AWS_APP "$@" | teeout "aws-$1-$2--$TSH_AWS_APP"
     echo ""
   else
     /opt/homebrew/bin/aws "$@"
@@ -22,7 +22,7 @@ function aws {
 function tsh_exec {
   pwdg
   echo "\$ tsh aws --app $TSH_AWS_APP --exec $@"
-  tsh aws --app $TSH_AWS_APP --exec "$@" | teeout
+  tsh aws --app $TSH_AWS_APP --exec "$@" | teeout "tsh-exec-$1--$TSH_AWS_APP"
   echo ""
 }
 alias tshexec=tsh_exec

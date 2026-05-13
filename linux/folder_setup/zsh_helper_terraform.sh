@@ -7,10 +7,10 @@ function tf {
   
   if [[ -n "$TSH_AWS_APP" ]]; then
     echo "\$ tsh aws --app $TSH_AWS_APP --exec terraform -- $@"
-    tsh aws --app $TSH_AWS_APP --exec terraform -- "$@" | teeout
+    tsh aws --app $TSH_AWS_APP --exec terraform -- "$@" | teeout "tf-$1--$TSH_AWS_APP"
     echo ""
   else
-    terraform "$@" | teeout
+    terraform "$@" | teeout "tf-$1"
   fi
 }
 
@@ -18,10 +18,12 @@ alias tfi="tf init"
 alias tfip="tfi && tfp"
 alias tfia="tfi && tfa"
 alias tfshow="tf show -no-color"
-alias tfa="tf apply"
+alias tfa="echo 'Run other terraform apply command for now'" # need to update this to only run if on home machine
+# alias tfa="tf apply"
 alias tfmv="terraform state mv"
 alias tfrm="terraform state rm"
 
+alias tfplan="tfp"
 function tfp {
   mkdir -p $HOME/Desktop/terraform/
   TF_PLAN_FILE=$HOME/Desktop/terraform/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%s)
@@ -45,9 +47,11 @@ alias rmtf="rm -f .terraform/terraform.tfstate"
 alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform*"
 
 function teeout {
-  TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y%m)
+  TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y%m%d)
   mkdir -p $TEE_OUTPUT_DIR
-  OUTPUT_FILE=$TEE_OUTPUT_DIR/$(basename "$(dirname "$PWD")")--$(basename "$PWD")--$(date +%Y%m%d%H%M%S).txt
+  # Replace "./" with "-" in the command name
+  CMD_NAME=${1//.\//-}
+  OUTPUT_FILE=$TEE_OUTPUT_DIR/${CMD_NAME:+${CMD_NAME}--}$(basename "$(dirname "$PWD")")--$(basename "$PWD")--$(date +%Y%m%d%H%M%S).txt
   echo "Most recent output file: $OUTPUT_FILE"
   tee $OUTPUT_FILE
 }

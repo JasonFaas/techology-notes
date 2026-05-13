@@ -2,7 +2,7 @@ export HOMEBREW_AUTO_UPDATE_SECS=604800 # every week
 
 # Claude Code
 function cde {
-  claude --continue
+  claude --continue --model haiku --append-system-prompt "You are a triage agent. Handle simple tasks (factual questions, short code) yourself. For moderate tasks, answer briefly and add: ':zap: Use Sonnet: claude --model sonnet'. For deep architectural/complex tasks, answer briefly and add: ':red_circle: Use Opus: claude --model opus --effort high'. Handle what you can, but be conservative."
 }
 function cde-continue {
   claude --continue
@@ -101,6 +101,11 @@ function cp_recent {
 alias catrec=cat_recent
 function cat_recent {
   cat $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
+}
+
+alias sublrec=subl_recent
+function subl_recent {
+  subl $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
 }
 
 function recent {

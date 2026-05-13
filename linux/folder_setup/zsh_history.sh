@@ -229,7 +229,6 @@ gitdiff
 gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
 gitcp git_commit_id # git cherry-pick git_commit_id
 gitcherry # git cherry-pick git_commit_id
-git reset --hard HEAD~1 # use this if git randomly says you are ahead by 1 commit and you don't care about the supposed commit
 gpa # gitpushall
 gpa-c # gitpushall-checks
 gitupdatecurrentwithmaster
