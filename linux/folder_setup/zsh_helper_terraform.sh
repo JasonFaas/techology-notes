@@ -23,7 +23,10 @@ alias tfa="echo 'Run other terraform apply command for now'" # need to update th
 alias tfmv="terraform state mv"
 alias tfrm="terraform state rm"
 
+alias tfiapply="tfi && tf apply"
+# alias tfapply="tf apply"
 alias tfplan="tfp"
+alias tfiplan="tfip"
 function tfp {
   mkdir -p $HOME/Desktop/terraform/
   TF_PLAN_FILE=$HOME/Desktop/terraform/$(basename "$(dirname "$PWD")")-$(basename "$PWD")-$(date +%s)
@@ -47,11 +50,12 @@ alias rmtf="rm -f .terraform/terraform.tfstate"
 alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform*"
 
 function teeout {
-  TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y%m%d)
+  TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y)/$(date +%m)/$(date +%d)
   mkdir -p $TEE_OUTPUT_DIR
   # Replace "./" with "-" in the command name
   CMD_NAME=${1//.\//-}
   OUTPUT_FILE=$TEE_OUTPUT_DIR/${CMD_NAME:+${CMD_NAME}--}$(basename "$(dirname "$PWD")")--$(basename "$PWD")--$(date +%Y%m%d%H%M%S).txt
-  echo "Most recent output file: $OUTPUT_FILE"
   tee $OUTPUT_FILE
+  echo ""
+  echo "Most recent output file: $OUTPUT_FILE"
 }

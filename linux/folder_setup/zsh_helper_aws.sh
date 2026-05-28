@@ -110,4 +110,3 @@ function echo-aws {
   echo "$role_path"
 }
 alias echoaws=echo-aws
-alias echoawsaccountinfo=echo-aws-account-info

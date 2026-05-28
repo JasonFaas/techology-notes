@@ -20,3 +20,12 @@ cd $HOME/Code/1/
 #     echo ""
 #   fi
 # done
+
+echo ""
+echo "Symlinking $HOME/workspace folder to $HOME/Code/1"
+ln -s "$HOME/Code/1" "$HOME/workspace" # symlink to workspace folder, aka Eclipse paradigm
+
+echo ""
+echo "\$ docker ps"
+docker ps
+echo ""

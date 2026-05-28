@@ -14,6 +14,8 @@ export GOPATH="/usr/local/go"
 export PATH=$GOPATH/bin:$PATH
 export PATH=$AWS_COMPLETER:$PATH
 
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -56,21 +58,15 @@ echo "\$ ps"
 ps | rg -v "zsh"
 echo ""
 
-echo "\$ docker ps"
-docker ps
-echo ""
-
 echo "\$ kubectx # replace with kubectl command"
 kubectx
 echo ""
 
-echo "\$ kubectl get nodes"
-kubectl get nodes
-echo ""
+# echo "\$ kubectl get nodes"
+# kubectl get nodes
+# echo ""
 
 cd $HOME/Code/1
-
-ln -s "$HOME/Code/1" "$HOME/workspace" # symlink to workspace folder, aka Eclipse paradigm
 
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"

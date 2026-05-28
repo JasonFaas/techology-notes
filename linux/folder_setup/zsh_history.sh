@@ -295,7 +295,6 @@ kubectl delete pod <pod_name> -n <namespace>
 kubectl logs -p <pod-name> --namespace <namespace>
 kubectl logs -f <some_pod_from "kctl get all">
 k-g-p # kubectl get pods
-k-g0n # kubectl get nodes
 k-g-d # kubectl get deployments
 k-a--f <file_name> # kubectl apply from the file
 k-g-s
