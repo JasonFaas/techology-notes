@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 alias tg=terragrunt
 
@@ -23,6 +23,7 @@ alias tfa="echo 'Run other terraform apply command for now'" # need to update th
 alias tfmv="terraform state mv"
 alias tfrm="terraform state rm"
 
+alias tfapply="tf apply"
 alias tfiapply="tfi && tf apply"
 # alias tfapply="tf apply"
 alias tfplan="tfp"

@@ -1,8 +1,10 @@
 export HOMEBREW_AUTO_UPDATE_SECS=604800 # every week
 
+
+alias cluade=claude
 # Claude Code
 function cde {
-  claude --continue --model haiku --append-system-prompt "You are a triage agent. Handle simple tasks (factual questions, short code) yourself. For moderate tasks, answer briefly and add: ':zap: Use Sonnet: claude --model sonnet'. For deep architectural/complex tasks, answer briefly and add: ':red_circle: Use Opus: claude --model opus --effort high'. Handle what you can, but be conservative."
+  claude config set --global preferredNotifChannel terminal_bell
 }
 function cde-continue {
   claude --continue
@@ -36,9 +38,9 @@ function echo_exit_status {
 }
 alias echoexit="echo_exit_status"
 
-alias cd1="cd $HOME/Code/1"
-alias cd2="cd $HOME/Code/2"
-alias cd3="cd $HOME/Code/3"
+alias cd1="cd $HOME/Code/1 && printf '\e]1337;SetProfile=Terminal_Color_Red\a'"
+alias cd2="cd $HOME/Code/2 && printf '\e]1337;SetProfile=Terminal_Color_Green\a'"
+alias cd3="cd $HOME/Code/3 && printf '\e]1337;SetProfile=Terminal_Color_Blue\a'"
 alias cd4="cd $HOME/Code/4"
 alias cd5="cd $HOME/Code/5"
 alias cd6="cd $HOME/Code/6"

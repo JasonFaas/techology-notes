@@ -21,8 +21,8 @@ function aws {
 
 function tsh_exec {
   pwdg
-  echo "\$ tsh aws --app $TSH_AWS_APP --exec $@"
-  tsh aws --app $TSH_AWS_APP --exec "$@" | teeout "tsh-exec-$1--$TSH_AWS_APP"
+  echo "\$ TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec $@"
+  TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec "$@" | teeout "tsh-exec-$1--$TSH_AWS_APP"
   echo ""
 }
 alias tshexec=tsh_exec

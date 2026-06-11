@@ -215,22 +215,10 @@ git pull --no-rebase origin master
 git cherry-pick <git_commit_id>
 git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 git reset --hard HEAD
-gitpushall "commit_message" # git add . && git commit -m commit_message && git push
-gitpush
-gitpull
-gitaddall
-gitstatus
 gitpullstash # stash, pull, stash pop
 git stash
 git stash pop
 gitcommit
-gitd
-gitdiff
-gitcheckpush "new_branch_name" # git checkout -b branch_name and git push to origin
-gitcp git_commit_id # git cherry-pick git_commit_id
-gitcherry # git cherry-pick git_commit_id
-gpa # gitpushall
-gpa-c # gitpushall-checks
 gitupdatecurrentwithmaster
 pwdgit # print normal pwd, though with git root folder highlighted if possible
 
