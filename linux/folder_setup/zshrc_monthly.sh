@@ -1,9 +1,13 @@
 source $(dirname $BASH_SOURCE)/zsh_helper.sh
 
+echo "brew update"
 brew update
+echo "brew upgrade"
 brew upgrade
+echo "pip install --upgrade pip"
 pip install --upgrade pip
 
+echo "gh extension upgrade gh-copilot
 gh extension upgrade gh-copilot
 
 echo "Run Command 'awscompleter' to enable aws cli auto complete. Still not sure why I can't run this in a script. Ask a friend."
