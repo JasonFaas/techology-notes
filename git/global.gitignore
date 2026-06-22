@@ -148,3 +148,4 @@ bootstrap
 terraform.tfstate*backup
 
 *\.swp
+**/.claude/settings.local.json
