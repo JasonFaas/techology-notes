@@ -4,6 +4,7 @@ function cdgitroot {
     echo "Up Dir"
     cd ../
   done
+  echo "cd $(pwd)"
 }
 
 alias gpa="gitpushall"

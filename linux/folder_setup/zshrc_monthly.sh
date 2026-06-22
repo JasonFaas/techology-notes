@@ -24,3 +24,10 @@ cd $HOME
 #echo ""
 
 mkdir -p ~/.terraform.d/plugin-cache
+
+for proj in $HOME/Code/*/*; do
+  if [[ -f "$proj/.claude/settings.local.json" ]]; then
+    rm "$proj/.claude/settings.local.json"
+    echo "Deleted $proj/.claude/settings.local.json"
+  fi
+done

@@ -60,3 +60,14 @@ function teeout {
   echo ""
   echo "Most recent output file: $OUTPUT_FILE"
 }
+
+alias tffmt="terraform-format-repo"
+function terraform-format-repo {
+  CURR_DIR=$(pwd)
+  cdgitroot
+
+  echo "terraform fmt -recursive"
+  terraform fmt -recursive | teeout "terraform-fmt-repo"
+
+  cd $CURR_DIR
+}

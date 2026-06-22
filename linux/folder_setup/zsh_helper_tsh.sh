@@ -35,3 +35,10 @@ function tshssh {
         tsh ssh "ubuntu@$hostname"
     fi
 }
+
+alias tshsshosversion=tsh-ssh-os-version
+function tsh-ssh-os-version {
+    echo "timeout 5 tsh ssh \"ubuntu@instance_id=$1\" \"lsb_release -a\""
+
+    timeout 5 tsh ssh "ubuntu@instance_id=$1" "lsb_release -a"
+}
