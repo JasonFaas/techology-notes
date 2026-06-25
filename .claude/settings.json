@@ -13,21 +13,24 @@
   "hooks": {
     "Stop": [
       {
-        "hooks": [{
-          "type": "command",
-          "command": "afplay /System/Library/Sounds/Glass.aiff",
-          "async": true
-        }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
       }
     ],
     "PermissionRequest": [
       {
-        "hooks": [{
-          "type": "command",
-          "command": "afplay /System/Library/Sounds/Funk.aiff",
-          "async": true
-        }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/afplay /System/Library/Sounds/Funk.aiff"
+          }
+        ]
       }
     ]
-  }
+  },
+  "tui": "fullscreen"
 }
