@@ -9,5 +9,25 @@
       "Bash(git push *)",
       "Bash(gh pr *)"
     ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [{
+          "type": "command",
+          "command": "afplay /System/Library/Sounds/Glass.aiff",
+          "async": true
+        }]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [{
+          "type": "command",
+          "command": "afplay /System/Library/Sounds/Funk.aiff",
+          "async": true
+        }]
+      }
+    ]
   }
 }
