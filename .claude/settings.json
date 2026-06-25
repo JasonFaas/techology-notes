@@ -10,27 +10,16 @@
       "Bash(gh pr *)"
     ]
   },
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/usr/bin/afplay /System/Library/Sounds/Glass.aiff"
-          }
-        ]
+  "extraKnownMarketplaces": {
+    "citedy": {
+      "source": {
+        "source": "github",
+        "repo": "citedy/claude-plugins"
       }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/usr/bin/afplay /System/Library/Sounds/Funk.aiff"
-          }
-        ]
-      }
-    ]
+    }
   },
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "enabledPlugins": {
+    "game-sounds@citedy": true
+  }
 }
