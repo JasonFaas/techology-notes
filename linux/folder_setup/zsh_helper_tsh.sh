@@ -37,6 +37,12 @@ function tshssh {
 }
 
 alias tshsshosversion=tsh-ssh-os-version
+# lsb_release -a is a command to get the os version of a node
+# lsb stands for Linux Standard Base
+# -a stands for all
+# -r is for release
+# -s is for short
+# -d is for distribution
 function tsh-ssh-os-version {
     echo "timeout 5 tsh ssh \"ubuntu@instance_id=$1\" \"lsb_release -a\""
 

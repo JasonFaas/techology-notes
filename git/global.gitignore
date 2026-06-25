@@ -149,3 +149,4 @@ terraform.tfstate*backup
 
 *\.swp
 **/.claude/settings.local.json
+.claude/user-settings.json
