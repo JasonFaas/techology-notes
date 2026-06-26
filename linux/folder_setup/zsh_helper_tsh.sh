@@ -48,3 +48,34 @@ function tsh-ssh-os-version {
 
     timeout 5 tsh ssh "ubuntu@instance_id=$1" "lsb_release -a"
 }
+
+alias tshssmosversion=tsh-ssm-os-version
+function tsh-ssm-os-version {
+    local instance_id=$1
+    if [[ -z "$instance_id" ]]; then
+        echo "Usage: tshssmosversion <instance-id>"
+        return 1
+    fi
+
+    echo "\$ tsh aws --app $TSH_AWS_APP --exec aws -- ssm send-command --instance-ids $instance_id --document-name AWS-RunShellScript --parameters 'commands=[\"lsb_release -a\"]' --query Command.CommandId --output text"
+    local command_id
+    command_id=$(tsh aws --app "$TSH_AWS_APP" --exec aws -- ssm send-command \
+        --instance-ids "$instance_id" \
+        --document-name "AWS-RunShellScript" \
+        --parameters 'commands=["lsb_release -a"]' \
+        --query 'Command.CommandId' \
+        --output text) || return 1
+
+    echo "$command_id"
+    echo "\$ tsh aws --app $TSH_AWS_APP --exec aws -- ssm wait command-executed --command-id $command_id --instance-id $instance_id"
+    tsh aws --app "$TSH_AWS_APP" --exec aws -- ssm wait command-executed \
+        --command-id "$command_id" \
+        --instance-id "$instance_id" || return 1
+
+    echo "\$ tsh aws --app $TSH_AWS_APP --exec aws -- ssm get-command-invocation --command-id $command_id --instance-id $instance_id --query StandardOutputContent --output text"
+    tsh aws --app "$TSH_AWS_APP" --exec aws -- ssm get-command-invocation \
+        --command-id "$command_id" \
+        --instance-id "$instance_id" \
+        --query 'StandardOutputContent' \
+        --output text
+}

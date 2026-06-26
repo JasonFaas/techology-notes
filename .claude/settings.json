@@ -8,7 +8,9 @@
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(gh pr *)",
-      "mcp__atlassian__atlassianUserInfo"
+      "mcp__atlassian__atlassianUserInfo",
+      "Bash(cat)",
+      "Read(/tmp/**)"
     ]
   },
   "extraKnownMarketplaces": {
