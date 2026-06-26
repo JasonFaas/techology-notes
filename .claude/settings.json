@@ -10,7 +10,8 @@
       "Bash(gh pr *)",
       "mcp__atlassian__atlassianUserInfo",
       "Bash(cat)",
-      "Read(/tmp/**)"
+      "Read(/tmp/**)",
+      "Bash(python3 -m py_compile*)"
     ]
   },
   "extraKnownMarketplaces": {
