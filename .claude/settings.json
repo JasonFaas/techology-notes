@@ -17,6 +17,8 @@
       "mcp__atlassian__atlassianUserInfo",
       "Bash(cat)",
       "Read(/tmp/**)",
+      "Write(/tmp/**)",
+      "Write(/private/tmp/**)",
       "Bash(python3 -m py_compile*)"
     ]
   },
