@@ -16,6 +16,8 @@ allowed-tools: Bash(find *), Bash(git -C * ls-files *), Bash(git -C * rev-parse 
 find "$HOME/Code" -maxdepth 4 -name "settings.local.json" -path "*/.claude/*" | sort
 ```
 
+If the find command returns no results, stop and report: "No settings.local.json files found at the expected depth — nothing to consolidate." Do not expand the search depth or look in subdirectories.
+
 Read every file found.
 
 Also read the current target:

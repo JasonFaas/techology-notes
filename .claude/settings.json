@@ -1,6 +1,12 @@
 {
   "permissions": {
+    "deny": [
+      "Bash(find * -delete*)",
+      "Bash(find * -exec *)",
+      "Bash(find * -execdir *)"
+    ],
     "allow": [
+      "Bash(find *)",
       "Read(/Users/jaf/.claude/**)",
       "Read(/private/tmp/**)",
       "Bash(git checkout *)",
