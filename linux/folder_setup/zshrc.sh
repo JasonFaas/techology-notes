@@ -2,10 +2,6 @@ source "$HOME/workspace/techology-notes/linux/folder_setup/zsh_helpers.sh"
 
 echo "Welcome to iTerm2"
 
-echo ""
-echo '$ echo-time'
-echo-time
-
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.docker/bin
@@ -50,21 +46,12 @@ FULL_WEEKLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_8_h
 current_8_hours=$(echo $(( $(date +"%s") / 3600 / 8)))
 run_command_if_file_not_same_as_value $FULL_WEEKLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_8_hours
 
+FULL_TEMP_FILE_PATH="$HOME/temp/techology_1_hour.txt"
+FULL_WEEKLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_1_hour.sh"
+current_1_hour=$(echo $(( $(date +"%s") / 3600 / 1)))
+run_command_if_file_not_same_as_value $FULL_WEEKLY_FILE_PATH $FULL_TEMP_FILE_PATH $current_1_hour
+
 complete -C aws_completer taws # autocomplete taws command
-
-export NO_PROXY="oidc.eks.us-west-2.amazonaws.com,52C83231B68C5BE63EA1CF35EA003920.gr7.us-west-2.eks.amazonaws.com"
-
-echo "\$ ps"
-ps | rg -v "zsh"
-echo ""
-
-echo "\$ kubectx # replace with kubectl command"
-kubectx
-echo ""
-
-# echo "\$ kubectl get nodes"
-# kubectl get nodes
-# echo ""
 
 cd $HOME/Code/1
 
@@ -77,4 +64,3 @@ cd $HOME/Code/1
 for cmd in ${(k)functions} ${(k)aliases}; do
     print -s "$cmd"
 done
-
