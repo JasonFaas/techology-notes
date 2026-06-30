@@ -19,7 +19,10 @@
       "Read(/tmp/**)",
       "Write(/tmp/**)",
       "Write(/private/tmp/**)",
-      "Bash(python3 -m py_compile*)"
+      "Bash(python3 -m py_compile*)",
+      "Bash(git -C * commit -m *)",
+      "Bash(git -C * push*)",
+      "Bash(gh * pr create * --body-file /tmp/* --draft)"
     ]
   },
   "extraKnownMarketplaces": {
