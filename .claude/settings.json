@@ -1,10 +1,5 @@
 {
   "permissions": {
-    "deny": [
-      "Bash(find * -delete*)",
-      "Bash(find * -exec *)",
-      "Bash(find * -execdir *)"
-    ],
     "allow": [
       "Bash(find *)",
       "Read(/Users/jaf/.claude/**)",
@@ -15,6 +10,12 @@
       "Bash(git push *)",
       "Bash(gh pr *)",
       "mcp__atlassian__atlassianUserInfo",
+      "mcp__claude_ai_Gmail__search_threads",
+      "mcp__claude_ai_Gmail__list_labels",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Google_Drive__read_file_content",
+      "Bash(git config user.*)",
+      "Bash(git mv *)",
       "Bash(cat)",
       "Read(/tmp/**)",
       "Write(/tmp/**)",
@@ -23,7 +24,15 @@
       "Bash(git -C * commit -m *)",
       "Bash(git -C * push*)",
       "Bash(gh * pr create * --body-file /tmp/* --draft)"
+    ],
+    "deny": [
+      "Bash(find * -delete*)",
+      "Bash(find * -exec *)",
+      "Bash(find * -execdir *)"
     ]
+  },
+  "enabledPlugins": {
+    "game-sounds@citedy": true
   },
   "extraKnownMarketplaces": {
     "citedy": {
@@ -33,8 +42,5 @@
       }
     }
   },
-  "tui": "fullscreen",
-  "enabledPlugins": {
-    "game-sounds@citedy": true
-  }
+  "tui": "fullscreen"
 }

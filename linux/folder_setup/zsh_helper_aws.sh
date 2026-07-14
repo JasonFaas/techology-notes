@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias awsw="aws sts get-caller-identity"
 alias awscompleter="complete -C $(which aws_completer) aws"
 alias awsc="complete -C $(which aws_completer) aws"

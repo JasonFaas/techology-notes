@@ -12,6 +12,7 @@ aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK
 
 aws ec2 describe-instances help
 aws ec2 describe-instances --filters Name=iam-instance-profile.arn,Values=<arn>
+aws ec2 describe-tags --filters "Name=resource-id,Values=i-0abc123456789"
 aws ec2 help
 aws ec2 start-instances --instance-ids <instance_ids>
 aws ec2 stop-instances --instance-ids <instance_id>
@@ -111,7 +112,10 @@ brew install atuin
 brew install aws-iam-authenticator
 brew install awscli
 brew install bat
+brew install black # python formatter
+brew install ruff # python formatter
 brew install coreutils # gshuf among other tools
+brew install flake8 # python formatter
 brew install gh && gh auth login && gh extension install github/gh-copilot && gh copilot explain "Did I get everything setup correctly?" && gh copilot suggest "Did I get everything setup correctly?"
 brew install git
 brew install go
@@ -221,6 +225,8 @@ git stash pop
 gitcommit
 gitupdatecurrentwithmaster
 pwdgit # print normal pwd, though with git root folder highlighted if possible
+
+gpa "Whitespace cleanup" # git add-*,commit-message,push "Whitespace cleanup"
 
 git clone git@github.com:JasonFaas/techology-notes.git
 git clone git@github.com:JasonFaas/docker-experiment.git

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source "$HOME/workspace/techology-notes/linux/folder_setup/zsh_helpers.sh"
 
 echo "Welcome to iTerm2"
@@ -11,6 +13,9 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$AWS_COMPLETER:$PATH
 
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+echo "plugin_cache_dir = \"$HOME/.terraform.d/plugin-cache\"" > ~/.terraformrc
+
+export CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE=1
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

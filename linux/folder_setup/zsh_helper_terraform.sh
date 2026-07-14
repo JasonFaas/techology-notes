@@ -48,7 +48,7 @@ alias tgplan="terragrunt plan -lock=false"
 alias tginit="terragrunt init"
 
 alias rmtf="rm -f .terraform/terraform.tfstate"
-alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform*"
+alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform && rm -rf .terraform.lock.hcl"
 
 function teeout {
   TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y)/$(date +%m)/$(date +%d)

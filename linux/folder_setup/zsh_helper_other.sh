@@ -6,12 +6,6 @@ alias cluade=claude
 function cde {
   claude config set --global preferredNotifChannel terminal_bell
 }
-function cde-continue {
-  claude --continue
-}
-function cde-resume {
-  claude --resume
-}
 
 alias echotime="echo-time"
 function echo-time {
@@ -39,13 +33,12 @@ function echo_exit_status {
 alias echoexit="echo_exit_status"
 
 alias cd1="cd $HOME/Code/1 && printf '\e]1337;SetProfile=Terminal_Color_Red\a'"
-alias cd2="cd $HOME/Code/2 && printf '\e]1337;SetProfile=Terminal_Color_Green\a'"
-alias cd3="cd $HOME/Code/3 && printf '\e]1337;SetProfile=Terminal_Color_Blue\a'"
-alias cd4="cd $HOME/Code/4"
-alias cd5="cd $HOME/Code/5"
-alias cd6="cd $HOME/Code/6"
-alias cd7="cd $HOME/Code/7"
-alias cd8="cd $HOME/Code/8"
+alias cd2="cd $HOME/Code/2 && printf '\e]1337;SetProfile=Terminal_Color_Orange\a'"
+alias cd3="cd $HOME/Code/3 && printf '\e]1337;SetProfile=Terminal_Color_Yellow\a'"
+alias cd4="cd $HOME/Code/4 && printf '\e]1337;SetProfile=Terminal_Color_Green\a'"
+alias cd5="cd $HOME/Code/5 && printf '\e]1337;SetProfile=Terminal_Color_Blue\a'"
+alias cd6="cd $HOME/Code/6 && printf '\e]1337;SetProfile=Terminal_Color_Purple\a'"
+alias cd7="cd $HOME/Code/7 && printf '\e]1337;SetProfile=Terminal_Color_Magenta\a'"
 alias cdtech="cd techology-notes/"
 
 alias vi="echo \"You should really try vim\""
@@ -90,29 +83,33 @@ function run_command_if_file_not_same_as_value {
   echo ""
 }
 
+function get_recent_output_file {
+  echo "$HOME/Desktop/output/$(date +%Y)/$(date +%m)/$(date +%d)/$(ls -t $HOME/Desktop/output/$(date +%Y)/$(date +%m)/$(date +%d)/ | head -1)"
+}
+
 alias rgrec=rg_recent
 function rg_recent {
-  rg  "$@" $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
+  rg "$@" "$(get_recent_output_file)"
 }
 
 alias cprec=cp_recent
 function cp_recent {
-  cp $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1) "$@"
+  cp "$(get_recent_output_file)" "$@"
 }
 
 alias catrec=cat_recent
 function cat_recent {
-  cat $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
+  cat "$(get_recent_output_file)"
 }
 
 alias sublrec=subl_recent
 function subl_recent {
-  subl $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)
+  subl "$(get_recent_output_file)"
 }
 
 function recent {
-  echo "Recent file: $HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)" | pbcopy
+  echo "Recent file: $(get_recent_output_file)" | pbcopy
 }
 
 alias recpbcopy=pbcopyrec
-alias pbcopyrec='echo "$HOME/Desktop/output/$(date +%Y%m)/$(ls -t $HOME/Desktop/output/$(date +%Y%m)/ | head -1)" | pbcopy'
+alias pbcopyrec='echo "$(get_recent_output_file)" | pbcopy'
