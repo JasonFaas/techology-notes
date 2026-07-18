@@ -39,7 +39,7 @@ alias cd4="cd $HOME/Code/4 && printf '\e]1337;SetProfile=Terminal_Color_Green\a'
 alias cd5="cd $HOME/Code/5 && printf '\e]1337;SetProfile=Terminal_Color_Blue\a'"
 alias cd6="cd $HOME/Code/6 && printf '\e]1337;SetProfile=Terminal_Color_Purple\a'"
 alias cd7="cd $HOME/Code/7 && printf '\e]1337;SetProfile=Terminal_Color_Magenta\a'"
-alias cdtech="cd techology-notes/"
+alias cdtech="$HOME/workspace/techology-notes/ && printf '\e]1337;SetProfile=Terminal_Color_Red_Pink\a'"
 
 alias vi="echo \"You should really try vim\""
 
