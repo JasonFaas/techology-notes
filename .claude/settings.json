@@ -47,6 +47,7 @@
       "Bash(find * -execdir *)"
     ]
   },
+  "model": "opus",
   "enabledPlugins": {
     "game-sounds@citedy": true
   },
@@ -58,6 +59,5 @@
       }
     }
   },
-  "tui": "fullscreen",
-  "model": "opus"
+  "tui": "fullscreen"
 }
