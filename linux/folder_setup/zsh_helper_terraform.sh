@@ -56,7 +56,7 @@ function teeout {
   # Replace "./" with "-" in the command name
   CMD_NAME=${1//.\//-}
   OUTPUT_FILE=$TEE_OUTPUT_DIR/${CMD_NAME:+${CMD_NAME}--}$(basename "$(dirname "$PWD")")--$(basename "$PWD")--$(date +%Y%m%d%H%M%S).txt
-  tee $OUTPUT_FILE
+  tee -a $OUTPUT_FILE
   echo ""
   echo "Most recent output file: $OUTPUT_FILE"
 }

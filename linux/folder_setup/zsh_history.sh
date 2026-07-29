@@ -413,14 +413,14 @@ terraform -no-color > ~/Desktop/${TERRAFORM_LOGS}/terraform_plan--$(date -u +"%Y
 terraform apply
 terraform apply -parallelism=1 # Changes default parallel tasks from 10 to 1
 terraform destroy
-terraform import <hmm> <something>
+terraform import hmm something
 tf import aws_instance.web i-12345678 # example
 tf import aws_cloudwatch_metric_alarm.my_alarm my_alarm_name # example
 terraform state list # list all modules
-terraform state mv <from> <to>
+terraform state mv from to
 terraform state rm module.<fill_in_more_from_state_list> # remove a module, typically with prevent_destroy to skip over during tf destory
 terraform state replace-provider registry.terraform.io/-/aws  registry.terraform.io/hashicorp/aws # Used commonly during terraform upgrades when providers update do not go through correctly
-terraform force-unlock <id>
+terraform force-unlock id # command to unlock a terraform lock
 
 test -d ${HOME}/Desktop # does the Desktop folder exist
 test -e .git # True if file exists (regardless of type)
@@ -447,6 +447,7 @@ vim ~/.zsh_history # edit the zsh history file
 
 which python3
 
+aws ec2 modify-instance-attribute --instance-id $INSTANCE_ID --no-disable-api-termination
 aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/tempfile.txt\
 while IFS= read -r line; do\
   echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\

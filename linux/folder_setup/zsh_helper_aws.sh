@@ -9,11 +9,11 @@ alias awsc="complete -C $(which aws_completer) aws"
 # }
 
 function aws {
-  pwdg
+  pwd | teeout "tsh-exec-$1--$TSH_AWS_APP"
   
   if [[ -n "$TSH_AWS_APP" ]]; then
-    echo "Running aws cli with $TSH_AWS_APP and SHOW IAM ROLE"
-    echo "\$ tsh aws --app $TSH_AWS_APP $@"
+    echo "Running aws cli with $TSH_AWS_APP and SHOW IAM ROLE" | teeout "aws-$1-$2--$TSH_AWS_APP"
+    echo "\$ tsh aws --app $TSH_AWS_APP $@" | teeout "aws-$1-$2--$TSH_AWS_APP"
     tsh aws --app $TSH_AWS_APP "$@" | teeout "aws-$1-$2--$TSH_AWS_APP"
     echo ""
   else
@@ -22,8 +22,8 @@ function aws {
 }
 
 function tsh_exec {
-  pwdg
-  echo "\$ TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec $@"
+  pwd | teeout "tsh-exec-$1--$TSH_AWS_APP"
+  echo "\$ TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec $@" | teeout "tsh-exec-$1--$TSH_AWS_APP"
   TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec "$@" | teeout "tsh-exec-$1--$TSH_AWS_APP"
   echo ""
 }

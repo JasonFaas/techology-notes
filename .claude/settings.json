@@ -37,9 +37,11 @@
       "mcp__claude_ai_Notion__notion-fetch",
       "Bash(tfenv list *)",
       "Bash(gh api *)",
-      "Bash(mkdir -p /private/tmp/*)",
-      "Bash(tee /private/tmp/*)",
-      "Bash(tee /tmp/*)"
+      "Bash(mkdir -p /private/tmp/**)",
+      "Bash(tee /private/tmp/**)",
+      "Bash(tee /tmp/**)",
+      "Read(/Users/jaf/**)",
+      "Write(/Users/jaf/.claude/projects/**)"
     ],
     "deny": [
       "Bash(find * -delete*)",
