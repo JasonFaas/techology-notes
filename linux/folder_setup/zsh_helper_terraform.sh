@@ -3,14 +3,19 @@
 alias tg=terragrunt
 
 function tf {
-  pwdg
+  FILE_NAME="tf-$1--$TSH_AWS_APP"
+  SUFFIX="$(date +%Y%m%d%H%M%S)"
+  echo "\$ pwd" | teeout -s $FILE_NAME $SUFFIX
+  pwd | teeout -s $FILE_NAME $SUFFIX
   
   if [[ -n "$TSH_AWS_APP" ]]; then
-    echo "\$ tsh aws --app $TSH_AWS_APP --exec terraform -- $@"
-    tsh aws --app $TSH_AWS_APP --exec terraform -- "$@" | teeout "tf-$1--$TSH_AWS_APP"
+    echo "" | teeout -s $FILE_NAME $SUFFIX
+    echo "# Running terraform cli with $TSH_AWS_APP and $(cat $HOME/.tsh/current_prod_aws_iam_role)" | teeout -s $FILE_NAME
+    echo "\$ tsh aws --app $TSH_AWS_APP --exec terraform -- $@" | teeout -s $FILE_NAME $SUFFIX
+    tsh aws --app $TSH_AWS_APP --exec terraform -- "$@" 2>&1 | teeout $FILE_NAME $SUFFIX
     echo ""
   else
-    terraform "$@" | teeout "tf-$1"
+    terraform "$@" 2>&1 | teeout $FILE_NAME $SUFFIX
   fi
 }
 
@@ -51,14 +56,28 @@ alias rmtf="rm -f .terraform/terraform.tfstate"
 alias rmtfa="echo \"Removing all terraform files including large downloaded providers.\" && rm -rf .terraform && rm -rf .terraform.lock.hcl"
 
 function teeout {
+  local silent=false
+  if [[ "$1" == "-s" || "$1" == "--silent" ]]; then
+    silent=true
+    shift
+  fi
+
+  if [[ -n "$2" ]]; then
+    SUFFIX="$2"
+  else
+    SUFFIX="$(date +%Y%m%d%H%M%S)"
+  fi
+
   TEE_OUTPUT_DIR=$HOME/Desktop/output/$(date +%Y)/$(date +%m)/$(date +%d)
   mkdir -p $TEE_OUTPUT_DIR
   # Replace "./" with "-" in the command name
   CMD_NAME=${1//.\//-}
-  OUTPUT_FILE=$TEE_OUTPUT_DIR/${CMD_NAME:+${CMD_NAME}--}$(basename "$(dirname "$PWD")")--$(basename "$PWD")--$(date +%Y%m%d%H%M%S).txt
+  OUTPUT_FILE=$TEE_OUTPUT_DIR/${CMD_NAME:+${CMD_NAME}--}$(basename "$(dirname "$PWD")")--$(basename "$PWD")--${SUFFIX}.txt
   tee -a $OUTPUT_FILE
-  echo ""
-  echo "Most recent output file: $OUTPUT_FILE"
+  if [[ "$silent" != true ]]; then
+    echo ""
+    echo "Most recent output file: $OUTPUT_FILE"
+  fi
 }
 
 alias tffmt="terraform-format-repo"

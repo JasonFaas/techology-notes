@@ -9,12 +9,16 @@ alias awsc="complete -C $(which aws_completer) aws"
 # }
 
 function aws {
-  pwd | teeout "tsh-exec-$1--$TSH_AWS_APP"
-  
+  FILE_NAME="aws-$1-$2--$TSH_AWS_APP"
+  SUFFIX="$(date +%Y%m%d%H%M%S)"
+  echo "\$ pwd" | teeout -s $FILE_NAME $SUFFIX
+  pwd | teeout -s $FILE_NAME $SUFFIX
+
   if [[ -n "$TSH_AWS_APP" ]]; then
-    echo "Running aws cli with $TSH_AWS_APP and SHOW IAM ROLE" | teeout "aws-$1-$2--$TSH_AWS_APP"
-    echo "\$ tsh aws --app $TSH_AWS_APP $@" | teeout "aws-$1-$2--$TSH_AWS_APP"
-    tsh aws --app $TSH_AWS_APP "$@" | teeout "aws-$1-$2--$TSH_AWS_APP"
+    echo "" | teeout -s $FILE_NAME $SUFFIX
+    echo "# Running aws cli with $TSH_AWS_APP and $(cat $HOME/.tsh/current_${TSH_AWS_APP}_iam_role)" | teeout -s $FILE_NAME $SUFFIX
+    echo "\$ tsh aws --app $TSH_AWS_APP $@" | teeout -s $FILE_NAME $SUFFIX
+    tsh aws --app $TSH_AWS_APP "$@" 2>&1 | teeout $FILE_NAME $SUFFIX
     echo ""
   else
     /opt/homebrew/bin/aws "$@"
@@ -22,15 +26,22 @@ function aws {
 }
 
 function tsh_exec {
-  pwd | teeout "tsh-exec-$1--$TSH_AWS_APP"
-  echo "\$ TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec $@" | teeout "tsh-exec-$1--$TSH_AWS_APP"
-  TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec "$@" | teeout "tsh-exec-$1--$TSH_AWS_APP"
+  FILE_NAME="tsh-exec-$1--$TSH_AWS_APP"
+  SUFFIX="$(date +%Y%m%d%H%M%S)"
+  pwd | teeout -s $FILE_NAME $SUFFIX
+  echo "\$ TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec $@" | teeout -s $FILE_NAME $SUFFIX
+  TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec "$@" 2>&1 | teeout $FILE_NAME $SUFFIX
   echo ""
 }
 alias tshexec=tsh_exec
 alias exectsh=tsh_exec
 
 function echo_tsh {
+  echo "Commands to get info:"
+  echo "$ tsh status"
+  echo "$ tsh apps ls"
+  echo "$ tsh aws --app <each-aws-app-name> sts get-caller-identity"
+  
   echo -e "${BBlue}TSH_AWS_APP:${Color_Off} ${TSH_AWS_APP:-"(not set)"}"
   echo ""
 
