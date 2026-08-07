@@ -10,7 +10,7 @@ function tf {
   
   if [[ -n "$TSH_AWS_APP" ]]; then
     echo "" | teeout -s $FILE_NAME $SUFFIX
-    echo "# Running terraform cli with $TSH_AWS_APP and $(cat $HOME/.tsh/current_prod_aws_iam_role)" | teeout -s $FILE_NAME
+    echo "# Running terraform cli with $TSH_AWS_APP and $(cat $HOME/.tsh/current_${TSH_AWS_APP}_iam_role)" | teeout -s $FILE_NAME
     echo "\$ tsh aws --app $TSH_AWS_APP --exec terraform -- $@" | teeout -s $FILE_NAME $SUFFIX
     tsh aws --app $TSH_AWS_APP --exec terraform -- "$@" 2>&1 | teeout $FILE_NAME $SUFFIX
     echo ""
