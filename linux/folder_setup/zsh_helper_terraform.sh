@@ -73,10 +73,12 @@ function teeout {
   # Replace "./" with "-" in the command name
   CMD_NAME=${1//.\//-}
   OUTPUT_FILE=$TEE_OUTPUT_DIR/${CMD_NAME:+${CMD_NAME}--}$(basename "$(dirname "$PWD")")--$(basename "$PWD")--${SUFFIX}.txt
-  tee -a $OUTPUT_FILE
+  LAST_OUTPUT_FILE=$TEE_OUTPUT_DIR/${CMD_NAME:+${CMD_NAME}--}$(basename "$(dirname "$PWD")")--$(basename "$PWD")--$(date +%s%N).txt
+  tee -a $OUTPUT_FILE $LAST_OUTPUT_FILE
   if [[ "$silent" != true ]]; then
     echo ""
-    echo "Most recent output file: $OUTPUT_FILE"
+    echo "Full output file: $OUTPUT_FILE"
+    echo "Last command output file: $LAST_OUTPUT_FILE"
   fi
 }
 
