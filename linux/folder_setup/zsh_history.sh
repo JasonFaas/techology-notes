@@ -299,6 +299,11 @@ kctx -c # only the current context
 kctx <environment to switch to>
 kctx
 
+kctl config rename-context # kubectx <new>=<old>
+kctl config delete-context # kubectx -d <name>
+kctl config unset current-context # kubectx -u # unset current context
+kctl config use-context # kctx insert_name_here
+kctl config get-contexts # kctx # nothing extra
 kctl describe pod <pod-name> --namespace <namespace>
 kctl edit deployment <pod-prefix> --namespace <namespace>
 kctl get all
