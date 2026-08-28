@@ -32,13 +32,13 @@ function echo_exit_status {
 }
 alias echoexit="echo_exit_status"
 
-alias cd1="cd $HOME/Code/1 && printf '\e]1337;SetProfile=Terminal_Color_Red\a'"
-alias cd2="cd $HOME/Code/2 && printf '\e]1337;SetProfile=Terminal_Color_Orange\a'"
-alias cd3="cd $HOME/Code/3 && printf '\e]1337;SetProfile=Terminal_Color_Yellow\a'"
-alias cd4="cd $HOME/Code/4 && printf '\e]1337;SetProfile=Terminal_Color_Green\a'"
-alias cd5="cd $HOME/Code/5 && printf '\e]1337;SetProfile=Terminal_Color_Blue\a'"
-alias cd6="cd $HOME/Code/6 && printf '\e]1337;SetProfile=Terminal_Color_Purple\a'"
-alias cd7="cd $HOME/Code/7 && printf '\e]1337;SetProfile=Terminal_Color_Magenta\a'"
+alias cd1="cd $HOME/Code/1 && printf '\e]1337;SetProfile=Terminal_Color_Red\a'; cd devops/"
+alias cd2="cd $HOME/Code/2 && printf '\e]1337;SetProfile=Terminal_Color_Orange\a'; cd devops/"
+alias cd3="cd $HOME/Code/3 && printf '\e]1337;SetProfile=Terminal_Color_Yellow\a'; cd devops/"
+alias cd4="cd $HOME/Code/4 && printf '\e]1337;SetProfile=Terminal_Color_Green\a'; cd devops/"
+alias cd5="cd $HOME/Code/5 && printf '\e]1337;SetProfile=Terminal_Color_Blue\a'; cd devops/"
+alias cd6="cd $HOME/Code/6 && printf '\e]1337;SetProfile=Terminal_Color_Purple\a'; cd devops/"
+alias cd7="cd $HOME/Code/7 && printf '\e]1337;SetProfile=Terminal_Color_Magenta\a'; cd devops/"
 alias cdtech="$HOME/workspace/techology-notes/ && printf '\e]1337;SetProfile=Terminal_Color_Red_Pink\a'"
 
 alias vi="echo \"You should really try vim\""
