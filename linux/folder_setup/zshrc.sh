@@ -60,6 +60,9 @@ complete -C aws_completer taws # autocomplete taws command
 
 cd $HOME/Code/1
 
+echo "All terminal windows pwd"
+echoopendir
+
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init --path)"

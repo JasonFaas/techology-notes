@@ -7,6 +7,12 @@ function cde {
   claude config set --global preferredNotifChannel terminal_bell
 }
 
+echoopendir() {
+    lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | cut -d'/' -f1-6 | sort -u
+}
+alias termdir=echoopendir
+alias allpwd=echoopendir
+
 alias echotime="echo-time"
 function echo-time {
   echo "$(date) Computer Time Zone"
