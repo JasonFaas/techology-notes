@@ -9,7 +9,14 @@ function cde {
 
 echoopendir() {
     # lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | sort -u
-    lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | cut -d'/' -f1-6 | sort -u
+    lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | cut -d'/' -f1-6 | sort -u | while read -r dir; do
+        branch=$(git -C "$dir" branch --show-current 2>/dev/null)
+        if [ -n "$branch" ]; then
+            echo "$dir - $branch"
+        else
+            echo "$dir"
+        fi
+    done
 }
 alias termdir=echoopendir
 alias allpwd=echoopendir
