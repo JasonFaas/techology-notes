@@ -8,6 +8,7 @@ function cde {
 }
 
 echoopendir() {
+    # lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | sort -u
     lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | cut -d'/' -f1-6 | sort -u
 }
 alias termdir=echoopendir
