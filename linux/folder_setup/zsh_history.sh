@@ -227,6 +227,7 @@ gitupdatecurrentwithmaster
 pwdgit # print normal pwd, though with git root folder highlighted if possible
 
 gpa "Whitespace cleanup" # git add-*,commit-message,push "Whitespace cleanup"
+gpa-c "Whitespace cleanup"
 
 git clone git@github.com:JasonFaas/techology-notes.git
 git clone git@github.com:JasonFaas/docker-experiment.git
@@ -389,6 +390,7 @@ set +v # do not re-state command just specified
 source ~/.venv/py3venv1/bin/activate  # Activate virtual environment
 ssh -i <private_key_file> <user>@<ec2-instance-id> # have to have ssm setup
 ssh -i <private_key_file> <user>@<ec2-instance-id> -D <random_port> # curl --socks5-hostname 127.0.0.1:<previous_port> <full_url_like_on_proxy_machine,including_port>
+ssh root@$IP_ADDRESS -- "su - $INSTANCE_USERNAME -c '$COMMANDS_TO_BE_RUN'"
 ssh <ip> "sudo -- sh -c 'date; whoami; pwd; cd ~; pwd'" # run ssh commands as `sudo`
 ssh -p <port> <user>@<ip_address>
 ssh <user>@<ip> "echo 'command_string';pwd;ls"
@@ -452,7 +454,7 @@ vim ~/.zsh_history # edit the zsh history file
 
 which python3
 
-aws ec2 modify-instance-attribute --instance-id $INSTANCE_ID --no-disable-api-termination
+aws ec2 modify-instance-attribute --instance-id $INSTANCE_ID --no-disable-api-termination # enable api termination for instance to allow stopping instance
 aws elbv2 describe-target-groups | jq -r '.TargetGroups[].TargetGroupArn' > ~/Desktop/tempfile.txt\
 while IFS= read -r line; do\
   echo "$line"; aws elbv2 describe-target-health --target-group-arn=$line --no-cli-pager | jq '.TargetHealthDescriptions[].TargetHealth | select(.State != "healthy")'\

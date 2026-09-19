@@ -43,3 +43,5 @@
     * 1Password
     * Minim: https://chromewebstore.google.com/detail/minim-a-minimal-newtab/kpblgdhkligkbbnbpkigppblggflihgn
     * UBlock Origin Lite: https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh
+    * https://renewedtab.com/en/
+      * See settings at $HOME/workspace/techology-notes/mac/renewedtab.json
