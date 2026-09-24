@@ -19,7 +19,46 @@ echoopendir() {
     done
 }
 alias termdir=echoopendir
-alias allpwd=echoopendir
+
+echocoderepos() {
+    for numdir in "$HOME/Code"/*/; do
+        [ -d "$numdir" ] || continue
+        numdir="${numdir%/}"
+        section_name="$(basename "$numdir")"
+        echo "\$HOME/Code/${section_name}/:"
+
+        maxlen=0
+        for repo in "$numdir"/*/; do
+            repo="${repo%/}"
+            [ -L "$repo" ] && continue
+            [ -d "$repo/.git" ] || continue
+            fullpath="\$HOME/Code/${section_name}/$(basename "$repo")"
+            [ "${#fullpath}" -gt "$maxlen" ] && maxlen="${#fullpath}"
+        done
+
+        for repo in "$numdir"/*/; do
+            repo="${repo%/}"
+            [ -L "$repo" ] && continue
+            [ -d "$repo/.git" ] || continue
+            fullpath="\$HOME/Code/${section_name}/$(basename "$repo")"
+            branch=$(git -C "$repo" branch --show-current 2>/dev/null)
+            if [ -n "$branch" ]; then
+                printf '    %-*s - %s\n' "$maxlen" "$fullpath" "$branch"
+            else
+                printf '    %s\n' "$fullpath"
+            fi
+        done
+    done
+}
+
+unalias allpwd 2>/dev/null
+function allpwd {
+    echo "Open Shell Directories and Branches"
+    echoopendir
+    echo ""
+    echo "Repos under \$HOME/Code"
+    echocoderepos
+}
 
 alias echotime="echo-time"
 function echo-time {
