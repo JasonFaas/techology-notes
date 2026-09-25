@@ -1,5 +1,6 @@
 export HOMEBREW_AUTO_UPDATE_SECS=604800 # every week
 
+alias firefox="open -a /Applications/Firefox.app/Contents/MacOS/firefox -P"
 
 alias cluade=claude
 # Claude Code
@@ -9,13 +10,19 @@ function cde {
 
 echoopendir() {
     # lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | sort -u
+    local cur_dir
+    cur_dir=$(pwd | cut -d'/' -f1-6)
     lsof -a -d cwd -c zsh -c bash -n -P | awk '{print $NF}' | tail -n +2 | cut -d'/' -f1-6 | sort -u | while read -r dir; do
         branch=$(git -C "$dir" branch --show-current 2>/dev/null)
         if [ -n "$branch" ]; then
-            echo "$dir - $branch"
+            line="$dir - $branch"
         else
-            echo "$dir"
+            line="$dir"
         fi
+        if [ "$dir" = "$cur_dir" ]; then
+            line="$line - pwd"
+        fi
+        echo "$line"
     done
 }
 alias termdir=echoopendir

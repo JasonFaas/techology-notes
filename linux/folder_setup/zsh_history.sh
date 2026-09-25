@@ -8,6 +8,7 @@
 [ -z "$HOME" ] # This will return 1 as env var exists
 echo $(( $(date +"%s") / 3600))
 
+
 aws cloudwatch describe-alarms | jq '.MetricAlarms[] | select(.StateValue != "OK") | .AlarmName'
 
 aws ec2 describe-instances help
@@ -233,6 +234,9 @@ git clone git@github.com:JasonFaas/techology-notes.git
 git clone git@github.com:JasonFaas/docker-experiment.git
 
 grep # to compare 2 strings, start with echo command
+
+/Applications/Firefox.app/Contents/MacOS/firefox -P # open firefox and select a profile
+firefox
 
 helm status master
 helm upgrade --help
