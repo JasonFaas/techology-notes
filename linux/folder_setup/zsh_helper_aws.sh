@@ -26,12 +26,18 @@ function aws {
 }
 
 function tsh_exec {
+  local start_time end_time
+  start_time=$(date +%s)
+
   FILE_NAME="tsh-exec-$1--$TSH_AWS_APP"
   SUFFIX="$(date +%Y%m%d%H%M%S)"
   pwd | teeout -s $FILE_NAME $SUFFIX
   echo "\$ TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec $@" | teeout -s $FILE_NAME $SUFFIX
   TSH_AWS_APP=$TSH_AWS_APP tsh aws --app $TSH_AWS_APP --exec "$@" 2>&1 | teeout $FILE_NAME $SUFFIX
   echo ""
+
+  end_time=$(date +%s)
+  echo "Execution time in seconds: $((end_time - start_time))"
 }
 alias tshexec=tsh_exec
 alias exectsh=tsh_exec

@@ -20,6 +20,7 @@ function tf {
 }
 
 alias tfi="tf init"
+alias tfo="tf output"
 alias tfip="tfi && tfp"
 alias tfia="tfi && tfa"
 alias tfshow="tf show -no-color"

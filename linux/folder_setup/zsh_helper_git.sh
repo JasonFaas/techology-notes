@@ -81,7 +81,7 @@ function pwdgit {
   pwd | sed "s/$GIT_ROOT_FOLDER/$(echo -e "${BRed}$GIT_ROOT_FOLDER${Color_Off}")/g"
 }
 
-alias gitupdatecurrentwithmaster="git fetch origin && git merge origin/HEAD && git push"
+alias gitupdatecurrentwithmaster="echo 'git fetch origin' && git fetch origin && echo 'git merge origin/HEAD' && git merge origin/HEAD && echo 'git push' && git push"
 alias gitpull="git pull"
 alias gitpush="git push"
 alias gitaddall="git add ."

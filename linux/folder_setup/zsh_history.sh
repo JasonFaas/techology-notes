@@ -445,6 +445,8 @@ tsh version
 tsh login --proxy # currently prefer app login than proxy login, though holding this for now
 
 unset AWS_PROFILE # or any environment variable
+unset -f aws # unset a specific function
+
 
 vagrant global-status
 vagrant halt
