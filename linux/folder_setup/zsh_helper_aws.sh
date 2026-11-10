@@ -60,14 +60,16 @@ function echo_tsh {
   echo ""
 
   echo -e "${BBlue}AWS apps currently logged in:${Color_Off}"
-  local apps
-  apps=$(tsh apps ls 2>/dev/null | rg ">.*-aws " 2>/dev/null)
-  if [[ -z "$apps" ]]; then
+  # tsh apps ls truncates long names in the table, so read names/labels from JSON.
+  # JSON has no logged-in marker; an app is logged in if it has a cert in ~/.tsh/keys.
+  local apps_json logged_in_apps app_name env_tag identity account role id_info
+  apps_json=$(tsh apps ls --format=json 2>/dev/null)
+  logged_in_apps=$(ls "$HOME"/.tsh/keys/*/*-app/*/*-aws.crt 2>/dev/null | xargs -n1 basename 2>/dev/null | sed 's/\.crt$//' | sort -u)
+  if [[ -z "$logged_in_apps" ]]; then
     echo "  (none)"
   else
-    echo "$apps" | while IFS= read -r line; do
-      app_name=$(echo "$line" | awk '{print $2}')
-      env_tag=$(echo "$line" | sed 's/.*env=\([^,]*\).*/\1/')
+    echo "$logged_in_apps" | while IFS= read -r app_name; do
+      env_tag=$(echo "$apps_json" | jq -r --arg n "$app_name" '.[] | select(.metadata.name == $n) | .metadata.labels.env // "?"' 2>/dev/null)
       identity=$(tsh aws --app "$app_name" sts get-caller-identity 2>/dev/null)
       account=$(echo "$identity" | grep '"Account"' | awk -F'"' '{print $4}')
       role=$(echo "$identity" | grep '"Arn"' | sed 's/.*assumed-role\/\([^/]*\).*/\1/')
@@ -77,9 +79,9 @@ function echo_tsh {
         id_info="account=$account, role=$role"
       fi
       if [[ "$app_name" == "$TSH_AWS_APP" ]]; then
-        echo -e "  ${BGreen}* $app_name${Color_Off}  (env=$env_tag, $id_info) ${BGreen}<-- active${Color_Off}"
+        echo -e "  ${BGreen}* $app_name${Color_Off}  (env=${env_tag:-?}, $id_info) ${BGreen}<-- active${Color_Off}"
       else
-        echo -e "  ${Yellow}  $app_name${Color_Off}  (env=$env_tag, $id_info)"
+        echo -e "  ${Yellow}  $app_name${Color_Off}  (env=${env_tag:-?}, $id_info)"
       fi
     done
   fi
