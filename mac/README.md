@@ -45,3 +45,6 @@
     * UBlock Origin Lite: https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh
     * https://renewedtab.com/en/
       * See settings at $HOME/workspace/techology-notes/mac/renewedtab.json
+    * Renewed Tab: renewedtab.com
+      * see json file in this folder for settings.
+
