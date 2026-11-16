@@ -2,6 +2,26 @@
 
 source "$HOME/workspace/techology-notes/linux/folder_setup/zsh_helpers.sh"
 
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+# On Intel Macs where Homebrew is no longer supported, use MacPorts as a drop-in
+if [[ "$(uname -m)" == "x86_64" ]] && ! command -v brew &>/dev/null && command -v port &>/dev/null; then
+  export PACKAGE_PREFIX="/opt/local"
+  brew() {
+    case "$1" in
+      update)           sudo port selfupdate ;;
+      upgrade)
+        if [[ -z "$2" ]]; then sudo port upgrade outdated
+        else shift; sudo port upgrade "$@"; fi ;;
+      install)          shift; sudo port install "$@" ;;
+      --prefix)         echo "/opt/local" ;;
+      *)                sudo port "$@" ;;
+    esac
+  }
+else
+  export PACKAGE_PREFIX="${HOMEBREW_PREFIX:-/opt/homebrew}"
+fi
+
 echo "Welcome to iTerm2"
 
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
