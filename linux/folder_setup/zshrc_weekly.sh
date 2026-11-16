@@ -1,4 +1,4 @@
-source $(dirname $BASH_SOURCE)/zsh_helper.sh
+git config --global core.excludesfile "$HOME/Code/1/techology-notes/git/global.gitignore"
 
 # curl 'wttr.in/Santa+Clara?m'
 

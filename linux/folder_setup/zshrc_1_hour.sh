@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "1 hour is up"
 
 echo ""

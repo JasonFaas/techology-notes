@@ -129,12 +129,12 @@ function run_command_if_file_not_same_as_value {
   if [ ! -f "$TEMP_FILE_PATH" ]; then
     echo "Running \"${CMD_TO_RUN}\" as ${TEMP_FILE_PATH} does not exist."
     echo ""
-    $CMD_TO_RUN
+    source $CMD_TO_RUN
   else
     TEMP_VAR=$(cat $TEMP_FILE_PATH)
     if [ "$VALUE_EXPECTED" != "$TEMP_VAR" ]; then
       echo "Running \"${CMD_TO_RUN}\" as value is different in ${TEMP_FILE_PATH}."
-      $CMD_TO_RUN
+      source $CMD_TO_RUN
     else
       echo "Not running \"${CMD_TO_RUN}\" as value is same in ${TEMP_FILE_PATH}."
     fi

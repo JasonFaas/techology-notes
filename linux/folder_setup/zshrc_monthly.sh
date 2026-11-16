@@ -1,7 +1,3 @@
-#!/bin/bash
-
-source $(dirname $BASH_SOURCE)/zsh_helper.sh
-
 echo "brew update"
 brew update
 echo "brew upgrade"

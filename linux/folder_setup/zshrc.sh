@@ -47,14 +47,13 @@ export AWS_COMPLETER=$(which aws_completer)
 # complete -C "$AWS_COMPLETER" aws
 # AWS_COMPLETER ZSH
 autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -C
 #autoload -U +X bashcompinit && bashcompinit
 #autoload -U +X compinit && compinit
 complete -C $AWS_COMPLETER aws
 #terraform -install-autocomplete
 
 export GLOBAL_GITIGNORE="${HOME}/Code/1/techology-notes/git/global.gitignore"
-test -f $GLOBAL_GITIGNORE && sh -c "git config --global core.excludesfile $GLOBAL_GITIGNORE" || sh -c "echo 'Global git file DOES NOT EXIST. Fix this'; echo ''"
 
 FULL_TEMP_FILE_PATH="$HOME/temp/techology_monthly.txt"
 FULL_MONTHLY_FILE_PATH="$HOME/Code/1/techology-notes/linux/folder_setup/zshrc_monthly.sh"
