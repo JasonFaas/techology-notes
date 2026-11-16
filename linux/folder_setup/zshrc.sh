@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "$HOME/workspace/techology-notes/linux/folder_setup/zsh_helpers.sh"
-
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # On Intel Macs where Homebrew is no longer supported, use MacPorts as a drop-in

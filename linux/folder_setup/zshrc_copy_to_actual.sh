@@ -1,3 +1,5 @@
+echo "New Tab Start"
+
 source $ZSH/oh-my-zsh.sh # potentially already sourced in .zshrc
 
 source $HOME/Code/1/techology-notes/linux/folder_setup/zsh_helpers.sh
