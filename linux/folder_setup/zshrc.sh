@@ -89,6 +89,6 @@ echoopendir
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
-for cmd in ${(k)functions} ${(k)aliases}; do
-    print -s "$cmd"
-done
+# for cmd in ${(k)functions} ${(k)aliases}; do
+#     print -s "$cmd"
+# done

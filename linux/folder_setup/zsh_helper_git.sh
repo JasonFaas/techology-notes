@@ -97,8 +97,8 @@ alias gitcherry="git cherry-pick"
 alias gitstash="git stash"
 alias gitpop="git stash pop"
 alias gitstashpop="git stash pop"
-alias ghalogin="gh auth login && echo $(gh auth token) > ~/Desktop/temp/gh-auth-token && ghatoken"
-alias ghatoken="export GH_TOKEN=$(cat ~/Desktop/temp/gh-auth-token) && export GITHUB_TOKEN=$(cat ~/Desktop/temp/gh-auth-token)"
+alias ghalogin='gh auth login && gh auth token > ~/Desktop/temp/gh-auth-token && ghatoken'
+alias ghatoken='export GH_TOKEN=$(cat ~/Desktop/temp/gh-auth-token) && export GITHUB_TOKEN=$(cat ~/Desktop/temp/gh-auth-token)'
 
 function gitpullfolders {
   echo "Running Git Pull for all directories in $(pwd)"

@@ -117,6 +117,7 @@ brew install black # python formatter
 brew install ruff # python formatter
 brew install coreutils # gshuf among other tools
 brew install flake8 # python formatter
+brew install fzf # fuzzy finder for history (ctrl+r), files (ctrl+t), cd (alt+c)
 brew install gh && gh auth login && gh extension install github/gh-copilot && gh copilot explain "Did I get everything setup correctly?" && gh copilot suggest "Did I get everything setup correctly?"
 brew install git
 brew install go
