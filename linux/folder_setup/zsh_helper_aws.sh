@@ -8,6 +8,8 @@ alias awsc="complete -C $(which aws_completer) aws"
 #   /opt/homebrew/bin/aws "$@"
 # }
 
+export AWS_PAGER=""
+
 function aws {
   FILE_NAME="aws-$1-$2--$TSH_AWS_APP"
   SUFFIX="$(date +%Y%m%d%H%M%S)"
