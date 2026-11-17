@@ -21,7 +21,7 @@ function aws {
     tsh aws --app $TSH_AWS_APP "$@" 2>&1 | teeout $FILE_NAME $SUFFIX
     echo ""
   else
-    /opt/homebrew/bin/aws "$@"
+    $PACKAGE_PREFIX/bin/aws "$@"
   fi
 }
 
