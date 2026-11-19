@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ZSHRC_DIR="$HOME/workspace/techology-notes/linux/folder_setup"
+ZSHRC_DIR="${0:A:h}"
 source "$ZSHRC_DIR/zsh_helper_colors.sh"
 source "$ZSHRC_DIR/zsh_helper_other.sh"
 source "$ZSHRC_DIR/zsh_helper_git.sh"
