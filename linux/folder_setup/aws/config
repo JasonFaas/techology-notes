@@ -6,3 +6,6 @@ cli_pager =
 [profile east1]
 region = us-east-1
 output = json
+
+# if using aws login, then uncomment below:
+# credential_process = aws configure export-credentials --format process
